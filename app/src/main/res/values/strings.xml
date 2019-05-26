@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">SmartButler</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="main_menu_home_title">홈</string>
+    <string name="main_menu_butler_title">김집사</string>
+    <string name="main_menu_life_title">생활</string>
+</resources>

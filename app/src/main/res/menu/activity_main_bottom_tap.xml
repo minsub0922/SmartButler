@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/nav_home"
+        android:icon="@drawable/btn_gnb_home_on"
+        android:title="홈" />
+
+    <item
+        android:id="@+id/nav_butler"
+        android:icon="@drawable/btn_tab_butler_n"
+        android:title="김집사" />
+
+    <item
+        android:id="@+id/nav_life"
+        android:icon="@drawable/btn_tab_life_n"
+        android:title="생활" />
+
+</menu>
