@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/btn_doorlock"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/btn_doorlock_n"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintDimensionRatio="98:92"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintWidth_percent="0.31"
+        />
+
+    <Button
+        android:id="@+id/btn_fire"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/btn_fire_n"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintDimensionRatio="98:92"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintWidth_percent="0.31"
+        />
+
+    <Button
+        android:id="@+id/btn_cctv"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/btn_cctv_n"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintDimensionRatio="98:92"
+        app:layout_constraintHorizontal_bias="1"
+        app:layout_constraintWidth_percent="0.31"
+        />
+
+    <Button
+        android:id="@+id/btn_temperature"
+        android:layout_marginTop="13dp"
+        app:layout_constraintLeft_toLeftOf="@id/btn_doorlock"
+        app:layout_constraintRight_toRightOf="@id/btn_fire"
+        app:layout_constraintTop_toBottomOf="@id/btn_doorlock"
+        app:layout_constraintDimensionRatio="210:38"
+        android:background="@drawable/btn_temperature_n"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/btn_fall_on"
+        app:layout_constraintTop_toTopOf="@id/btn_temperature"
+        app:layout_constraintBottom_toBottomOf="@id/btn_temperature"
+        app:layout_constraintLeft_toLeftOf="@id/btn_cctv"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/btn_fall_on"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+    <Button
+        android:id="@+id/btn_fall_off"
+        app:layout_constraintTop_toTopOf="@id/btn_temperature"
+        app:layout_constraintBottom_toBottomOf="@id/btn_temperature"
+        app:layout_constraintLeft_toLeftOf="@id/btn_cctv"
+        app:layout_constraintRight_toRightOf="parent"
+        android:background="@drawable/btn_fall_off"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

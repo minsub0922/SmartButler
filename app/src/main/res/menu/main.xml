@@ -4,6 +4,7 @@
     <item
         android:id="@+id/action_settings"
         android:orderInCategory="100"
+        android:icon="@drawable/btn_navi_info_n"
         android:title="@string/action_settings"
-        app:showAsAction="never" />
+        app:showAsAction="ifRoom" />
 </menu>

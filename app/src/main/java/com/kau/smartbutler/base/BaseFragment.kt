@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.kau.smartbutler.utils.fragmentTransitions.BusProvider
 
 abstract class BaseFragment : Fragment() {
@@ -54,7 +56,6 @@ abstract class BaseFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         setupView(view)
-        subscribeUI()
 
         BusProvider.instance.register(this)
     }
@@ -64,8 +65,4 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    // 라이브데이터 쓸 경우 해당 함수 사용 (꼭 안써도 됨, 안 쓸 경우 onViewCreated를 오버라이드 받고, super 호출해주고 사용하면 됨)
-    open fun subscribeUI() {
-
-    }
 }
