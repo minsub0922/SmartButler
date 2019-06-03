@@ -1,4 +1,4 @@
-package com.kau.smartbutler.utils.fragmentTransitions;
+package com.kau.smartbutler.util.fragment;
 
 import android.view.View;
 

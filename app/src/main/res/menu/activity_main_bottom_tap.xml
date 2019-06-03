@@ -3,17 +3,17 @@
 
     <item
         android:id="@+id/nav_home"
-        android:icon="@drawable/btn_gnb_home_on"
+        android:icon="@drawable/tab_home_selector"
         android:title="홈" />
 
     <item
         android:id="@+id/nav_butler"
-        android:icon="@drawable/btn_tab_butler_n"
+        android:icon="@drawable/tab_butler_selector"
         android:title="김집사" />
 
     <item
         android:id="@+id/nav_life"
-        android:icon="@drawable/btn_tab_life_n"
+        android:icon="@drawable/tab_life_selector"
         android:title="생활" />
 
 </menu>

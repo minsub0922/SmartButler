@@ -1,29 +1,33 @@
 package com.kau.smartbutler.base
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.kau.smartbutler.utils.fragmentTransitions.BusProvider
+import com.kau.smartbutler.util.fragment.BusProvider
+import android.os.Parcelable
+
+
 
 abstract class BaseFragment : Fragment() {
     abstract val layoutRes: Int
     open val isUseDataBinding: Boolean = false
+    private var refreshView : Boolean = true
+    private lateinit var v: View
 
     // onCreateView 단계에서 데이터 바인딩 연계처리
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        if (layoutRes != 0) {
-            return if (!isUseDataBinding) {
-                inflater.inflate(layoutRes, container, false)
-            } else {
-                onDataBinding(inflater, container)
-            }
+
+        if (isUseDataBinding) {
+            onDataBinding(inflater, container)
+            return super.onCreateView(inflater, container, savedInstanceState)
+        }else {
+            if (refreshView) v = inflater.inflate(layoutRes, container, false)
+            return v
         }
 
-        return super.onCreateView(inflater, container, savedInstanceState)
     }
 
     lateinit var mFragmentNavigation: FragmentNavigation
@@ -46,7 +50,6 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-
     open fun onDataBinding(inflater: LayoutInflater, container: ViewGroup?): View? {
         return null
     }
@@ -55,7 +58,7 @@ abstract class BaseFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupView(view)
+        if (refreshView) setupView(view)
 
         BusProvider.instance.register(this)
     }
@@ -64,5 +67,8 @@ abstract class BaseFragment : Fragment() {
     open fun setupView(view: View) {
 
     }
+
+    fun refrestOFF(){refreshView = false}
+    fun refrestON(){refreshView = true}
 
 }

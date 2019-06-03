@@ -1,4 +1,4 @@
-package com.kau.smartbutler.utils.fragmentTransitions
+package com.kau.smartbutler.util.fragment
 
 import android.annotation.SuppressLint
 import android.util.Log

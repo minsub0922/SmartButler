@@ -7,6 +7,8 @@ import com.kau.smartbutler.base.BaseFragment
 import com.kau.smartbutler.controller.DeviceControllerAdpater
 import com.kau.smartbutler.model.Device
 import kotlinx.android.synthetic.main.fragment_home.*
+import com.kau.smartbutler.util.recylcerview.GridSpacingItemDecoration
+
 
 class HomeFragment : BaseFragment() {
 
@@ -34,25 +36,35 @@ class HomeFragment : BaseFragment() {
         setModels()
 
         rv_home_control.adapter = adapter
+        rv_home_control.addItemDecoration(GridSpacingItemDecoration(3, 40, false))
+
+        refrestOFF()
 
     }
 
     private fun setModels(){
 
         modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
-        modelList.add(Device(0,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(3,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(3,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(3,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(2,"asd"))
+        modelList.add(Device(1,"asd"))
+        modelList.add(Device(3,"asd"))
 
     }
-
-
-
 }

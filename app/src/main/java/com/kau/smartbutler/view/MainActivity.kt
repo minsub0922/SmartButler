@@ -13,9 +13,9 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
-import com.kau.smartbutler.utils.fragmentTransitions.BottomNavigationViewHelper
-import com.kau.smartbutler.utils.fragmentTransitions.FragNavController
-import com.kau.smartbutler.utils.fragmentTransitions.FragmentHistory
+import com.kau.smartbutler.util.fragment.BottomNavigationViewHelper
+import com.kau.smartbutler.util.fragment.FragNavController
+import com.kau.smartbutler.util.fragment.FragmentHistory
 import com.kau.smartbutler.view.main.butler.ButlerFragment
 import com.kau.smartbutler.view.main.home.HomeFragment
 import com.kau.smartbutler.view.main.life.LifeFragment
@@ -147,6 +147,7 @@ class MainActivity(
 
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         //navigation.setItemIconSize(resources.getDimension(R.dimen.main_menu_size).toInt())
+        navigation.itemIconTintList = null
 
         BottomNavigationViewHelper.removeShiftMode(navigation)
 
@@ -157,6 +158,7 @@ class MainActivity(
                 .build()
 
         switchTab(0)
+
 
     }
 
