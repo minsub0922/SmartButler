@@ -156,6 +156,7 @@ class MainActivity(
 
         switchTab(0)
 
+
     }
 
     private fun switchTab(position: Int) = mNavController!!.switchTab(position)
