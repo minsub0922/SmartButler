@@ -29,6 +29,18 @@
                 android:background="@color/white"
                 />
 
+            <Switch
+                android:id="@+id/btn_device_switch"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginTop="15dp"
+                android:track="@drawable/toggle_track"
+                android:thumb="@drawable/switch_home_selector"
+                android:textColor="@color/AppThemeColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
             <include
                 android:id="@+id/layout_state"
                 android:layout_marginTop="65dp"

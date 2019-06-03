@@ -5,13 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.Switch
+import android.widget.TextView
+import androidx.databinding.ObservableField
 import androidx.recyclerview.widget.RecyclerView
 import com.kau.smartbutler.R
 import com.kau.smartbutler.model.Device
-import kotlinx.android.synthetic.main.model_device_control.view.*
 import java.util.*
 
-class DeviceControllerAdpater (val mContext: Context, val modelList: ArrayList<Device>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DeviceControllerAdpater (val mContext: Context, val modelList: ArrayList<Device>, val toggleSwitch: ObservableField<Boolean>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     override fun getItemViewType(position: Int): Int {
         return modelList.get(position).type
@@ -32,18 +35,66 @@ class DeviceControllerAdpater (val mContext: Context, val modelList: ArrayList<D
 
         val holder = viewHolder as DeviceViewHolder
 
-        when(model.type){
-            1 -> holder.button.background = mContext.getDrawable(R.drawable.btn_bedroom_on)
-            2 -> holder.button.background = mContext.getDrawable(R.drawable.btn_tv_on)
-            3 -> holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_on)
-            4 -> holder.button.background = mContext.getDrawable(R.drawable.btn_library_on)
+        setButtonBackground(model.type, model.state, holder)
+
+        holder.deviceSwitch.isChecked = model.state
+
+        holder.deviceSwitch.setOnClickListener { v -> toggleButtonListener(holder, model) }
+
+        holder.name.text = model.name
+
+    }
+
+    private fun setButtonBackground(type: Int, switch: Boolean, holder:DeviceViewHolder){
+
+        when(type){
+            1 -> {
+                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_bedroom_on)
+                else holder.button.background = mContext.getDrawable(R.drawable.btn_bedroom_off)
+            }
+            2 -> {
+                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_tv_on)
+                else holder.button.background = mContext.getDrawable(R.drawable.btn_tv_off)
+            }
+            3 -> {
+                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_on)
+                else holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_off)
+            }
+            4 -> {
+                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_library_on)
+                else holder.button.background = mContext.getDrawable(R.drawable.btn_library_off)
+            }
         }
 
-     }
+        if (switch) {
+            holder.name.alpha = 1f
+        }
+        else {
+
+            holder.name.alpha = 0.5f
+        }
+
+    }
+
+    private fun toggleButtonListener(holder: DeviceViewHolder, model: Device){
+
+        model.state = !(model.state)
+
+        setButtonBackground(model.type, model.state, holder)
+
+    }
 
     class DeviceViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        val button: Button by lazy { itemView.findViewById<Button>(R.id.btn_device_control) }
+        var button: ImageView
+        var name : TextView
+        var deviceSwitch: Switch
+
+        init {
+            button = itemView.findViewById<ImageView>(R.id.btn_device_control)
+            name = itemView.findViewById<TextView>(R.id.txt_device_name)
+            deviceSwitch = itemView.findViewById<Switch>(R.id.switch_device)
+        }
 
     }
 

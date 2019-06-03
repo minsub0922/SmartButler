@@ -54,23 +54,17 @@
         android:layout_width="0dp"
         android:layout_height="0dp" />
 
-    <Button
-        android:id="@+id/btn_fall_on"
+    <ToggleButton
+        android:id="@+id/btn_fall"
         app:layout_constraintTop_toTopOf="@id/btn_temperature"
         app:layout_constraintBottom_toBottomOf="@id/btn_temperature"
         app:layout_constraintLeft_toLeftOf="@id/btn_cctv"
         app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/btn_fall_on"
-        android:layout_width="0dp"
-        android:layout_height="0dp" />
-
-    <Button
-        android:id="@+id/btn_fall_off"
-        app:layout_constraintTop_toTopOf="@id/btn_temperature"
-        app:layout_constraintBottom_toBottomOf="@id/btn_temperature"
-        app:layout_constraintLeft_toLeftOf="@id/btn_cctv"
-        app:layout_constraintRight_toRightOf="parent"
-        android:background="@drawable/btn_fall_off"
+        android:background="@drawable/home_fall_toggle_selector"
+        android:text=""
+        android:textOn=""
+        android:textIsSelectable="false"
+        android:textOff=""
         android:layout_width="0dp"
         android:layout_height="0dp" />
 

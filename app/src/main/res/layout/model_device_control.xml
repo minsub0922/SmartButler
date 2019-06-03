@@ -4,9 +4,9 @@
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <Button
+    <ImageView
         android:id="@+id/btn_device_control"
-        android:background="@drawable/btn_n"
+        android:background="@drawable/btn_library_on"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -14,4 +14,34 @@
         android:layout_height="0dp"
         app:layout_constraintDimensionRatio="98:92"
         />
+
+    <TextView
+        android:id="@+id/txt_device_name"
+        android:elevation="10dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintVertical_bias="0.85"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16dp"
+        android:textColor="#ffffff"
+        android:lineSpacingExtra="14sp"
+        android:gravity="center_horizontal"
+        android:text="서재 조명"
+        />
+
+    <Switch
+        android:elevation="10dp"
+        android:id="@+id/switch_device"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:thumb="@drawable/switch_selector"
+        android:track="@drawable/switch_track"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
