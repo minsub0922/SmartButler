@@ -39,9 +39,12 @@ class MainActivity(
 
         buildView(savedInstanceState)
 
+        setToolbar()
+
     }
 
     private fun setDrawaerWithNavigationView(){
+
 
         val toggle = ActionBarDrawerToggle(
                 this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close)
@@ -51,6 +54,14 @@ class MainActivity(
         toggle.syncState()
 
         navView.setNavigationItemSelectedListener(this)
+
+    }
+
+    private fun setToolbar(){
+
+        supportActionBar!!.setDisplayShowTitleEnabled(false);
+
+        supportActionBar!!
 
     }
 
