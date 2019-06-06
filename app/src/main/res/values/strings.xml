@@ -12,6 +12,15 @@
     <string name="main_menu_life_title">생활</string>
 
 
+    <string name="life_menu_pill">알약 인식 및 성분 분석</string>
+    <string name="life_menu_vr">건강 지킴이</string>
+    <string name="life_menu_res">병원 예약 및 택시 예약</string>
+    <string name="life_menu_counsel">원격 심리 상담</string>
+    <string name="life_menu_food">식단 분석 및 식단 주문</string>
+
+
+
+
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>

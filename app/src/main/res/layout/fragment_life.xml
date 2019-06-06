@@ -1,16 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+    <data>
+        <variable
+            name="fragment"
+            type="com.kau.smartbutler.view.main.life.LifeFragment"/>
+        <variable
+            name="lifeVM"
+            type="com.kau.smartbutler.viewModel.LifeViewModel"/>
+    </data>
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:text="Hello Life!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_life_vr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="105dp"
+            android:background="@drawable/btn_life_vr_n"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_life_res"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="13sp"
+            android:text="@string/life_menu_vr"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:elevation="2dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_life_vr"
+            app:layout_constraintEnd_toEndOf="@+id/btn_life_vr"
+            app:layout_constraintStart_toStartOf="@+id/btn_life_vr"
+            app:layout_constraintTop_toTopOf="@+id/btn_life_vr" />
+
+
+        <Button
+            android:id="@+id/btn_life_res"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn_life_res_n"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_life_vr"
+            app:layout_constraintBottom_toTopOf="@+id/btn_life_counsel"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="13sp"
+            android:text="@string/life_menu_res"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:elevation="2dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_life_res"
+            app:layout_constraintEnd_toEndOf="@+id/btn_life_res"
+            app:layout_constraintStart_toStartOf="@+id/btn_life_res"
+            app:layout_constraintTop_toTopOf="@+id/btn_life_res" />
+
+
+        <Button
+            android:id="@+id/btn_life_counsel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn_life_counsel_n"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_life_res"
+            app:layout_constraintBottom_toTopOf="@+id/btn_life_food"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="13sp"
+            android:text="@string/life_menu_counsel"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:elevation="2dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_life_counsel"
+            app:layout_constraintEnd_toEndOf="@+id/btn_life_counsel"
+            app:layout_constraintStart_toStartOf="@+id/btn_life_counsel"
+            app:layout_constraintTop_toTopOf="@+id/btn_life_counsel" />
+
+
+        <Button
+            android:id="@+id/btn_life_food"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:background="@drawable/btn_life_food_n"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_life_counsel"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="13sp"
+            android:text="@string/life_menu_food"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:elevation="2dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_life_food"
+            app:layout_constraintEnd_toEndOf="@+id/btn_life_food"
+            app:layout_constraintStart_toStartOf="@+id/btn_life_food"
+            app:layout_constraintTop_toTopOf="@+id/btn_life_food" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -18,4 +18,6 @@
 
     <color name="darkGray">#777777</color>
     <color name="titleColor">#333333</color>
+
+    <color name="mainTextColor">#333333</color>
 </resources>
