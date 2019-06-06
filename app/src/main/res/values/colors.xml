@@ -8,4 +8,6 @@
     <color name="transparent">#00000000</color>
 
     <color name="inActivatedColor">#a1a1a1</color>
+
+    <color name="mainTextColor">#333333</color>
 </resources>
