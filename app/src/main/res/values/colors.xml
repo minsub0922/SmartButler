@@ -14,6 +14,8 @@
     <color name="inActivatedColor">#a1a1a1</color>
     <color name="divider">#dbdbdb</color>
     <color name="spinnerTextColor">#6d7278</color>
+    <color name="divider">#dbdbdb</color>
+    <color name="spinnerTextColor">#6d7278</color>
     <color name="black">#000000</color>
 
     <color name="darkGray">#777777</color>
