@@ -6,6 +6,12 @@
     <color name="AppThemeColor">#ffc939</color>
     <color name="white">#ffffff</color>
     <color name="transparent">#00000000</color>
+    <color name="switch_on_yellow">#ffc939</color>
+    <color name="switch_on_yellow_50">#70ffc939</color>
 
+    <color name="activatedSwitchTextColor">#ffc12f</color>
+    <color name="inActivatedSwitchTextColor">#afafaf</color>
     <color name="inActivatedColor">#a1a1a1</color>
+    <color name="divider">#dbdbdb</color>
+    <color name="spinnerTextColor">#6d7278</color>
 </resources>

@@ -10,4 +10,11 @@
     <string name="main_menu_home_title">홈</string>
     <string name="main_menu_butler_title">김집사</string>
     <string name="main_menu_life_title">생활</string>
+
+
+    <string-array name="planets_array">
+        <item>Mercury</item>
+        <item>Venus</item>
+        <item>Earth</item>
+    </string-array>
 </resources>

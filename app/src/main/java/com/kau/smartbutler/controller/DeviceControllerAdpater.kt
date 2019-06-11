@@ -14,7 +14,12 @@ import com.kau.smartbutler.R
 import com.kau.smartbutler.model.Device
 import java.util.*
 
-class DeviceControllerAdpater (val mContext: Context, val modelList: ArrayList<Device>, val toggleSwitch: ObservableField<Boolean>) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class DeviceControllerAdpater (
+        val mContext: Context,
+        val modelList: ArrayList<Device>,
+        val toggleSwitch: ObservableField<Boolean>)
+    : RecyclerView.Adapter<RecyclerView.ViewHolder>()
+{
 
     override fun getItemViewType(position: Int): Int {
         return modelList.get(position).type

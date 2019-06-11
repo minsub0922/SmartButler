@@ -1,5 +1,6 @@
 package com.kau.smartbutler.view.main.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.Switch
@@ -10,10 +11,18 @@ import com.kau.smartbutler.controller.DeviceControllerAdpater
 import com.kau.smartbutler.model.Device
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.kau.smartbutler.util.recylcerview.GridSpacingItemDecoration
+import com.kau.smartbutler.view.main.home.child.TemperatureHumidityActivity
 import kotlinx.android.synthetic.main.fragment_home_state.*
 
 
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment() , View.OnClickListener{
+    override fun onClick(v: View?) {
+        if (v!!.id == R.id.btn_temperature){
+
+            startActivity(Intent(activity, TemperatureHumidityActivity::class.java))
+
+        }
+    }
 
     override val layoutRes: Int = R.layout.fragment_home
     val modelList = ArrayList<Device>()
@@ -50,6 +59,8 @@ class HomeFragment : BaseFragment() {
             adapter.notifyDataSetChanged()
 
         }
+
+        btn_temperature.setOnClickListener(this)
 
     }
 
