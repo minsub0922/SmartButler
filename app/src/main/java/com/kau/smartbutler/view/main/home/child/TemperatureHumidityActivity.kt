@@ -28,8 +28,6 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
 
         setReserveSettings()
 
-        toolbarTitle.text = "온도 및 습도"
-
     }
 
     private fun setSpinner(){

@@ -21,6 +21,14 @@
         </activity>
         <activity android:name=".view.main.home.child.TemperatureHumidityActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.home.child.DeviceListActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.home.child.DeviceModifiedActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.home.child.DeviceLightActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.home.child.DeviceTVActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
     </application>
 
 </manifest>

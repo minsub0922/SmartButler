@@ -23,7 +23,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text=""
+            android:text="온도 및 습도"
             android:layout_gravity="center"
             android:id="@+id/toolbarTitle"
             android:textColor="@color/titleColor"
@@ -185,15 +185,15 @@
                 android:layout_marginLeft="6dp"
                 />
 
-            <androidx.appcompat.widget.SwitchCompat
-                android:id="@+id/switch_humidity"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:theme="@style/SwitchCompatTheme"
-                app:layout_constraintBottom_toBottomOf="@id/img_humidity"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="@id/img_humidity" />
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switch_humidity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="20dp"
+                    android:theme="@style/SwitchCompatTheme"
+                    app:layout_constraintBottom_toBottomOf="@id/img_humidity"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/img_humidity" />
 
             <TextView
                 android:id="@+id/str_humidity"

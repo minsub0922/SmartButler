@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="조명"
+            android:layout_gravity="center"
+            android:id="@+id/toolbarTitle"
+            android:textColor="@color/titleColor"
+            android:textSize="18sp"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/boilerSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/SwitchCompatTheme"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#ffc12f"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="@id/boilerSwitch"
+        app:layout_constraintBottom_toBottomOf="@id/boilerSwitch"
+        app:layout_constraintRight_toLeftOf="@id/boilerSwitch"
+        android:layout_marginRight="10dp"
+        android:text="난방 OFF"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#afafaf"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="@id/boilerSwitch"
+        app:layout_constraintBottom_toBottomOf="@id/boilerSwitch"
+        app:layout_constraintLeft_toRightOf="@id/boilerSwitch"
+        android:layout_marginLeft="10dp"
+        android:text="난방 ON"
+        />
+
+
+    <SeekBar
+        android:id="@+id/lightSeekbar"
+        android:layout_width="270dp"
+        android:layout_height="70dp"
+        app:layout_constraintWidth_percent="0.23"
+        android:layout_marginTop="130dp"
+        android:rotation="270"
+        android:thumb="@color/transparent"
+        android:progressDrawable="@drawable/light_seekbar_progress_selector"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/boilerSwitch"
+        />
+
+    <ImageView
+        android:layout_width="170dp"
+        android:layout_height="30dp"
+        android:src="@drawable/img_spectrum"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lightSeekbar"
+        android:layout_marginTop="220dp"
+        />
+    <SeekBar
+        android:id="@+id/spectrumSeekbar"
+        android:layout_width="182dp"
+        android:layout_height="30dp"
+        android:progressDrawable="@color/transparent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/lightSeekbar"
+        android:layout_marginTop="220dp"
+        android:thumb="@drawable/specturm_seekbar_thumb"
+        />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:src="@drawable/btn_light_bulb_on"
+        app:layout_constraintBottom_toBottomOf="@id/spectrumSeekbar"
+        app:layout_constraintRight_toLeftOf="@id/spectrumSeekbar"
+        app:layout_constraintTop_toTopOf="@id/spectrumSeekbar"
+        app:layout_constraintVertical_bias="0.2" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:src="@drawable/btn_daylight_blue_n"
+        app:layout_constraintBottom_toBottomOf="@id/spectrumSeekbar"
+        app:layout_constraintLeft_toRightOf="@id/spectrumSeekbar"
+        app:layout_constraintTop_toTopOf="@id/spectrumSeekbar"
+        app:layout_constraintVertical_bias="0.20" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

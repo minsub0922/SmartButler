@@ -17,9 +17,14 @@ import java.util.*
 class DeviceControllerAdpater (
         val mContext: Context,
         val modelList: ArrayList<Device>,
-        val toggleSwitch: ObservableField<Boolean>)
+        val toggleSwitch: ObservableField<Boolean>,
+        val deviceClickListener: DeviceControllerItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
+
+    interface DeviceControllerItemClickListener{
+        fun OnDeiveClicked(device: Device)
+    }
 
     override fun getItemViewType(position: Int): Int {
         return modelList.get(position).type
@@ -36,7 +41,11 @@ class DeviceControllerAdpater (
 
         val model = modelList.get(position)
 
-        if (model.type==0) return
+        if (model.type==0) {
+
+            (viewHolder as AddDeviceViewHolder).button.setOnClickListener{ deviceClickListener.OnDeiveClicked(model) }
+            return
+        }
 
         val holder = viewHolder as DeviceViewHolder
 
@@ -47,6 +56,8 @@ class DeviceControllerAdpater (
         holder.deviceSwitch.setOnClickListener { v -> toggleButtonListener(holder, model) }
 
         holder.name.text = model.name
+
+        holder.itemView.setOnClickListener{ deviceClickListener.OnDeiveClicked(model) }
 
     }
 
