@@ -10,8 +10,11 @@
     <color name="switch_on_yellow_50">#70ffc939</color>
 
     <color name="activatedSwitchTextColor">#ffc12f</color>
-    <color name="inActivatedSwitchTextColor">#afafaf</color>
+    <color name="inactivatedTextColor">#afafaf</color>
     <color name="inActivatedColor">#a1a1a1</color>
     <color name="divider">#dbdbdb</color>
     <color name="spinnerTextColor">#6d7278</color>
+
+    <color name="darkGray">#777777</color>
+    <color name="titleColor">#333333</color>
 </resources>

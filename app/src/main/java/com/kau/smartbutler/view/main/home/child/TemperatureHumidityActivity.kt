@@ -8,12 +8,13 @@ import com.kau.smartbutler.controller.SpinnerItemAdapter
 import kotlinx.android.synthetic.main.activity_temerature_humidity.*
 
 
-class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClickListener {
+class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClickListener, TemperatureHumidityDialog.SetReservation{
 
     override val isUseDatabinding: Boolean = false
     override val layoutRes: Int = R.layout.activity_temerature_humidity
     val strings = arrayOf("0% ~ 20%", "30% ~ 50% (권장습도)", "60% ~ 80%")
     var selectedHumidity = 0
+    override var isChildActivity = true
     val adapter: SpinnerItemAdapter by lazy { SpinnerItemAdapter(this, strings,0, this) }
 
     override fun setupView() {
@@ -24,6 +25,10 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
         spinnerItemRecyclerView.adapter = adapter
 
         humidTextView.text = trimDesciption(strings[selectedHumidity]).trim()
+
+        setReserveSettings()
+
+        toolbarTitle.text = "온도 및 습도"
 
     }
 
@@ -44,11 +49,15 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
 
     private fun setReserveSettings(){
 
-        settingButton.setOnClickListener{
+        settingButton.setOnClickListener{ TemperatureHumidityDialog(this, this).callFunction() }
+    }
 
+    override fun onCompleted(endReserv: Boolean, startReserv: Boolean, temp: Int, reservTime: String) {
+        if (!endReserv&&!startReserv) switch_reserve.isChecked = false
+        else if (endReserv) reserveTypeTextView.text = "꺼짐 예약"
+        else if (startReserv) reserveTypeTextView.text = "켜짐 예약"
 
-
-        }
+        reserveTimeTextView.text = reservTime
 
     }
 
