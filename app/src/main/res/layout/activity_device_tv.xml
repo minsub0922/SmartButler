@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TV"
+            android:layout_gravity="center"
+            android:id="@+id/toolbarTitle"
+            android:textColor="@color/titleColor"
+            android:textSize="18sp"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <Button
+        android:id="@+id/volPlusButton"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="@dimen/normal_view_margin"
+        android:background="@drawable/btn_vol_plus_n"
+        android:layout_width="70dp"
+        android:layout_height="33dp" />
+
+    <Button
+        android:id="@+id/volMinusButton"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintLeft_toRightOf="@id/volPlusButton"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/btn_vol_minus_n"
+        android:layout_width="70dp"
+        android:layout_height="33dp" />
+
+    <Button
+        android:id="@+id/powerButton"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginRight="@dimen/normal_view_margin"
+        android:layout_marginTop="18dp"
+        android:layout_marginLeft="10dp"
+        android:background="@drawable/btn_device_power_n"
+        android:layout_width="70dp"
+        android:layout_height="33dp" />
+
+    <View
+        android:id="@+id/circle"
+        app:layout_constraintTop_toBottomOf="@id/volPlusButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/key"
+
+        android:background="@drawable/empty_circle"
+        android:layout_width="204dp"
+        android:layout_height="204dp"/>
+    <Button
+        android:id="@+id/upButton"
+        app:layout_constraintLeft_toLeftOf="@id/okButton"
+        app:layout_constraintRight_toRightOf="@id/okButton"
+        app:layout_constraintBottom_toTopOf="@id/okButton"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/btn_camera_up_n"
+        android:layout_width="42dp"
+        android:layout_height="42dp" />
+    <Button
+        android:id="@+id/leftButton"
+        app:layout_constraintTop_toTopOf="@id/okButton"
+        app:layout_constraintBottom_toBottomOf="@id/okButton"
+        app:layout_constraintRight_toLeftOf="@id/okButton"
+        android:layout_marginRight="20dp"
+        android:background="@drawable/btn_camera_left_n"
+        android:layout_width="42dp"
+        android:layout_height="42dp" />
+    <Button
+        android:id="@+id/rightButton"
+        app:layout_constraintTop_toTopOf="@id/okButton"
+        app:layout_constraintBottom_toBottomOf="@id/okButton"
+        app:layout_constraintLeft_toRightOf="@id/okButton"
+        android:layout_marginLeft="20dp"
+        android:background="@drawable/btn_camera_right_n"
+        android:layout_width="42dp"
+        android:layout_height="42dp" />
+    <Button
+        android:id="@+id/bottomButton"
+       app:layout_constraintLeft_toLeftOf="@id/okButton"
+        app:layout_constraintRight_toRightOf="@id/okButton"
+        app:layout_constraintTop_toBottomOf="@id/okButton"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/btn_camera_down_n"
+        android:layout_width="42dp"
+        android:layout_height="42dp" />
+    
+    <Button
+        android:id="@+id/okButton"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:background="@drawable/btn_ok_n"
+        app:layout_constraintLeft_toLeftOf="@id/circle"
+        app:layout_constraintRight_toRightOf="@id/circle"
+        app:layout_constraintTop_toTopOf="@id/circle"
+        app:layout_constraintBottom_toBottomOf="@id/circle"/>
+
+    <View
+        android:id="@+id/key"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/divider"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintDimensionRatio="5:4"
+        >
+
+    </View>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:columnCount="3"
+        app:layout_constraintTop_toTopOf="@id/key"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button android:background="@drawable/key_1"/>
+        <Button android:background="@drawable/key_2"/>
+        <Button android:background="@drawable/key_3"/>
+        <Button android:background="@drawable/key_4"/>
+        <Button android:background="@drawable/key_5"/>
+        <Button android:background="@drawable/key_6"/>
+        <Button android:background="@drawable/key_7"/>
+        <Button android:background="@drawable/key_8"/>
+        <Button android:background="@drawable/key_9"/>
+        <Button android:background="@drawable/key_menu"/>
+        <Button android:background="@drawable/key_0"/>
+        <Button android:background="@drawable/key_external_input"/>
+
+    </GridLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

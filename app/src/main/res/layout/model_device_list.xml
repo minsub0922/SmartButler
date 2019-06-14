@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ImageView
+        android:id="@+id/deviceListBackgroundImage"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@drawable/box_menu_n"
+        app:layout_constraintDimensionRatio="332:78"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <TextView
+        android:id="@+id/deviceNameTextView"
+        app:layout_constraintTop_toTopOf="@id/deviceListBackgroundImage"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/deviceListBackgroundImage"
+        android:layout_marginLeft="28dp"
+        android:elevation="2dp"
+        android:textSize="15sp"
+        android:textColor="#333333"
+        app:layout_constraintVertical_bias="0.33"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <ImageView
+        app:layout_constraintRight_toRightOf="@id/deviceListBackgroundImage"
+        app:layout_constraintTop_toTopOf="@id/deviceNameTextView"
+        app:layout_constraintBottom_toBottomOf="@id/deviceNameTextView"
+        android:layout_marginRight="21dp"
+        android:elevation="2dp"
+        android:src="@drawable/btn_arrow_right_n"
+        android:layout_width="24dp"
+        android:layout_height="24dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
