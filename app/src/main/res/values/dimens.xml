@@ -9,4 +9,8 @@
     <dimen name="main_switch_padding">3.7dp</dimen>
     <dimen name="yellow_switch_size">20dp</dimen>
     <dimen name="normal_view_margin">16dp</dimen>
+    <dimen name="grid_margin_vertical">10dp</dimen>
+    <dimen name="grid_margin_horizontal">25dp</dimen>
+    <dimen name="my_page_horizontal_margin">22dp</dimen>
+    <dimen name="yellow_button_text_size">18dp</dimen>
 </resources>

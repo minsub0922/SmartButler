@@ -38,7 +38,9 @@ abstract class BaseActivity : AppCompatActivity() {
             if (isChildActivity) {
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.transparent)))
                 supportActionBar?.setDisplayHomeAsUpEnabled(true);
-                supportActionBar?.setDisplayShowHomeEnabled(true)}
+                supportActionBar?.setDisplayShowHomeEnabled(true)
+                toolbar!!.setNavigationOnClickListener { v -> onBackPressed() }
+            }
 
         }catch (ex : Exception){
             Log.d("tagg"," fail to set Toolbar !!  " + ex)}

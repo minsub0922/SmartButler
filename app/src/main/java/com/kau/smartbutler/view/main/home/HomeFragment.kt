@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Switch
+import androidx.appcompat.widget.SwitchCompat
 import androidx.databinding.ObservableField
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseFragment
@@ -12,10 +13,7 @@ import com.kau.smartbutler.controller.DeviceControllerAdpater
 import com.kau.smartbutler.model.Device
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.kau.smartbutler.util.recylcerview.GridSpacingItemDecoration
-import com.kau.smartbutler.view.main.home.child.DeviceLightActivity
-import com.kau.smartbutler.view.main.home.child.DeviceListActivity
-import com.kau.smartbutler.view.main.home.child.DeviceTVActivity
-import com.kau.smartbutler.view.main.home.child.TemperatureHumidityActivity
+import com.kau.smartbutler.view.main.home.child.*
 import kotlinx.android.synthetic.main.fragment_home_state.*
 
 
@@ -60,7 +58,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
         btn_device_switch.setOnClickListener { v->
 
-            for (model in modelList) model.state  = !(v as Switch).isChecked
+            for (model in modelList) model.state  = !(v as SwitchCompat).isChecked
 
             adapter.notifyDataSetChanged()
 
@@ -71,12 +69,12 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
     }
 
     override fun OnDeiveClicked(device: Device) {
-        Log.d("tagg","clcicked??")
         when(device.type){
 
             0 -> startActivity(Intent(activity, DeviceListActivity::class.java))
             1 -> startActivity(Intent(activity, DeviceLightActivity::class.java))
             2 -> startActivity(Intent(activity, DeviceTVActivity::class.java))
+            3 -> startActivity(Intent(activity, DeviceAirconActivity::class.java))
         }
     }
 
