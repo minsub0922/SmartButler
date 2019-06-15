@@ -29,15 +29,32 @@
                 android:background="@color/white"
                 />
 
-            <Switch
+            <androidx.appcompat.widget.SwitchCompat
                 android:id="@+id/btn_device_switch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:theme="@style/SwitchCompatTheme"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginTop="15dp"
-                android:track="@drawable/toggle_track"
-                android:thumb="@drawable/switch_home_selector"
+               />
+
+            <TextView
+                android:text="외출"
+                app:layout_constraintTop_toTopOf="@id/btn_device_switch"
+                app:layout_constraintBottom_toBottomOf="@id/btn_device_switch"
+                app:layout_constraintRight_toLeftOf="@id/btn_device_switch"
+                android:layout_marginRight="12dp"
                 android:textColor="@color/AppThemeColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:text="재택"
+                app:layout_constraintTop_toTopOf="@id/btn_device_switch"
+                app:layout_constraintBottom_toBottomOf="@id/btn_device_switch"
+                app:layout_constraintLeft_toRightOf="@id/btn_device_switch"
+                android:layout_marginLeft="12dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 

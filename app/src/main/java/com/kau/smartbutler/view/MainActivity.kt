@@ -9,6 +9,7 @@ import androidx.core.view.GravityCompat
 import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kau.smartbutler.R
@@ -18,15 +19,16 @@ import com.kau.smartbutler.util.fragment.FragNavController
 import com.kau.smartbutler.util.fragment.FragmentHistory
 import com.kau.smartbutler.view.main.butler.ButlerFragment
 import com.kau.smartbutler.view.main.home.HomeFragment
+import com.kau.smartbutler.view.main.home.child.MyPageActivity
+import com.kau.smartbutler.view.main.home.child.NavClientCenterActivity
 import com.kau.smartbutler.view.main.life.LifeFragment
-import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main_navi.*
 import kotlinx.android.synthetic.main.activity_main_content.*
 
 class MainActivity(
-        override val layoutRes: Int = R.layout.activity_main,
+        override val layoutRes: Int = R.layout.activity_main_navi,
         override val isUseDatabinding: Boolean = false) :
-        BaseActivity(),
-        NavigationView.OnNavigationItemSelectedListener, FragNavController.TransactionListener, FragNavController.RootFragmentListener {
+        BaseActivity(), FragNavController.TransactionListener, FragNavController.RootFragmentListener, View.OnClickListener{
 
     private var preitem: Int = 0
     lateinit var TABS: Array<String>
@@ -41,6 +43,7 @@ class MainActivity(
 
         setToolbar()
 
+        setClickListener()
     }
 
     private fun setDrawaerWithNavigationView(){
@@ -53,8 +56,6 @@ class MainActivity(
 
         toggle.syncState()
 
-        navView.setNavigationItemSelectedListener(this)
-
     }
 
     private fun setToolbar(){
@@ -63,6 +64,23 @@ class MainActivity(
 
         supportActionBar!!
 
+    }
+
+    private fun setClickListener(){
+
+        clientCenterNaviTextView.setOnClickListener(this)
+        myPageButton.setOnClickListener(this)
+
+
+    }
+
+    override fun onClick(v: View?) {
+        when(v?.id){
+
+            R.id.clientCenterNaviTextView -> startActivity(Intent(this, NavClientCenterActivity::class.java))
+            R.id.myPageButton -> startActivity(Intent(this, MyPageActivity::class.java))
+
+        }
     }
 
 
@@ -95,38 +113,6 @@ class MainActivity(
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu): Boolean { menuInflater.inflate(R.menu.main, menu); return true }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-
-        val id = item.itemId
-
-        return if (id == R.id.action_settings) { true } else super.onOptionsItemSelected(item)
-
-    }
-
-    override fun onNavigationItemSelected(item: MenuItem): Boolean {
-        // Handle navigation view item clicks here.
-        val id = item.itemId
-
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
-        }
-
-        drawerLayout.closeDrawer(GravityCompat.START)
-        return true
     }
 
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
@@ -170,12 +156,9 @@ class MainActivity(
 
         switchTab(0)
 
-
     }
 
-
     private fun switchTab(position: Int) = mNavController!!.switchTab(position)
-
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
