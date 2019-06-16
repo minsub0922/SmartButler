@@ -35,6 +35,9 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".view.main.home.child.NavClientCenterActivity" android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".view.main.home.child.MyPageModifyActivity" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.life.DietCalendarActivity" android:theme="@style/AppTheme.NoActionBar">
+
+        </activity>
     </application>
 
 </manifest>
