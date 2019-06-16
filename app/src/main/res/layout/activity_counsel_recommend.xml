@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.main.life.child.CounselRecommendActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/border_toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:text="@string/life_menu_counsel"
+                android:textColor="@color/titleColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_gravity="center" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="34dp"
+                android:textSize="18sp"
+                android:background="@drawable/border_counsel_recommend"
+                android:textColor="#de000000"
+                android:lineSpacingExtra="10sp"
+                tools:text="서울시 어르신 상담센터"
+                />
+            <TextView
+                android:layout_marginStart="7dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textColor="#de000000"
+                android:lineSpacingExtra="10sp"
+                tools:text="를 추천드려요."
+                />
+            
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/counsel_image"
+            android:layout_width="280dp"
+            android:layout_height="187dp"
+            android:layout_marginTop="30dp"
+            android:src="@drawable/img_yellow_logo"
+            />
+
+        <TextView
+            android:id="@+id/counsel_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="18sp"
+            android:textColor="#de000000"
+            android:lineSpacingExtra="10sp"
+            tools:text="서울시 어르신 상담센터"
+            android:layout_marginTop="13dp"
+            />
+
+        <TextView
+            android:id="@+id/counsel_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textColor="#de000000"
+            android:lineSpacingExtra="14sp"
+            tools:text="서울 종로구 삼일대로 461 운현궁 에스케이 허브"
+            android:layout_marginTop="3dp"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:text="상담 시작"
+            android:textSize="15sp"
+            android:lineSpacingExtra="13sp"
+            android:textColor="@color/white"
+            android:background="@drawable/rectangle_w310_r25_fill"/>
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="38dp"
+            android:text="다른 곳 알아보기"
+            android:textSize="15sp"
+            android:lineSpacingExtra="13sp"
+            android:textColor="#777777"
+            android:background="@drawable/rectangle_w310_r25"/>
+        
+    </LinearLayout>
+</layout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".view.main.life.child.CounselVideoActivity"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal"
+        android:background="@color/white">
+
+        <androidx.appcompat.widget.Toolbar
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/border_toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
+
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:text="@string/life_menu_counsel"
+                android:textColor="@color/titleColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_gravity="center" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:textSize="16sp"
+            android:textColor="#de000000"
+            android:lineSpacingExtra="12sp"
+            tools:text="카메라 A"
+            android:layout_marginTop="20dp"
+            />
+
+        <fragment
+            android:id="@+id/counsel_image"
+            android:layout_width="230dp"
+            android:layout_height="230dp"
+            android:layout_marginTop="28dp"
+            android:background="@drawable/border_video_box"
+            android:src="@drawable/img_yellow_logo"
+            />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="77dp">
+            <Button
+                android:id="@+id/counselRestart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상담 시작"
+                android:textSize="15sp"
+                android:lineSpacingExtra="13sp"
+                android:textColor="#efb824"
+                android:background="@drawable/rectangle_w140_r25_border"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/counselTerminate"
+                />
+            <Button
+                android:id="@+id/counselTerminate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="상담 시작"
+                android:textSize="15sp"
+                android:lineSpacingExtra="13sp"
+                android:textColor="@color/white"
+                android:background="@drawable/rectangle_w140_r25_fill"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/counselRestart"
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</layout>

@@ -118,7 +118,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/btn_yellow_n"
+        android:src="@drawable/rectangle_w150_r25_fill"
         android:layout_gravity="center"
         android:layout_marginTop="28dp"
         android:layout_marginBottom="15dp"/>
