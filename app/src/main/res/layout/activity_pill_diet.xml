@@ -9,32 +9,24 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbar"
+        <androidx.appcompat.widget.Toolbar
             app:layout_constraintTop_toTopOf="parent"
-            android:background="@color/white"
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <androidx.appcompat.widget.Toolbar
+            android:layout_height="?attr/actionBarSize"
+            android:background="@drawable/border_toolbar"
+            app:popupTheme="@style/AppTheme.PopupOverlay" >
 
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                app:popupTheme="@style/AppTheme.PopupOverlay"
-                android:background="@color/white"
-                >
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="알약 인식 및 성분 분석"
-                    android:layout_gravity="center"
-                    android:id="@+id/toolbarTitle"
-                    android:textColor="@color/titleColor"
-                    android:textSize="18sp"
-                    />
+            <TextView
+                android:id="@+id/toolbar_title"
+                android:text="식단 추천"
+                android:textColor="@color/titleColor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
+                android:layout_gravity="center" />
 
-            </androidx.appcompat.widget.Toolbar>
-        </com.google.android.material.appbar.AppBarLayout>
+        </androidx.appcompat.widget.Toolbar>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/diet1"
@@ -43,7 +35,7 @@
             android:layout_marginTop="105dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/rectangle2"
+            android:background="@color/white"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -81,7 +73,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/rectangle2"
+            android:background="@color/white"
             app:layout_constraintTop_toBottomOf="@id/diet1"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -92,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="17dp"
                 android:lineSpacingExtra="13sp"
-                android:text="고혈압 식단 추천"
+                android:text="내 약 목록"
                 android:textColor="@color/titleColor"
                 android:textSize="15sp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +108,7 @@
             android:layout_marginTop="25dp"
             android:layout_marginStart="25dp"
             android:layout_marginEnd="25dp"
-            android:background="@drawable/rectangle2"
+            android:background="@color/white"
             app:layout_constraintTop_toBottomOf="@id/diet2"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -145,18 +137,17 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <Button
-            android:id="@+id/pillDietApply"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="26dp"
             android:background="@drawable/rectangle_w280_r25_fill"
-            android:lineSpacingExtra="12sp"
             android:text="식단 신청"
-            android:textColor="@color/white"
             android:textSize="16sp"
+            android:lineSpacingExtra="12sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="26dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
