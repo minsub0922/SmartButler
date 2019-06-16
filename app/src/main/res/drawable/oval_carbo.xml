@@ -5,13 +5,17 @@
         android:left="1dp"
         android:right="1dp"
         android:top="1dp">
-        <shape android:shape="rectangle" >
+        <shape android:shape="oval" >
             <stroke
                 android:width="1dp"
-                android:color="#afafaf" />
-            <solid android:color="#FFF" />
-            <corners android:radius="20dp" />
+                android:color="#c8c8c8" />
+            <solid android:color="@color/carbo" />
+            <size
+                android:width="8dp"
+                android:height="8dp"
+                />
         </shape>
+
     </item>
 
 </layer-list>
