@@ -7,26 +7,34 @@ import android.view.View
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_counsel_select.*
-import kotlinx.android.synthetic.main.activity_counsel_video_confirm.*
+import kotlinx.android.synthetic.main.activity_diet.*
 
-class CounselVideoConfirmActivity(
-        override val layoutRes: Int=R.layout.activity_counsel_video_confirm,
+class DietActivity(
+        override val layoutRes: Int=R.layout.activity_diet,
         override val isUseDatabinding: Boolean=false) :
         BaseActivity(), View.OnClickListener {
     override var isChildActivity: Boolean = true
     override fun setupView() {
         super.setupView()
-        counselConfirm.setOnClickListener(this)
+
+        dietManagement.setOnClickListener(this)
+        dietOrder.setOnClickListener(this)
 
     }
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.counselConfirm -> {
-                val i = Intent(this, CounselRecommendActivity::class.java)
-                i.putExtra("type", "video")
+            R.id.dietManagement -> {
+                val i = Intent(this, DietCalendarActivity::class.java)
+                i.putExtra("type", "manage")
+                startActivity(i)
+            }
+            R.id.dietOrder-> {
+                val i = Intent(this, DietCalendarActivity::class.java)
+                i.putExtra("type", "order")
                 startActivity(i)
             }
         }
     }
 }
+

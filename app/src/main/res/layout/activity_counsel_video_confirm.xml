@@ -44,7 +44,7 @@
             android:textSize="16sp"
             android:textColor="#de000000"
             android:lineSpacingExtra="12sp"
-            tools:text="영상으로 상담 내용을 말씀해주세요."
+            android:text="영상으로 상담 내용을 말씀해주세요."
             android:layout_marginTop="20dp"
             />
 
@@ -54,11 +54,12 @@
             android:textSize="16sp"
             android:textColor="#de000000"
             android:lineSpacingExtra="12sp"
-            tools:text="준비가 되시면 상담시작 버튼을 눌러주세요."
+            android:text="준비가 되시면 상담시작 버튼을 눌러주세요."
             android:layout_marginTop="2dp"
             />
 
         <Button
+            android:id="@+id/counselConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="100dp"

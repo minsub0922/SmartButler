@@ -18,7 +18,7 @@
         android:text="한을 남하늘 피부과의원"
         android:textColor="#8f8f8f"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="tv_hospital_address"
+        app:layout_constraintBottom_toTopOf="@id/tv_hospital_address"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

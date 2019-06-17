@@ -1,6 +1,6 @@
-package com.kau.smartbutler.view.main.life
+package com.kau.smartbutler.view.main.life.child
 
-import android.util.Log
+import android.content.Intent
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.controller.CalendarAdapter
@@ -13,7 +13,10 @@ import kotlin.collections.ArrayList
 class DietCalendarActivity(override val layoutRes: Int = R.layout.activity_diet_calendar, override val isUseDatabinding: Boolean=false) : BaseActivity(){
 
     val calendarList:ArrayList<CalendarItem> = ArrayList()
-    val adapter:CalendarAdapter by lazy { CalendarAdapter(this, calendarList) }
+    val type by lazy {
+        intent.getStringExtra("type")
+    }
+    val adapter:CalendarAdapter by lazy { CalendarAdapter(this, calendarList, type) }
 
     override var isChildActivity: Boolean = true
 

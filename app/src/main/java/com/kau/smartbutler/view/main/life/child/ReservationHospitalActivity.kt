@@ -5,8 +5,8 @@ import android.os.Bundle
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 
-class CounselVideoActivity(
-        override val layoutRes: Int= R.layout.activity_counsel_video,
+class ReservationHospitalActivity(
+        override val layoutRes: Int= R.layout.activity_reservation_hospital,
         override val isUseDatabinding: Boolean=false) :
         BaseActivity() {
     override var isChildActivity: Boolean = true

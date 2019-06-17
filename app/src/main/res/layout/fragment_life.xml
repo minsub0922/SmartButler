@@ -19,14 +19,42 @@
         android:layout_height="match_parent">
 
         <Button
-            android:id="@+id/btn_life_vr"
+            android:id="@+id/btn_life_pill"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="105dp"
-            android:background="@drawable/btn_life_vr_n"
+            android:background="@drawable/btn_life_pill_n"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/btn_life_vr"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lineSpacingExtra="13sp"
+            android:text="@string/life_menu_pill"
+            android:textColor="#333333"
+            android:textSize="15sp"
+            android:elevation="2dp"
+            android:layout_marginStart="80dp"
+            android:layout_marginEnd="30dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_life_pill"
+            app:layout_constraintEnd_toEndOf="@+id/btn_life_pill"
+            app:layout_constraintStart_toStartOf="@+id/btn_life_pill"
+            app:layout_constraintTop_toTopOf="@+id/btn_life_pill" />
+
+
+        <Button
+            android:id="@+id/btn_life_vr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_life_vr_n"
+            android:layout_marginTop="25dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_life_pill"
             app:layout_constraintBottom_toTopOf="@+id/btn_life_res"/>
 
         <TextView

@@ -45,7 +45,7 @@
                 android:background="@drawable/border_counsel_recommend"
                 android:textColor="#de000000"
                 android:lineSpacingExtra="10sp"
-                tools:text="서울시 어르신 상담센터"
+                android:text="서울시 어르신 상담센터"
                 />
             <TextView
                 android:layout_marginStart="7dp"
@@ -54,7 +54,7 @@
                 android:textSize="18sp"
                 android:textColor="#de000000"
                 android:lineSpacingExtra="10sp"
-                tools:text="를 추천드려요."
+                android:text="를 추천드려요."
                 />
             
         </LinearLayout>
@@ -74,7 +74,7 @@
             android:textSize="18sp"
             android:textColor="#de000000"
             android:lineSpacingExtra="10sp"
-            tools:text="서울시 어르신 상담센터"
+            android:text="서울시 어르신 상담센터"
             android:layout_marginTop="13dp"
             />
 
@@ -85,11 +85,12 @@
             android:textSize="14sp"
             android:textColor="#de000000"
             android:lineSpacingExtra="14sp"
-            tools:text="서울 종로구 삼일대로 461 운현궁 에스케이 허브"
+            android:text="서울 종로구 삼일대로 461 운현궁 에스케이 허브"
             android:layout_marginTop="3dp"
             />
 
         <Button
+            android:id="@+id/startCounsel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"
@@ -100,6 +101,7 @@
             android:background="@drawable/rectangle_w310_r25_fill"/>
 
         <Button
+            android:id="@+id/others"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="38dp"

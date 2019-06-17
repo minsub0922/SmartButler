@@ -12,19 +12,13 @@
     <color name="activatedSwitchTextColor">#ffc12f</color>
     <color name="inactivatedTextColor">#afafaf</color>
     <color name="inActivatedColor">#a1a1a1</color>
-    <color name="divider">#dbdbdb</color>
     <color name="verticaldivider">#979797</color>
     <color name="spinnerTextColor">#6d7278</color>
     <color name="divider">#dbdbdb</color>
-    <color name="spinnerTextColor">#6d7278</color>
     <color name="black">#000000</color>
 
     <color name="darkGray">#777777</color>
     <color name="titleColor">#333333</color>
-
-    <color name="darkGray">#777777</color>
-    <color name="titleColor">#333333</color>
-    
     <color name="subtitleColor">#535353</color>
     <color name="lineColor">#f3f3f3</color>
     <color name="progressbarFillColor">#ffd662</color>
