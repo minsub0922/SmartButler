@@ -41,7 +41,7 @@
                />
 
             <TextView
-                android:text="외출"
+                android:text="재택"
                 app:layout_constraintTop_toTopOf="@id/btn_device_switch"
                 app:layout_constraintBottom_toBottomOf="@id/btn_device_switch"
                 app:layout_constraintRight_toLeftOf="@id/btn_device_switch"
@@ -50,7 +50,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
             <TextView
-                android:text="재택"
+                android:text="외출"
                 app:layout_constraintTop_toTopOf="@id/btn_device_switch"
                 app:layout_constraintBottom_toBottomOf="@id/btn_device_switch"
                 app:layout_constraintLeft_toRightOf="@id/btn_device_switch"

@@ -106,5 +106,6 @@
         <activity
             android:name=".view.main.home.child.MyPageModifyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.DeviceAddActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

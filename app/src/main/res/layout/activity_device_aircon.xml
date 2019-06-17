@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
+    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -11,31 +12,33 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
 
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="에어컨"
-            android:layout_gravity="center"
-            android:id="@+id/toolbarTitle"
-            android:textColor="@color/titleColor"
-            android:textSize="18sp"
-            />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="에어컨"
+                android:layout_gravity="center"
+                android:id="@+id/toolbarTitle"
+                android:textColor="@color/titleColor"
+                android:textSize="18sp"
+                />
 
-    </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <View
         android:id="@+id/device_area"
-        android:layout_width="256dp"
-        android:layout_height="142dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="256:142"
+        app:layout_constraintWidth_percent="0.71"
         android:background="@drawable/area_device"
         app:layout_constraintTop_toBottomOf="@id/appbar"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -54,7 +57,8 @@
         android:textColor="#6d7278"
         android:lineSpacingExtra="-2sp"
         android:text="18 ℃"
-        android:layout_marginTop="25dp"
+        app:layout_constraintBottom_toTopOf="@id/tempSeekbar"
+        app:layout_constraintVertical_bias="0.35"
         />
 
     <SeekBar
@@ -63,10 +67,12 @@
         android:layout_width="0dp"
         android:thumb="@drawable/specturm_seekbar_thumb"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/tempTextView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintWidth_percent="0.55"
         android:progressDrawable="@drawable/aircon_temp_seekbar_progress_selector"
         android:maxHeight="2dp"
+        app:layout_constraintVertical_bias="0.6"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 
@@ -105,7 +111,7 @@
         android:layout_marginTop="50dp"
         android:text="제습"
         app:layout_constraintHorizontal_bias="0.13"
-        android:background="@drawable/selector_aircon__state_button_background"
+        android:background="@drawable/rounded_rec_buttons_selector"
         android:textColor="@color/selector_reserve_time_text"
         />
     <Button
@@ -120,7 +126,7 @@
         android:layout_marginTop="50dp"
         android:text="송풍"
         app:layout_constraintHorizontal_bias="0.375"
-        android:background="@drawable/selector_aircon__state_button_background"
+        android:background="@drawable/rounded_rec_buttons_selector"
         android:textColor="@color/selector_reserve_time_text"
         />
     <Button
@@ -135,7 +141,7 @@
         android:layout_marginTop="50dp"
         android:text="냉방"
         app:layout_constraintHorizontal_bias="0.62"
-        android:background="@drawable/selector_aircon__state_button_background"
+        android:background="@drawable/rounded_rec_buttons_selector"
         android:textColor="@color/selector_reserve_time_text"
         />
 
@@ -151,7 +157,7 @@
         android:layout_marginTop="50dp"
         android:text="난방"
         app:layout_constraintHorizontal_bias="0.86"
-        android:background="@drawable/selector_aircon__state_button_background"
+        android:background="@drawable/rounded_rec_buttons_selector"
         android:textColor="@color/selector_reserve_time_text"
         />
 
@@ -163,10 +169,10 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintWidth_percent="0.18"
         app:layout_constraintDimensionRatio="72:33"
-        app:layout_constraintTop_toBottomOf="@id/tempSeekbar"
-        android:layout_marginTop="130dp"
+        app:layout_constraintTop_toBottomOf="@id/stateButton1"
+        android:layout_marginTop="30dp"
         android:text="전원"
-        android:background="@drawable/selector_aircon__state_button_background"
+        android:background="@drawable/rounded_rec_buttons_selector"
         android:textColor="@color/selector_reserve_time_text"
         />
 

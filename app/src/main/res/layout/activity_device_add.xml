@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="기기 추가"
+            android:layout_gravity="center"
+            android:id="@+id/toolbarTitle"
+            android:textColor="@color/titleColor"
+            android:textSize="18sp"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:paddingBottom="40dp"
+        android:clipToPadding="false"
+        android:layout_height="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+
+
+    <ImageView
+        android:id="@+id/deviceImage"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="29dp"
+        android:layout_width="142dp"
+        android:layout_height="142dp"
+        android:src="@drawable/device_default_image"/>
+
+    <TextView
+        android:textSize="20sp"
+        android:textColor="#ffffff"
+        android:elevation="2dp"
+        android:text="기기 이미지"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintLeft_toLeftOf="@id/deviceImage"
+        app:layout_constraintRight_toRightOf="@id/deviceImage"
+        app:layout_constraintTop_toTopOf="@id/deviceImage"
+        app:layout_constraintBottom_toBottomOf="@id/deviceImage"/>
+
+    <TextView
+        android:id="@+id/str_device_type"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="22dp"
+        app:layout_constraintTop_toBottomOf="@id/deviceImage"
+        android:layout_marginTop="28dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#6d7278"
+        android:text="기기 종류"
+        />
+
+    <EditText
+        android:id="@+id/deviceTypeEditText"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@id/str_device_type"
+        android:layout_marginRight="22dp"
+        android:textAlignment="viewEnd"
+        android:hint="조명"
+        app:layout_constraintLeft_toLeftOf="@id/deviceImage"
+        app:layout_constraintBottom_toBottomOf="@id/str_device_type"
+        android:background="@color/transparent"
+        android:textColor="@color/AppThemeColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/deviceNameEditText"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/deviceTypeEditText"
+        android:layout_marginRight="22dp"
+        android:textAlignment="viewEnd"
+        android:hint="BD:23177"
+        app:layout_constraintLeft_toLeftOf="@id/deviceImage"
+        android:background="@color/transparent"
+        android:textColor="@color/AppThemeColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <EditText
+        android:id="@+id/registeredDateEditText"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/deviceNameEditText"
+        android:layout_marginRight="22dp"
+        android:textAlignment="viewEnd"
+        android:hint="2019.05.01"
+        app:layout_constraintLeft_toLeftOf="@id/deviceImage"
+        android:background="@color/transparent"
+        android:textColor="@color/AppThemeColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/interruptElectricSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/SwitchCompatTheme"
+        app:layout_constraintTop_toBottomOf="@id/registeredDateEditText"
+        app:layout_constraintRight_toRightOf="@id/registeredDateEditText"
+        android:layout_marginTop="20dp"/>
+
+    <EditText
+        android:id="@+id/electricConsumptionEditText"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintTop_toBottomOf="@id/interruptElectricSwitch"
+        android:layout_marginRight="22dp"
+        android:textAlignment="viewEnd"
+        android:hint="12.25 KW"
+        app:layout_constraintLeft_toLeftOf="@id/deviceImage"
+        android:background="@color/transparent"
+        android:textColor="@color/AppThemeColor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        app:layout_constraintLeft_toLeftOf="@id/str_device_type"
+        app:layout_constraintTop_toTopOf="@id/deviceNameEditText"
+        app:layout_constraintBottom_toBottomOf="@id/deviceNameEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:lineSpacingExtra="14sp"
+        android:text="기기 이름"
+        android:textColor="#6d7278"
+        android:textSize="14sp"
+        tools:layout_editor_absoluteX="22dp"
+        tools:layout_editor_absoluteY="299dp" />
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="22dp"
+        app:layout_constraintTop_toTopOf="@id/registeredDateEditText"
+        app:layout_constraintBottom_toBottomOf="@id/registeredDateEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#6d7278"
+        android:lineSpacingExtra="14sp"
+        android:text="등록날짜"
+        />
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="22dp"
+        app:layout_constraintTop_toTopOf="@id/interruptElectricSwitch"
+        app:layout_constraintBottom_toBottomOf="@id/interruptElectricSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#6d7278"
+        android:lineSpacingExtra="14sp"
+        android:text="대기전력 차단"
+        />
+    <TextView
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginLeft="22dp"
+        app:layout_constraintTop_toTopOf="@id/electricConsumptionEditText"
+        app:layout_constraintBottom_toBottomOf="@id/electricConsumptionEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:textColor="#6d7278"
+        android:lineSpacingExtra="14sp"
+        android:text="전기 사용량"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/str_device_type"
+        app:layout_constraintRight_toRightOf="@id/deviceTypeEditText"
+        app:layout_constraintTop_toBottomOf="@id/deviceTypeEditText"
+        android:background="@color/divider"
+        android:layout_marginTop="9.5dp"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/str_device_type"
+        app:layout_constraintRight_toRightOf="@id/deviceTypeEditText"
+        app:layout_constraintTop_toBottomOf="@id/deviceNameEditText"
+        android:background="@color/divider"
+        android:layout_marginTop="9.5dp"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/str_device_type"
+        app:layout_constraintRight_toRightOf="@id/deviceTypeEditText"
+        app:layout_constraintTop_toBottomOf="@id/registeredDateEditText"
+        android:background="@color/divider"
+        android:layout_marginTop="9.5dp"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/str_device_type"
+        app:layout_constraintRight_toRightOf="@id/deviceTypeEditText"
+        app:layout_constraintTop_toBottomOf="@id/interruptElectricSwitch"
+        android:background="@color/divider"
+        android:layout_marginTop="9.5dp"
+        />
+    <View
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        app:layout_constraintLeft_toLeftOf="@id/str_device_type"
+        app:layout_constraintRight_toRightOf="@id/deviceTypeEditText"
+        app:layout_constraintTop_toBottomOf="@id/electricConsumptionEditText"
+        android:background="@color/divider"
+        android:layout_marginTop="9.5dp"
+        />
+    
+    <Button
+        android:layout_marginTop="60dp"
+        app:layout_constraintTop_toBottomOf="@id/electricConsumptionEditText"
+        android:id="@+id/modifiedDoneButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="280:42"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent="0.7777"
+        android:background="@drawable/yellow_button_background"
+        android:text="추가하기"
+        android:textColor="@color/white"
+        />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
