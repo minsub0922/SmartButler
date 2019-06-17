@@ -42,7 +42,7 @@
             android:layout_marginTop="20dp"
             />
 
-        <fragment
+        <ImageView
             android:id="@+id/counsel_image"
             android:layout_width="230dp"
             android:layout_height="230dp"
@@ -60,7 +60,7 @@
                 android:id="@+id/counselRestart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="상담 시작"
+                android:text="다시하기"
                 android:textSize="15sp"
                 android:lineSpacingExtra="13sp"
                 android:textColor="#efb824"
@@ -74,7 +74,7 @@
                 android:id="@+id/counselTerminate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="상담 시작"
+                android:text="상담종료"
                 android:textSize="15sp"
                 android:lineSpacingExtra="13sp"
                 android:textColor="@color/white"

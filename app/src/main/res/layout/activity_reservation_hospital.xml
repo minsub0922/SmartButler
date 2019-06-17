@@ -2,7 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.main.life.child.ReservationHosipitalActivity"
+    tools:context=".view.main.life.child.ReservationHospitalActivity"
     >
 
     <LinearLayout
@@ -88,10 +88,11 @@
                                 tools:text="오시는 길"
                                 />
 
-                            <fragment
+                            <ImageView
                                 android:id="@+id/map"
                                 android:layout_width="match_parent"
                                 android:layout_height="186dp"
+                                android:src="@drawable/img_yellow_logo"
                                 />
 
                         </LinearLayout>

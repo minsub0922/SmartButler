@@ -2,13 +2,73 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.kau.smartbutler">
 
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.DIAL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity
+            android:name=".view.main.life.child.PillDietApplyActivity"
+            android:theme="@style/AppTheme.NoActionBar"
+            />
+        <activity
+            android:name=".view.main.life.child.PillActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.PillCautionActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.PillManagementActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.PillIngredientActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.PillDietActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.ReservationActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.ReservationHospitalActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.CounselActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.CounselVideoActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.CounselVideoConfirmActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.CounselRecommendActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.CounselSelectActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.HealthCareActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.DietActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.DietCalendarActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.DietManagementActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.DietOrderActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.MainActivity"
             android:label="@string/app_name"
@@ -19,25 +79,32 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.main.home.child.TemperatureHumidityActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.DeviceListActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.DeviceModifiedActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.DeviceLightActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.DeviceTVActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.DeviceAirconActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.MyPageActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.NavClientCenterActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.home.child.MyPageModifyActivity" android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.life.DietCalendarActivity" android:theme="@style/AppTheme.NoActionBar">
-
-        </activity>
+        <activity
+            android:name=".view.main.home.child.TemperatureHumidityActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.DeviceListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.DeviceModifiedActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.DeviceLightActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.DeviceTVActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.DeviceAirconActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.MyPageActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.NavClientCenterActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.MyPageModifyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
-
 </manifest>

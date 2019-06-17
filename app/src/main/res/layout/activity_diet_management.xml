@@ -2,7 +2,7 @@
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".view.main.life.child.DietManagement"
+    tools:context=".view.main.life.child.DietManagementActivity"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -50,7 +50,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="95dp"
             android:src="@drawable/btn_arrow_left_n"
-            app:layout_constraintEnd_toStartOf="tv_diet_manage_date"
+            app:layout_constraintEnd_toStartOf="@id/tv_diet_manage_date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 

@@ -5,13 +5,9 @@ import android.os.Bundle
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 
-class CounselVideoActivity(
-        override val layoutRes: Int= R.layout.activity_counsel_video,
+class DietManagementActivity(
+        override val layoutRes: Int= R.layout.activity_diet_management,
         override val isUseDatabinding: Boolean=false) :
         BaseActivity() {
     override var isChildActivity: Boolean = true
-
-    override fun setupView() {
-        super.setupView()
-    }
 }

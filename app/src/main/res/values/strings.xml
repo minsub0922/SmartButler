@@ -11,7 +11,6 @@
     <string name="main_menu_butler_title">김집사</string>
     <string name="main_menu_life_title">생활</string>
 
-
     <string-array name="planets_array">
         <item>Mercury</item>
         <item>Venus</item>
@@ -26,11 +25,4 @@
     <string name="life_menu_food">식단 분석 및 식단 주문</string>
 
 
-
-
-    <string-array name="planets_array">
-        <item>Mercury</item>
-        <item>Venus</item>
-        <item>Earth</item>
-    </string-array>
 </resources>
