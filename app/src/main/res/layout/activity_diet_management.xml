@@ -7,26 +7,35 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/white">
 
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="@drawable/border_toolbar"
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
             app:layout_constraintTop_toTopOf="parent"
-            app:popupTheme="@style/AppTheme.PopupOverlay">
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <androidx.appcompat.widget.Toolbar
 
-            <TextView
-                android:id="@+id/toolbar_title"
-                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="건강 지킴이"
-                android:textColor="@color/titleColor" />
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:popupTheme="@style/AppTheme.PopupOverlay"
+                android:background="@color/white"
+                >
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="식단 관리"
+                    android:layout_gravity="center"
+                    android:id="@+id/toolbarTitle"
+                    android:textColor="@color/titleColor"
+                    android:textSize="18sp"
+                    />
 
-        </androidx.appcompat.widget.Toolbar>
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
 
 
         <TextView
@@ -50,6 +59,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="95dp"
             android:src="@drawable/btn_arrow_left_n"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintEnd_toStartOf="@id/tv_diet_manage_date"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -89,7 +99,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
             app:layout_constraintTop_toBottomOf="@id/line1"
-            tools:text="체중" />
+            android:text="체중" />
 
         <EditText
             android:id="@+id/et_weight"
@@ -97,6 +107,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:hint="입력 kg"
+            android:inputType="number"
             android:lineSpacingExtra="14sp"
             android:textColor="#afafaf"
             android:textSize="14sp"
@@ -116,7 +127,7 @@
             app:layout_constraintEnd_toStartOf="@id/et_goal_weight"
             app:layout_constraintStart_toEndOf="@+id/et_weight"
             app:layout_constraintTop_toTopOf="@+id/tv_weight"
-            tools:text="목표체중" />
+            android:text="목표체중" />
 
         <EditText
             android:id="@+id/et_goal_weight"
@@ -124,6 +135,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:hint="입력 kg"
+            android:inputType="number"
             android:lineSpacingExtra="14sp"
             android:textColor="#afafaf"
             android:textSize="14sp"
@@ -154,7 +166,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
             app:layout_constraintTop_toBottomOf="@+id/line2"
-            tools:text="골격근량" />
+            android:text="골격근량" />
 
         <EditText
             android:id="@+id/et_muscle"
@@ -162,6 +174,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:hint="입력"
+            android:inputType="number"
             android:lineSpacingExtra="14sp"
             android:textColor="#afafaf"
             android:textSize="14sp"
@@ -191,7 +204,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
             app:layout_constraintTop_toBottomOf="@+id/line3"
-            tools:text="체지방량" />
+            android:text="체지방량" />
 
         <EditText
             android:id="@+id/et_fat"
@@ -199,6 +212,7 @@
             android:layout_height="wrap_content"
             android:gravity="end"
             android:hint="입력"
+            android:inputType="number"
             android:lineSpacingExtra="14sp"
             android:textColor="#afafaf"
             android:textSize="14sp"
@@ -224,7 +238,7 @@
             android:textSize="14sp"
             android:textColor="#afafaf"
             android:lineSpacingExtra="14sp"
-            tools:text="식단 기록"
+            android:text="식단 기록"
             android:layout_marginTop="19dp"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
             app:layout_constraintTop_toBottomOf="@id/line4"
@@ -246,7 +260,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_lunch"
-            android:layout_marginTop="7dp"
             app:layout_constraintTop_toTopOf="@id/iv_morning"
             app:layout_constraintBottom_toBottomOf="@id/iv_morning"
             app:layout_constraintStart_toEndOf="@id/iv_morning"
@@ -257,7 +270,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_evening"
-            android:layout_marginTop="7dp"
             app:layout_constraintTop_toTopOf="@id/iv_morning"
             app:layout_constraintBottom_toBottomOf="@id/iv_morning"
             app:layout_constraintStart_toEndOf="@id/iv_lunch"
@@ -268,7 +280,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_diet_etc"
-            android:layout_marginTop="7dp"
             app:layout_constraintTop_toTopOf="@id/iv_morning"
             app:layout_constraintBottom_toBottomOf="@id/iv_morning"
             app:layout_constraintStart_toEndOf="@id/iv_evening"
@@ -281,7 +292,7 @@
             android:textSize="14sp"
             android:textColor="#afafaf"
             android:lineSpacingExtra="14sp"
-            tools:text="오늘 섭취 칼로리"
+            android:text="오늘 섭취 칼로리"
             android:layout_marginTop="29dp"
             app:layout_constraintTop_toBottomOf="@id/iv_morning"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
@@ -295,7 +306,7 @@
             android:textColor="#535353"
             android:lineSpacingExtra="14sp"
             android:gravity="end"
-            tools:text="0 kcal"
+            android:text="0 kcal"
             app:layout_constraintEnd_toEndOf="@id/iv_next_date"
             app:layout_constraintTop_toTopOf="@id/tv_today_calorie"
             app:layout_constraintBottom_toBottomOf="@id/tv_today_calorie"
@@ -329,7 +340,7 @@
                 android:textSize="10sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="18sp"
-                tools:text="70%"
+                android:text="70%"
                 app:layout_constraintHorizontal_bias="0.6"
                 app:layout_constraintTop_toTopOf="@id/progressBarCarbo"
                 app:layout_constraintBottom_toBottomOf="@id/progressBarCarbo"
@@ -367,7 +378,7 @@
                 android:textSize="10sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="18sp"
-                tools:text="80%"
+                android:text="80%"
                 app:layout_constraintHorizontal_bias="0.7"
                 app:layout_constraintTop_toTopOf="@id/progressBarProtein"
                 app:layout_constraintBottom_toBottomOf="@id/progressBarProtein"
@@ -405,7 +416,7 @@
                 android:textSize="10sp"
                 android:textColor="#ffffff"
                 android:lineSpacingExtra="18sp"
-                tools:text="30%"
+                android:text="30%"
                 app:layout_constraintHorizontal_bias="0.2"
                 app:layout_constraintTop_toTopOf="@id/progressBarFat"
                 app:layout_constraintBottom_toBottomOf="@id/progressBarFat"
@@ -430,7 +441,7 @@
             android:textColor="#6d7278"
             android:lineSpacingExtra="16sp"
             android:layout_marginEnd="6dp"
-            tools:text="탄"
+            android:text="탄"
             app:layout_constraintEnd_toStartOf="@id/iv_protein"
             app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
             />
@@ -452,7 +463,7 @@
             android:textColor="#6d7278"
             android:lineSpacingExtra="16sp"
             android:layout_marginEnd="6dp"
-            tools:text="단"
+            android:text="단"
             app:layout_constraintEnd_toStartOf="@id/iv_fat"
             app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
             />
@@ -473,7 +484,7 @@
             android:textSize="12sp"
             android:textColor="#6d7278"
             android:lineSpacingExtra="16sp"
-            tools:text="지"
+            android:text="지"
             app:layout_constraintEnd_toEndOf="@id/iv_next_date"
             app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
             />
@@ -486,7 +497,7 @@
             android:textColor="#afafaf"
             android:lineSpacingExtra="14sp"
             android:layout_marginTop="29dp"
-            tools:text="처방 칼로리"
+            android:text="처방 칼로리"
             app:layout_constraintTop_toBottomOf="@id/tv_fat"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
             />
@@ -498,7 +509,7 @@
             android:textSize="14sp"
             android:textColor="#6d7278"
             android:lineSpacingExtra="14sp"
-            tools:text="하루 동안 섭취해야할 음식 칼로리"
+            android:text="하루 동안 섭취해야할 음식 칼로리"
             app:layout_constraintTop_toBottomOf="@id/tv_prescription"
             app:layout_constraintStart_toStartOf="@+id/iv_previous_date"
             />
@@ -510,7 +521,7 @@
             android:textColor="#ffc12f"
             android:lineSpacingExtra="14sp"
             android:gravity="end"
-            tools:text="1500 kcal"
+            android:text="1500 kcal"
             app:layout_constraintEnd_toEndOf="@id/iv_next_date"
             app:layout_constraintTop_toTopOf="@id/tv_need_calorie_today"
             app:layout_constraintBottom_toBottomOf="@id/tv_need_calorie_today"
@@ -524,7 +535,7 @@
             android:textColor="#6d7278"
             android:lineSpacingExtra="14sp"
             android:layout_marginTop="8dp"
-            tools:text="하루 동안 운동으로 소모해야할 칼로리"
+            android:text="하루 동안 운동으로 소모해야할 칼로리"
             app:layout_constraintTop_toBottomOf="@id/tv_need_calorie_today"
             app:layout_constraintStart_toStartOf="@id/iv_previous_date"
             />
@@ -537,7 +548,7 @@
             android:textColor="#ff5f57"
             android:lineSpacingExtra="14sp"
             android:gravity="end"
-            tools:text="292 kcal"
+            android:text="292 kcal"
             app:layout_constraintTop_toTopOf="@id/tv_waste_calorie_today"
             app:layout_constraintEnd_toEndOf="@id/iv_next_date"
             />

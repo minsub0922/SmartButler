@@ -13,24 +13,32 @@
             android:layout_height="match_parent"
             android:background="@color/white">
 
-            <androidx.appcompat.widget.Toolbar
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/appbar"
                 app:layout_constraintTop_toTopOf="parent"
-                android:id="@+id/toolbar"
+                android:background="@color/white"
                 android:layout_width="match_parent"
-                android:layout_height="?attr/actionBarSize"
-                android:background="@drawable/border_toolbar"
-                app:popupTheme="@style/AppTheme.PopupOverlay" >
+                android:layout_height="wrap_content">
+                <androidx.appcompat.widget.Toolbar
 
-                <TextView
-                    android:id="@+id/toolbar_title"
-                    android:text="병원 예약 및 택시 예약"
-                    android:textColor="@color/titleColor"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"
-                    android:layout_gravity="center" />
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    app:popupTheme="@style/AppTheme.PopupOverlay"
+                    android:background="@color/white"
+                    >
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="병원 예약 및 택시 예약"
+                        android:layout_gravity="center"
+                        android:id="@+id/toolbarTitle"
+                        android:textColor="@color/titleColor"
+                        android:textSize="18sp"
+                        />
 
-            </androidx.appcompat.widget.Toolbar>
+                </androidx.appcompat.widget.Toolbar>
+            </com.google.android.material.appbar.AppBarLayout>
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/layout_pill_recognition"
