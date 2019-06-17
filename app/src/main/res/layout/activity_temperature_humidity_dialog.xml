@@ -2,192 +2,192 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="500dp"
-
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:paddingBottom="20dp"
     >
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <TextView
-        android:id="@+id/str_reserve"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="@dimen/normal_view_margin"
-        android:layout_marginTop="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textStyle="bold"
-        android:textColor="#333333"
-        android:text="예약"
-        />
+        <TextView
+            android:id="@+id/str_reserve"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginLeft="@dimen/normal_view_margin"
+            android:layout_marginTop="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            android:textColor="#333333"
+            android:text="예약"
+            />
 
-    <Button
-        android:id="@+id/btn_close"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="@dimen/normal_view_margin"
-        android:background="@drawable/btn_close"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+        <Button
+            android:id="@+id/btn_close"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/normal_view_margin"
+            android:background="@drawable/btn_close"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
 
-    <TextView
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintTop_toTopOf="@id/reserveCloseSwitch"
-        app:layout_constraintBottom_toBottomOf="@id/reserveCloseSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#333333"
-        android:text="꺼짐 예약"
-        />
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintTop_toTopOf="@id/reserveCloseSwitch"
+            app:layout_constraintBottom_toBottomOf="@id/reserveCloseSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:text="꺼짐 예약"
+            />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/reserveCloseSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme="@style/SwitchCompatTheme"
-        android:layout_marginTop="16dp"
-        app:layout_constraintTop_toBottomOf="@id/btn_close"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/reserveCloseSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/SwitchCompatTheme"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toBottomOf="@id/btn_close"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
 
-        />
+            />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintTop_toBottomOf="@id/reserveCloseSwitch"
-        android:layout_marginTop="11dp"
-        android:background="@color/divider"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintTop_toBottomOf="@id/reserveCloseSwitch"
+            android:layout_marginTop="11dp"
+            android:background="@color/divider"/>
 
-    <TimePicker
-        android:id="@+id/endTimePicker"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reserveCloseSwitch"
-        android:timePickerMode="spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TimePicker
+            android:id="@+id/endTimePicker"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reserveCloseSwitch"
+            android:timePickerMode="spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintTop_toBottomOf="@id/endTimePicker"
-        android:background="@color/divider"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintTop_toBottomOf="@id/endTimePicker"
+            android:background="@color/divider"/>
 
-    <TextView
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintTop_toTopOf="@id/reserveStartSwitch"
-        app:layout_constraintBottom_toBottomOf="@id/reserveStartSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="15sp"
-        android:textColor="#333333"
-        android:text="켜짐 예약"
-        />
+        <TextView
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintTop_toTopOf="@id/reserveStartSwitch"
+            app:layout_constraintBottom_toBottomOf="@id/reserveStartSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="#333333"
+            android:text="켜짐 예약"
+            />
 
-    <androidx.appcompat.widget.SwitchCompat
-        android:id="@+id/reserveStartSwitch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:theme="@style/SwitchCompatTheme"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@id/endTimePicker"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/reserveStartSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:theme="@style/SwitchCompatTheme"
+            android:layout_marginTop="25dp"
+            app:layout_constraintTop_toBottomOf="@id/endTimePicker"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
 
-        />
+            />
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintTop_toBottomOf="@id/reserveStartSwitch"
-        android:layout_marginTop="11dp"
-        android:background="@color/divider"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintTop_toBottomOf="@id/reserveStartSwitch"
+            android:layout_marginTop="11dp"
+            android:background="@color/divider"/>
 
-    <TimePicker
-        android:id="@+id/startTimePicker"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/reserveStartSwitch"
-        android:timePickerMode="spinner"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        <TimePicker
+            android:id="@+id/startTimePicker"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reserveStartSwitch"
+            android:timePickerMode="spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
 
-    <View
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintTop_toBottomOf="@id/startTimePicker"
-        android:background="@color/divider"/>
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintTop_toBottomOf="@id/startTimePicker"
+            android:background="@color/divider"/>
 
-   <Button
-       android:id="@+id/reserveTimeButton1"
-       android:layout_width="0dp"
-       android:layout_height="0dp"
-       app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-       app:layout_constraintRight_toRightOf="@id/btn_close"
-       app:layout_constraintDimensionRatio="56:26"
-       android:background="@drawable/selector_reserve_time_background"
-       android:textColor="@color/selector_reserve_time_text"
-       android:text="계속"
-       app:layout_constraintTop_toBottomOf="@id/startTimePicker"
-       android:layout_marginTop="16dp"
-       app:layout_constraintHorizontal_bias="0"
-       app:layout_constraintWidth_percent="0.20"/>
-    <Button
-        android:id="@+id/reserveTimeButton2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintDimensionRatio="56:26"
-        android:background="@drawable/selector_reserve_time_background"
-        android:textColor="@color/selector_reserve_time_text"
-        android:text="1시간"
-        app:layout_constraintTop_toBottomOf="@id/startTimePicker"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="0.335"
-        app:layout_constraintWidth_percent="0.20"/>
-    <Button
-        android:id="@+id/reserveTimeButton3"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintDimensionRatio="56:26"
-        android:background="@drawable/selector_reserve_time_background"
-        android:textColor="@color/selector_reserve_time_text"
-        android:text="3시간"
-        app:layout_constraintTop_toBottomOf="@id/startTimePicker"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="0.668"
-        app:layout_constraintWidth_percent="0.20"/>
-    <Button
-        android:id="@+id/reserveTimeButton4"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintLeft_toLeftOf="@id/str_reserve"
-        app:layout_constraintRight_toRightOf="@id/btn_close"
-        app:layout_constraintDimensionRatio="56:26"
-        android:background="@drawable/selector_reserve_time_background"
-        android:textColor="@color/selector_reserve_time_text"
-        android:text="5시간"
-        app:layout_constraintTop_toBottomOf="@id/startTimePicker"
-        android:layout_marginTop="16dp"
-        app:layout_constraintHorizontal_bias="1"
-        app:layout_constraintWidth_percent="0.20"/>
-        
+        <Button
+            android:id="@+id/reserveTimeButton1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintDimensionRatio="56:26"
+            android:background="@drawable/reserve_time_buttons_background"
+            android:textColor="@color/selector_reserve_time_text"
+            android:text="계속"
+            app:layout_constraintTop_toBottomOf="@id/startTimePicker"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintWidth_percent="0.20"/>
+        <Button
+            android:id="@+id/reserveTimeButton2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintDimensionRatio="56:26"
+            android:background="@drawable/reserve_time_buttons_background"
+            android:textColor="@color/selector_reserve_time_text"
+            android:text="1시간"
+            app:layout_constraintTop_toBottomOf="@id/startTimePicker"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_bias="0.335"
+            app:layout_constraintWidth_percent="0.20"/>
+        <Button
+            android:id="@+id/reserveTimeButton3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintDimensionRatio="56:26"
+            android:background="@drawable/reserve_time_buttons_background"
+            android:textColor="@color/selector_reserve_time_text"
+            android:text="3시간"
+            app:layout_constraintTop_toBottomOf="@id/startTimePicker"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_bias="0.668"
+            app:layout_constraintWidth_percent="0.20"/>
+        <Button
+            android:id="@+id/reserveTimeButton4"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintLeft_toLeftOf="@id/str_reserve"
+            app:layout_constraintRight_toRightOf="@id/btn_close"
+            app:layout_constraintDimensionRatio="56:26"
+            android:background="@drawable/reserve_time_buttons_background"
+            android:textColor="@color/selector_reserve_time_text"
+            android:text="5시간"
+            app:layout_constraintTop_toBottomOf="@id/startTimePicker"
+            android:layout_marginTop="16dp"
+            app:layout_constraintHorizontal_bias="1"
+            app:layout_constraintWidth_percent="0.20"/>
+
         <Button
             android:id="@+id/reserveDoneButton"
             android:layout_width="0dp"
@@ -197,9 +197,11 @@
             android:text="수정완료"
             app:layout_constraintWidth_percent="0.6"
             app:layout_constraintDimensionRatio="150:34"
-            android:textColor="@color/darkGray"
-            android:background="@drawable/reserve_time_done_button_background"
+            android:textColor="@color/white"
+            android:background="@drawable/yellow_button_background"
             app:layout_constraintTop_toBottomOf="@id/reserveTimeButton1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="30dp"
             android:layout_marginTop="30dp"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

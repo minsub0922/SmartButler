@@ -1,5 +1,6 @@
 package com.kau.smartbutler.view.main.home.child
 
+import android.content.Intent
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.controller.DeviceListAdapter
@@ -18,6 +19,8 @@ class DeviceListActivity(override val isUseDatabinding: Boolean = false) : BaseA
         deviceListRecyclerView.adapter = adapter
 
         setDeviceList()
+
+        deviceAddButton.setOnClickListener{ startActivity(Intent(this, DeviceAddActivity::class.java)) }
 
     }
 

@@ -51,8 +51,9 @@ class TemperatureHumidityDialog(private val context: Context, val reservationInt
         if (v.id == R.id.reserveDoneButton ) {
             reservationInterface.onCompleted(endReserv, startReserv, temp, reservTime)
             dlg.dismiss()
+            return
         }
-        else if (v.id == R.id.reserveCloseSwitch){
+         if (v.id == R.id.reserveCloseSwitch){
             endReserv = (v as SwitchCompat).isChecked
         }
         else if (v.id == R.id.reserveStartSwitch){

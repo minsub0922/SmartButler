@@ -13,4 +13,5 @@
     <dimen name="grid_margin_horizontal">25dp</dimen>
     <dimen name="my_page_horizontal_margin">22dp</dimen>
     <dimen name="yellow_button_text_size">18dp</dimen>
+    <dimen name="family_group_image_size">30dp</dimen>
 </resources>
