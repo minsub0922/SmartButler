@@ -15,6 +15,7 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
     val strings = arrayOf("0% ~ 20%", "30% ~ 50% (권장습도)", "60% ~ 80%")
     var selectedHumidity = 0
     override var isChildActivity = true
+    var temp = 23
     val adapter: SpinnerItemAdapter by lazy { SpinnerItemAdapter(this, strings,0, this) }
 
     override fun setupView() {
@@ -27,6 +28,9 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
         humidTextView.text = trimDesciption(strings[selectedHumidity]).trim()
 
         setReserveSettings()
+
+        tempMinusButton.setOnClickListener{ txt_temp.text = (--temp).toString() }
+        tempPlusButton.setOnClickListener{ txt_temp.text = (++temp).toString() }
 
     }
 

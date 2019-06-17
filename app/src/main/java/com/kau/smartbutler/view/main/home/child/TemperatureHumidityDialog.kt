@@ -1,11 +1,9 @@
 package com.kau.smartbutler.view.main.home.child
 
-import androidx.databinding.adapters.TextViewBindingAdapter.setText
 import android.app.Dialog
 import android.content.Context
 import android.view.View
 import android.view.Window
-import android.view.Window.FEATURE_NO_TITLE
 import android.widget.*
 import androidx.appcompat.widget.SwitchCompat
 import com.kau.smartbutler.R

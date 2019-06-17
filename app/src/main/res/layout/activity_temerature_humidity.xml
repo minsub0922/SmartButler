@@ -100,6 +100,7 @@
                 />
 
             <ImageView
+                android:id="@+id/tempMinusButton"
                 android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:src="@drawable/btn_temp_minus_n"
@@ -112,6 +113,7 @@
                 />
 
             <ImageView
+                android:id="@+id/tempPlusButton"
                 android:layout_width="36dp"
                 android:layout_height="0dp"
                 android:src="@drawable/btn_temp_plus_n"
