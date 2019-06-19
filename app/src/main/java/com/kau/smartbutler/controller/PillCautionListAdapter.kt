@@ -43,7 +43,11 @@ class PillCautionListAdapter (
 
     class PillCautionListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        val text: TextView by lazy { itemView.findViewById<TextView>(R.id.deviceNameTextView) }
+        var text: TextView
+
+        init{
+            text = itemView.findViewById<TextView>(R.id.pillCautionText)
+        }
 
     }
 }
