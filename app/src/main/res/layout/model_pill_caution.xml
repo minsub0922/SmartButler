@@ -6,6 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/border_pill_management">
     <TextView
+        android:id="@+id/pillCautionText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="18sp"

@@ -69,7 +69,7 @@
                             android:textSize="18sp"
                             android:textColor="#de000000"
                             android:lineSpacingExtra="10sp"
-                            tools:text="연세대학교 세브란스"
+                            android:text="연세대학교 세브란스"
                             />
                         <TextView
                             android:layout_marginTop="5dp"
@@ -78,7 +78,7 @@
                             android:textSize="12sp"
                             android:textColor="#de000000"
                             android:lineSpacingExtra="16sp"
-                            tools:text="서울 서대문구 연세로 50-1"
+                            android:text="서울 서대문구 연세로 50-1"
                             />
                         <LinearLayout
                             android:layout_marginTop="15dp"
@@ -93,7 +93,7 @@
                                 android:textSize="14sp"
                                 android:textColor="#9b9b9b"
                                 android:lineSpacingExtra="4sp"
-                                tools:text="오시는 길"
+                                android:text="오시는 길"
                                 />
 
                             <ImageView

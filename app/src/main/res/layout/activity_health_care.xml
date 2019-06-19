@@ -373,7 +373,7 @@
                 android:textSize="14sp"
                 android:textColor="#212121"
                 android:lineSpacingExtra="9sp"
-                tools:text="장민기 님의 운동량은 현재 상위 36%입니다.\n30% 진입까지 193 kcal 남았어요!"
+                android:text="장민기 님의 운동량은 현재 상위 36%입니다.\n30% 진입까지 193 kcal 남았어요!"
                 android:layout_marginTop="3dp"
                 android:layout_marginStart="24dp"
 
@@ -402,7 +402,7 @@
                 android:textSize="14sp"
                 android:textColor="#afafaf"
                 android:lineSpacingExtra="14sp"
-                tools:text="게임으로 운동하기"
+                android:text="게임으로 운동하기"
                 android:layout_marginTop="22dp"
                 android:layout_marginStart="25dp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -441,7 +441,7 @@
                     android:textColor="#535353"
                     android:lineSpacingExtra="14sp"
                     android:gravity="end"
-                    tools:text="댄스 게임 하러가기  "
+                    android:text="댄스 게임 하러가기  "
                     />
                 <ImageView
                     android:id="@+id/iv_game_start_button"
