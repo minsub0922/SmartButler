@@ -2,20 +2,75 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/nav_header_height"
+    android:layout_height="150dp"
     android:background="@color/white"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
     android:theme="@style/AppTheme.Navigation">
 
-    <Button
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <ImageView
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
         android:id="@+id/naviBackButton"
-        android:background="@drawable/btn_navi_black_bk_n"
+        android:src="@drawable/btn_navi_black_bk_n"
         android:layout_width="36dp"
         android:layout_height="36dp" />
+
+    <ImageView
+        android:id="@+id/myProfileImageView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="16dp"
+        android:background="@drawable/device_default_image"
+        android:layout_width="50dp"
+        android:layout_height="50dp" />
+    <TextView
+        android:id="@+id/myNameTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/myAgeTextView"
+        app:layout_constraintTop_toBottomOf="@id/myProfileImageView"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="5dp"
+        android:textColor="@color/black"
+        android:text="내 이름"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/myAgeTextView"
+        android:text="(72세)"
+        android:textSize="13dp"
+        android:layout_marginLeft="5dp"
+        app:layout_constraintBottom_toBottomOf="@id/myNameTextView"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toRightOf="@id/myNameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageButton
+        android:id="@+id/showMyProfileButton"
+        android:background="@drawable/btn_arrow_right_n"
+        app:layout_constraintLeft_toRightOf="@id/myAgeTextView"
+        app:layout_constraintTop_toTopOf="@id/myNameTextView"
+        app:layout_constraintBottom_toBottomOf="@id/myNameTextView"
+        android:layout_marginLeft="8dp"
+        android:layout_width="20dp"
+        android:layout_height="20dp" />
+    <TextView
+        android:id="@+id/phoneNumberTextView"
+        app:layout_constraintTop_toBottomOf="@id/myAgeTextView"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/AppThemeColor"
+        android:text="01022223362"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </LinearLayout>

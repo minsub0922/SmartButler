@@ -10,6 +10,8 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.widget.ImageButton
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kau.smartbutler.R
@@ -22,8 +24,12 @@ import com.kau.smartbutler.view.main.home.HomeFragment
 import com.kau.smartbutler.view.main.home.child.MyPageActivity
 import com.kau.smartbutler.view.main.home.child.NavClientCenterActivity
 import com.kau.smartbutler.view.main.life.LifeFragment
+import com.kau.smartbutler.view.main.nav.NavSetDeviceModeActivity
 import kotlinx.android.synthetic.main.activity_main_navi.*
 import kotlinx.android.synthetic.main.activity_main_content.*
+import kotlinx.android.synthetic.main.nav_header_main.*
+import kotlinx.android.synthetic.main.nav_header_main.showMyProfileButton
+import kotlinx.android.synthetic.main.nav_header_main.view.*
 
 class MainActivity(
         override val layoutRes: Int = R.layout.activity_main_navi,
@@ -44,6 +50,8 @@ class MainActivity(
         setToolbar()
 
         setClickListener()
+
+        setHeader()
     }
 
     private fun setDrawaerWithNavigationView(){
@@ -62,23 +70,32 @@ class MainActivity(
 
         supportActionBar!!.setDisplayShowTitleEnabled(false);
 
-        supportActionBar!!
+    }
+
+    private fun setHeader(){
+
+        navView.getHeaderView(0).apply {
+
+            showMyProfileButton.setOnClickListener(this@MainActivity)
+            naviBackButton.setOnClickListener(this@MainActivity)
+            setModeNavTextView.setOnClickListener(this@MainActivity)
+
+        }
 
     }
 
     private fun setClickListener(){
 
-        clientCenterNaviTextView.setOnClickListener(this)
-        myPageButton.setOnClickListener(this)
-
+        clientCenterNavTextView.setOnClickListener(this)
 
     }
 
     override fun onClick(v: View?) {
         when(v?.id){
 
-            R.id.clientCenterNaviTextView -> startActivity(Intent(this, NavClientCenterActivity::class.java))
-            R.id.myPageButton -> startActivity(Intent(this, MyPageActivity::class.java))
+            R.id.clientCenterNavTextView -> startActivity(Intent(this, NavClientCenterActivity::class.java))
+            R.id.showMyProfileButton -> startActivity(Intent(this, MyPageActivity::class.java))
+            R.id.setModeNavTextView -> startActivity(Intent(this, NavSetDeviceModeActivity::class.java))
 
         }
     }
@@ -172,9 +189,9 @@ class MainActivity(
 
         when (index) {
 
-            FragNavController.TAB1 -> return HomeFragment()
-            FragNavController.TAB2 -> return ButlerFragment()
-            FragNavController.TAB3 -> return LifeFragment()
+            FragNavController.TAB1 -> return HomeFragment.getInstance()
+            FragNavController.TAB2 -> return ButlerFragment.getInstance()
+            FragNavController.TAB3 -> return LifeFragment.getInstance()
 
         }
         throw IllegalStateException("Need to send an index that we know")

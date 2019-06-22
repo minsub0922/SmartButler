@@ -28,10 +28,11 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
     }
 
     override val layoutRes: Int = R.layout.fragment_home
-    val modelList = ArrayList<Device>()
+    val modelList = DeviceListSingleton.getInstance().list
     val adapter by lazy {
-        DeviceControllerAdpater(activity!!, modelList, ObservableField(equals(false)), this)
+        DeviceControllerAdpater(activity!!, modelList, false, this)
     }
+    var updateDeviceState = false
 
     companion object {
         var INSTANCE: HomeFragment? = null
@@ -47,6 +48,21 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         }
     }
 
+    override fun onResume() {
+        super.onResume()
+        Log.d("tagg","resume!!")
+
+        if (updateDeviceState) {
+            Log.d("tagg","in,.,.?")
+            adapter.notifyDataSetChanged()
+            updateDeviceState = false
+        }
+    }
+
+    fun updateDeviceList(){
+        updateDeviceState = true
+    }
+
     override fun setupView(view: View) {
 
         setModels()
@@ -58,7 +74,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
         btn_device_switch.setOnClickListener { v->
 
-            for (model in modelList) model.state  = !(v as SwitchCompat).isChecked
+            adapter.toggleSwitch = !adapter.toggleSwitch
 
             adapter.notifyDataSetChanged()
 
