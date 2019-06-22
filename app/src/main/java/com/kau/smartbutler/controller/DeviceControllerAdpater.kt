@@ -17,7 +17,7 @@ import java.util.*
 class DeviceControllerAdpater (
         val mContext: Context,
         val modelList: ArrayList<Device>,
-        val toggleSwitch: ObservableField<Boolean>,
+        var toggleSwitch: Boolean,
         val deviceClickListener: DeviceControllerItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>()
 {
@@ -49,9 +49,9 @@ class DeviceControllerAdpater (
 
         val holder = viewHolder as DeviceViewHolder
 
-        setButtonBackground(model.type, model.state, holder)
+        setButtonBackground(model.type, if (!toggleSwitch) model.stateInHome else model.stateOutOfHome, holder)
 
-        holder.deviceSwitch.isChecked = model.state
+        holder.deviceSwitch.isChecked =  if (!toggleSwitch) model.stateInHome else model.stateOutOfHome
 
         holder.deviceSwitch.setOnClickListener { v -> toggleButtonListener(holder, model) }
 
@@ -94,9 +94,9 @@ class DeviceControllerAdpater (
 
     private fun toggleButtonListener(holder: DeviceViewHolder, model: Device){
 
-        model.state = !(model.state)
+        if (!toggleSwitch) model.stateInHome =! model.stateInHome else model.stateOutOfHome = !model.stateOutOfHome
 
-        setButtonBackground(model.type, model.state, holder)
+        setButtonBackground(model.type, if (!toggleSwitch) model.stateInHome else model.stateOutOfHome, holder)
 
     }
 
