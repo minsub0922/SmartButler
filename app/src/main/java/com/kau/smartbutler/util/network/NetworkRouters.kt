@@ -1,9 +1,16 @@
 package com.kau.smartbutler.util.network
 
+import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.*
+import java.util.*
 
 interface NetworkRouters {
+
+    @GET("/rest/items/{deviceName}")
+    fun getOrderToDevice(
+            @Path("deviceName") deviceName: String
+    ): Observable<Objects>
 
     //이런식으로 라우터를 interface로 빼서 갖다 쓰면댐
 
