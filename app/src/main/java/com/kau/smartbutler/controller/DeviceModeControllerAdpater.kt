@@ -27,7 +27,7 @@ class DeviceModeControllerAdpater (
     }
 
     override fun getItemViewType(position: Int): Int {
-        if (position ==0) return -1
+        //if (position ==0) return -1
         return super.getItemViewType(position)
     }
 
@@ -35,7 +35,7 @@ class DeviceModeControllerAdpater (
 
     override fun onBindViewHolder(viewHolder: RecyclerView.ViewHolder, position: Int) {
 
-        if (position==0) return
+        //if (position==0) return
 
         val model = modelList.get(position)
 

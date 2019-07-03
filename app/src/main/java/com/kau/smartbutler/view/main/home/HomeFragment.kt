@@ -96,7 +96,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
     private fun setModels(){
 
-        modelList.add(Device(0,""))
+        //modelList.add(Device(0,""))
         modelList.add(Device(1,"서재 조명"))
         modelList.add(Device(2,"안방 에어컨"))
         modelList.add(Device(3,"침실 조명"))
