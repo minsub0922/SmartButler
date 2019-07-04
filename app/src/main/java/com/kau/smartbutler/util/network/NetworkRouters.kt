@@ -1,5 +1,8 @@
 package com.kau.smartbutler.util.network
 
+import android.telecom.Call
+import com.google.gson.JsonArray
+import com.google.gson.JsonObject
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.*
@@ -7,10 +10,11 @@ import java.util.*
 
 interface NetworkRouters {
 
-    @GET("/rest/items/{deviceName}")
-    fun getOrderToDevice(
-            @Path("deviceName") deviceName: String
-    ): Observable<Objects>
+    @POST("/rest/items/{deviceId}")
+    fun postOrder(
+            @Path("deviceId") deviceId: String,
+            @Body order: String
+    ): Observable<String>
 
     //이런식으로 라우터를 interface로 빼서 갖다 쓰면댐
 
