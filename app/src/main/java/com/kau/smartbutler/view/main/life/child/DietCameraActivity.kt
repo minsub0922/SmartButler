@@ -18,7 +18,7 @@ import kotlinx.android.synthetic.main.activity_diet.*
 import kotlinx.android.synthetic.main.activity_diet_camera.*
 
 class DietCameraActivity (
-        override val layoutRes: Int= R.layout.activity_diet,
+        override val layoutRes: Int= R.layout.activity_diet_camera,
         override val isUseDatabinding: Boolean=false) :
         BaseActivity(), View.OnClickListener {
     override var isChildActivity: Boolean = true
@@ -32,32 +32,26 @@ class DietCameraActivity (
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             // OS가 Marshmallow 이상일 경우 권한체크를 해야 합니다.
-
             val permissionCheckCamera
                     = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
             val permissionCheckStorage
                     = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-
             if (permissionCheckCamera ==
                     PackageManager.PERMISSION_GRANTED && permissionCheckStorage == PackageManager.PERMISSION_GRANTED) {
-
                 // 권한 있음
                 startCamera()
             } else {
-
                 // 권한 없음
                 ActivityCompat.requestPermissions(this,
                         REQUIRED_PERMISSIONS,
                         PERMISSIONS_REQUEST_CODE)
             }
-
-
         } else {
             // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
             Log.d("MyTag", "마시멜로 버전 이하로 권한 이미 있음")
             startCamera()
-
         }
+        tv_camera_dummy.setOnClickListener(this)
 
     }
 
@@ -65,6 +59,9 @@ class DietCameraActivity (
         when(v!!.id){
             R.id.tv_camera_dummy -> {
                 mealCameraPreview?.takePicture()
+                val i = Intent(this, DietMealConfirmActivity::class.java)
+                i.putExtra("meal", "morning")
+                startActivity(i)
             }
         }
     }

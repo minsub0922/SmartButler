@@ -1,11 +1,13 @@
 package com.kau.smartbutler.view.main.butler
 
+import android.content.Intent
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseFragment
 
 class ButlerFragment : BaseFragment() {
 
     override val layoutRes: Int = R.layout.fragment_butler
+
 
     companion object {
         var INSTANCE: ButlerFragment? = null

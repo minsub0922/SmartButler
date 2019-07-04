@@ -13,7 +13,7 @@ import kotlin.collections.ArrayList
 class DietCalendarActivity(override val layoutRes: Int = R.layout.activity_diet_calendar, override val isUseDatabinding: Boolean=false) : BaseActivity(){
 
     val calendarList:ArrayList<CalendarItem> = ArrayList()
-    val adapter:CalendarAdapter by lazy { CalendarAdapter(this, calendarList) }
+    val adapter:CalendarAdapter by lazy { CalendarAdapter(this, calendarList, "manage") }
 
     override var isChildActivity: Boolean = true
 

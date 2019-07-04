@@ -5,6 +5,14 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.group.STORAGE"/>
+    <uses-feature android:name="android.hardware.camera" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.autofocus" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front" android:required="false"/>
+    <uses-feature android:name="android.hardware.camera.front.autofocus" android:required="false"/>
+
 
     <application
         android:name=".SmartButlerApplication"
@@ -15,8 +23,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.main.life.child.DietMealConfirmActivity"></activity>
-        <activity android:name=".view.main.life.child.DietCameraActivity" />
+        <activity android:name=".view.main.life.child.DietMealConfirmActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.life.child.DietCameraActivity"
+            android:theme="@style/AppTheme.NoActionBar"/>
         <activity
             android:name=".view.main.life.child.PillDietApplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
