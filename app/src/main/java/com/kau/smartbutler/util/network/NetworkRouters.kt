@@ -16,6 +16,14 @@ interface NetworkRouters {
             @Body order: String
     ): Observable<String>
 
+    @GET("/dailyCalorieRequirements")
+    fun getDailyCalorieRequirements(
+            @Query("weight") weight: Int,
+            @Query("age") age: Int,
+            @Query("sex") sex: String,
+            @Query("activity") activity: String
+    ) : Observable<JsonObject>
+
     //이런식으로 라우터를 interface로 빼서 갖다 쓰면댐
 
 

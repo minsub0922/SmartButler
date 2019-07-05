@@ -1,6 +1,7 @@
 package com.kau.smartbutler
 
 import android.app.Application
+import com.kau.smartbutler.util.network.listNetworkInit
 import com.kau.smartbutler.util.network.networkInit
 
 open class SmartButlerApplication: Application(){
@@ -11,6 +12,7 @@ open class SmartButlerApplication: Application(){
             run {
                 // TODO Auto-generated method stub
                 networkInit()
+                listNetworkInit()
             }
         }).start()
     }
