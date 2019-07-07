@@ -92,10 +92,11 @@
                     <EditText
                         android:id="@+id/et_age"
                         android:layout_width="48dp"
-                        android:layout_height="24dp"
+                        android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
+                        android:inputType="number"
                         />
 
                     <TextView
@@ -134,7 +135,7 @@
                     <Spinner
                         android:id="@+id/spinnerSex"
                         android:layout_width="70dp"
-                        android:layout_height="24dp">
+                        android:layout_height="wrap_content">
 
                     </Spinner>
 
@@ -175,11 +176,11 @@
                     <EditText
                         android:id="@+id/et_weight"
                         android:layout_width="48dp"
-                        android:layout_height="24dp"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
                         android:lineSpacingExtra="14sp"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_weight_dummy"
@@ -215,10 +216,11 @@
                     <EditText
                         android:id="@+id/et_goal_weight"
                         android:layout_width="48dp"
-                        android:layout_height="24dp"
+                        android:layout_height="wrap_content"
                         android:textSize="14sp"
                         android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
+                        android:inputType="number"
                         />
 
                     <TextView
