@@ -23,7 +23,7 @@ class PillActivity(
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.layout_pill_recognition -> {
-                startActivity(Intent(this, PillIngredientActivity::class.java)) // 카메라에서 다음으로 넘어갈 수가 없어서 우선 성분 분석 뷰로 넘어감.
+                startActivity(Intent(this, PillIngredientActivity::class.java))
             }
             R.id.layout_my_pill-> {
                 startActivity(Intent(this, PillManagementActivity::class.java))

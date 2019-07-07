@@ -130,7 +130,9 @@
                         android:lineSpacingExtra="14sp"
                         android:text="성별"
                         />
+
                     <Spinner
+                        android:id="@+id/spinnerSex"
                         android:layout_width="70dp"
                         android:layout_height="24dp">
 
@@ -263,7 +265,9 @@
                         android:lineSpacingExtra="14sp"
                         android:text="활동성"
                         />
+
                     <Spinner
+                        android:id="@+id/spinnerActivity"
                         android:layout_width="70dp"
                         android:layout_height="24dp">
 
@@ -388,7 +392,7 @@
                 />
 
             <Button
-                android:id="@+id/myProfileModifyButton"
+                android:id="@+id/myProfileModify"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/addressEditText"
