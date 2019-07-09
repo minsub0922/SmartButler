@@ -8,6 +8,7 @@ import android.content.res.Configuration
 import android.graphics.*
 import android.hardware.camera2.*
 import android.media.ImageReader
+import android.net.Uri
 import android.os.Build
 import android.os.Environment
 import android.os.Handler
@@ -29,9 +30,15 @@ import com.kau.smartbutler.model.PersonalInformation
 import com.kau.smartbutler.util.camera.*
 import com.kau.smartbutler.util.camera.CompareSizesByArea
 import com.kau.smartbutler.util.camera.ImageSaver
+import com.kau.smartbutler.util.network.getListNetworkInstance
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_diet_camera.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import java.io.File
 import java.util.*
 import java.util.concurrent.Semaphore
@@ -46,7 +53,8 @@ class DietCameraActivity (
     private val REQUIRED_PERMISSIONS =
             arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private var mPreviewSize : Size? = null
-    private val realm = Realm.getDefaultInstance()
+    val realm = Realm.getDefaultInstance()
+    private var captureComplete : Boolean = false
     private var date:Long = 0
 
     private val surfaceTextureListener = object : TextureView.SurfaceTextureListener {
@@ -211,11 +219,35 @@ class DietCameraActivity (
         when(v!!.id){
             R.id.tv_camera_dummy -> {
                 lockFocus()
-                val i = Intent(this, DietMealConfirmActivity::class.java)
-                i.putExtra("meal", "morning")
-                i.putExtra("date", date)
-                i.putExtra("file", file.toString())
-                startActivity(i)
+                while (!captureComplete) {
+                }
+                Log.d("tag result ", file.exists().toString())
+                realm.beginTransaction()
+                val newMeal = Meal(date, intent.getStringExtra("meal"), file.toString())
+                realm.copyToRealm(newMeal)
+                realm.commitTransaction()
+                Log.d("tag result ", file.toString())
+                val imageRequestBody = RequestBody.create(MediaType.parse("image/*"), file)
+                val image = MultipartBody.Part.createFormData("file", file.name, imageRequestBody)
+                val filename = RequestBody.create(MediaType.parse("text/plain"), file.name)
+                getListNetworkInstance()
+                        .predict(image, filename)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            /*realm.beginTransaction()
+                            val test = realm.where(PersonalInformation::class.java).findFirstAsync()
+                            test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
+                            realm.commitTransaction()*/
+                            Log.d("tag result ", it.toString())
+                            val i = Intent(this, DietMealConfirmActivity::class.java)
+                            i.putExtra("meal", "morning")
+                            i.putExtra("date", date)
+                            i.putExtra("file", file.toString())
+                            i.putExtra("foodName", it.get(0).asJsonObject.get("label").toString())
+                            startActivity(i)
+                        }
+
             }
         }
     }
@@ -537,13 +569,10 @@ class DietCameraActivity (
                                                 request: CaptureRequest,
                                                 result: TotalCaptureResult) {
                     Toast.makeText(this@DietCameraActivity, "Saved: $file", Toast.LENGTH_LONG).show()
-                    realm.beginTransaction()
-                    val newMeal = Meal(date, intent.getStringExtra("meal"), file.toString())
-                    realm.copyToRealm(newMeal)
-                    realm.commitTransaction()
 
                     Log.d(TAG, file.toString())
                     unlockFocus()
+                    captureComplete = true
                 }
             }
 

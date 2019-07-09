@@ -80,11 +80,18 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                     realm.copyToRealm(info!!)
                     realm.commitTransaction()
 
-                    Log.d("tag result ", age.toString())
-                    realm.executeTransaction {
-                        val test = realm.where(PersonalInformation::class.java).findFirstAsync()
-                        Log.d("tag result ", test.age.toString())
-                    }
+                    getListNetworkInstance()
+                            .getDailyCalorieRequirements(70, 29, "male", "good")
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                realm.beginTransaction()
+                                val test = realm.where(PersonalInformation::class.java).findFirstAsync()
+                                test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
+                                realm.commitTransaction()
+
+                                Log.d("tag result ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
+                            }
                 } else {
                     realm.beginTransaction()
                     val modifyInfo = realm.where(PersonalInformation::class.java).findFirstAsync()
@@ -95,10 +102,18 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                     modifyInfo.activity = activity!!
                     realm.commitTransaction()
 
-                    realm.executeTransaction {
-                        val test = realm.where(PersonalInformation::class.java).findFirstAsync()
-                        Log.d("tag result modify ", test.age.toString())
-                    }
+                    getListNetworkInstance()
+                            .getDailyCalorieRequirements(70, 29, "male", "good")
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe {
+                                realm.beginTransaction()
+                                val test = realm.where(PersonalInformation::class.java).findFirstAsync()
+                                test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
+                                realm.commitTransaction()
+
+                                Log.d("tag result modify ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
+                            }
                 }
 
 
@@ -115,17 +130,17 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
     }
     fun getSexPosition(sex: String): Int {
         when(sex) {
-            "남" -> { return 1}
-            "여" -> { return 2}
+            "남" -> { return 0}
+            "여" -> { return 1}
         }
         return -1
     }
 
     fun getActivityPosition(activity: String): Int {
         when(activity) {
-            "하" -> { return 1}
-            "중" -> { return 2}
-            "상" -> { return 3}
+            "하" -> { return 0}
+            "중" -> { return 1}
+            "상" -> { return 2}
         }
         return -1
     }
