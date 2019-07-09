@@ -79,6 +79,7 @@ class DietManagementActivity(
         when(v!!.id){
             R.id.iv_morning -> {
                 val i = Intent(this, DietCameraActivity::class.java)
+
                 i.putExtra("meal", "morning")
                 startActivity(i)
             }
