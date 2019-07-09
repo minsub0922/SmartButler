@@ -32,17 +32,17 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
 
         myProfileModify.setOnClickListener(this)
         realm.beginTransaction()
-        info = realm.where<PersonalInformation>().findFirst()
+        val initialInfo = realm.where<PersonalInformation>().findFirst()
         realm.commitTransaction()
-        /*if (info != null) {
-            spinnerSex.setSelection(getSexPosition(info!!.sex))
-            spinnerActivity.setSelection(getActivityPosition(info!!.activity))
-            et_age.setText(info!!.age)
-            et_weight.setText(info!!.weight)
-            et_goal_weight.setText(info!!.goalWeight)
-        }*/
+        if (initialInfo != null) {
+            spinnerSex.setSelection(getSexPosition(initialInfo.sex))
+            spinnerActivity.setSelection(getActivityPosition(initialInfo.activity))
+            et_age.setText(initialInfo.age.toString())
+            et_weight.setText(initialInfo.weight.toString())
+            et_goal_weight.setText(initialInfo.goalWeight.toString())
+        }
 
-        val adapterSex = ArrayAdapter.createFromResource(this, R.array.sex, android.R.layout.simple_spinner_item)
+        val adapterSex = ArrayAdapter.createFromResource(this, R.array.sex, R.layout.my_profile_spinner_item)
         spinnerSex.adapter = adapterSex
         spinnerSex.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -53,7 +53,7 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
             }
         }
 
-        val adapterActivity = ArrayAdapter.createFromResource(this, R.array.activity, android.R.layout.simple_spinner_item)
+        val adapterActivity = ArrayAdapter.createFromResource(this, R.array.activity, R.layout.my_profile_spinner_item)
         spinnerActivity.adapter = adapterActivity
         spinnerActivity.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -68,7 +68,10 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.myProfileModify -> {
-                if (info == null) {
+                realm.beginTransaction()
+                val currentInfo = realm.where<PersonalInformation>().findFirst()
+                realm.commitTransaction()
+                if (currentInfo == null) {
                     age = if(et_age.text.toString() == "") 30 else et_age.text.toString().toInt()
                     weight = if(et_weight.text.toString() == "") 70 else et_weight.text.toString().toInt()
                     goalWeight = if(et_goal_weight.text.toString() == "") 70 else et_goal_weight.text.toString().toInt()

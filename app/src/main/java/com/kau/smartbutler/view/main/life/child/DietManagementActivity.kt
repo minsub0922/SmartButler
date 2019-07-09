@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.View
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.Toast
 import com.google.gson.Gson
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
@@ -25,6 +26,7 @@ class DietManagementActivity(
         super.setupView()
 
         iv_morning.setOnClickListener(this)
+        Toast.makeText(this, intent.getStringExtra("file"), Toast.LENGTH_LONG).show()
 
     }
 

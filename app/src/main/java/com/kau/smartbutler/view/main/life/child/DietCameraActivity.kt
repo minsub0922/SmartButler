@@ -24,9 +24,13 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
+import com.kau.smartbutler.model.Meal
+import com.kau.smartbutler.model.PersonalInformation
 import com.kau.smartbutler.util.camera.*
 import com.kau.smartbutler.util.camera.CompareSizesByArea
 import com.kau.smartbutler.util.camera.ImageSaver
+import io.realm.Realm
+import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_diet_camera.*
 import java.io.File
 import java.util.*
@@ -42,6 +46,8 @@ class DietCameraActivity (
     private val REQUIRED_PERMISSIONS =
             arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE)
     private var mPreviewSize : Size? = null
+    private val realm = Realm.getDefaultInstance()
+    private var date:Long = 0
 
     private val surfaceTextureListener = object : TextureView.SurfaceTextureListener {
 
@@ -179,8 +185,11 @@ class DietCameraActivity (
             // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
             Log.d("MyTag", "마시멜로 버전 이하로 권한 이미 있음")
         }
+
         tv_camera_dummy.setOnClickListener(this)
-        file = File(this.getExternalFilesDir(null), PIC_FILE_NAME)
+        date = System.currentTimeMillis()
+        file = File(this.getExternalFilesDir(null),  date.toString() + "_" + intent.getStringExtra("meal") + "_" +  PIC_FILE_NAME)
+
     }
 
     override fun onResume() {
@@ -204,6 +213,8 @@ class DietCameraActivity (
                 lockFocus()
                 val i = Intent(this, DietMealConfirmActivity::class.java)
                 i.putExtra("meal", "morning")
+                i.putExtra("date", date)
+                i.putExtra("file", file.toString())
                 startActivity(i)
             }
         }
@@ -526,6 +537,11 @@ class DietCameraActivity (
                                                 request: CaptureRequest,
                                                 result: TotalCaptureResult) {
                     Toast.makeText(this@DietCameraActivity, "Saved: $file", Toast.LENGTH_LONG).show()
+                    realm.beginTransaction()
+                    val newMeal = Meal(date, intent.getStringExtra("meal"), file.toString())
+                    realm.copyToRealm(newMeal)
+                    realm.commitTransaction()
+
                     Log.d(TAG, file.toString())
                     unlockFocus()
                 }
