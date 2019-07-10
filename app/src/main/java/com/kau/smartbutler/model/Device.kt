@@ -5,6 +5,7 @@ import androidx.databinding.ObservableField
 data class Device(
         var type:Int,
         var name:String,
+        var path: String = "",
         var stateInHome:Boolean = false,
         var stateOutOfHome: Boolean = false
 
