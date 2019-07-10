@@ -16,8 +16,10 @@ var API_BASE_URL = "http://192.168.1.48:8080"
 lateinit var client: OkHttpClient
 
 lateinit var retrofit: Retrofit
+lateinit var retrofitForJson: Retrofit
 
 val networkInterface: NetworkRouters by lazy {  retrofit.create(NetworkRouters::class.java) }
+val networkInterfaceForJsonTypes: NetworkRouters by lazy {  retrofitForJson.create(NetworkRouters::class.java) }
 
 fun networkInit() {
     var logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
@@ -36,6 +38,17 @@ fun networkInit() {
             .addConverterFactory(ScalarsConverterFactory.create())  //for string body
             .build()
 
+    retrofitForJson = Retrofit.Builder()
+            .baseUrl(API_BASE_URL)
+            .client(client)
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+            .build()
+
+
+
 }
 
 fun getNetworkInstance() = networkInterface
+
+fun getNetworkInstanceForJson() = networkInterfaceForJsonTypes
