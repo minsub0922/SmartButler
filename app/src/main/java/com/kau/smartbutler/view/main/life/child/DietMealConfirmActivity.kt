@@ -64,7 +64,6 @@ class DietMealConfirmActivity(
                     carbohydrate_calorie.text = nutrients[0].toString()
                     protein_calorie.text = nutrients[1].toString()
                     fat_calorie.text = nutrients[2].toString()
-
                 }
 
     }
@@ -72,12 +71,17 @@ class DietMealConfirmActivity(
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_yes -> {
-                val i = Intent(this, DietManagementActivity::class.java)
-                startActivity(i)
+                val i = intent
+                i.putExtra("carbohydrate", carbohydrate_calorie.text.toString())
+                i.putExtra("protein", protein_calorie.text.toString())
+                i.putExtra("fat", fat_calorie.text.toString())
+                setResult(200, intent)
+                finish()
             }
             R.id.btn_no-> {
-                val i = Intent(this, DietManagementActivity::class.java)
-                startActivity(i)
+                val i = intent
+                setResult(500, i)
+                finish()
             }
             R.id.refreshButton -> {
                 val foodName = et_food_name.text.toString()

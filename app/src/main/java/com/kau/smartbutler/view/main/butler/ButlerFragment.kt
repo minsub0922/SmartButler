@@ -62,6 +62,7 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
             speechRecognizer.setRecognitionListener(object: RecognitionListener{
                 override fun onReadyForSpeech(params: Bundle?) {
                     Toast.makeText(context,"음성인식을 시작합니다.",Toast.LENGTH_SHORT).show();
+                    clickVoice.text = "말씀해주세요."
                 }
                 // 음성 인식 준비 완료
                 override fun onRmsChanged(rmsdB: Float) {}
@@ -91,7 +92,14 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                     Toast.makeText(context, "에러가 발생하였습니다. : " + message,Toast.LENGTH_SHORT).show();
                 }
                 // 오류가 발생했을 때
-                override fun onResults(results: Bundle) {}
+                override fun onResults(results: Bundle) {
+                    val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+
+                    for (match in matches!!) {
+                        Toast.makeText(context, match, Toast.LENGTH_LONG).show()
+                    }
+                    clickVoice.text = "음성으로 하시려면 터치해주세요."
+                }
                 // 결과 값을 받음
             })
 
@@ -110,15 +118,6 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
 
                 tts.speak("안녕하세요. 버틀러입니다.", TextToSpeech.QUEUE_FLUSH, null, null)
             }
-        }
-    }
-
-    fun onResults(results: Bundle) {
-        // 말을 하면 ArrayList에 단어를 넣고 textView에 단어를 이어줍니다.
-        val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
-
-        for (match in matches!!) {
-            Toast.makeText(context, match, Toast.LENGTH_LONG).show()
         }
     }
 

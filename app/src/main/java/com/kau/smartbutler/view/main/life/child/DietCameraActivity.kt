@@ -195,7 +195,7 @@ class DietCameraActivity (
         }
 
         tv_camera_dummy.setOnClickListener(this)
-        date = System.currentTimeMillis()
+        date = intent.getLongExtra("date", 0)
         file = File(this.getExternalFilesDir(null),  date.toString() + "_" + intent.getStringExtra("meal") + "_" +  PIC_FILE_NAME)
 
     }
@@ -245,10 +245,21 @@ class DietCameraActivity (
                             i.putExtra("date", date)
                             i.putExtra("file", file.toString())
                             i.putExtra("foodName", it.get(0).asJsonObject.get("label").toString())
-                            startActivity(i)
+                            startActivityForResult(i, 200)
                         }
 
             }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if(resultCode== 200) {
+            setResult(200, data!!)
+            finish()
+        } else  {
+            setResult(500, data!!)
+            finish()
         }
     }
 

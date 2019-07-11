@@ -6,6 +6,7 @@ import java.sql.Date
 
 open class Meal(
         var date: Long = 0,
-        var type: String = "breakfast", // morning, lunch, dinner
-        var fileDir: String = PIC_FILE_NAME
+        var type: String = "breakfast", // breakfast, lunch, dinner
+        var fileDir: String = PIC_FILE_NAME,
+        var foodName: String = "음식"
 ) : RealmObject()

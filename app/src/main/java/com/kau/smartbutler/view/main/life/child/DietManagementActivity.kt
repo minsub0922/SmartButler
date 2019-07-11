@@ -13,6 +13,7 @@ import android.widget.Toast
 import com.google.gson.Gson
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
+import com.kau.smartbutler.model.Diet
 import com.kau.smartbutler.model.PersonalInformation
 import com.kau.smartbutler.util.network.getNetworkInstance
 import io.reactivex.schedulers.Schedulers
@@ -79,11 +80,23 @@ class DietManagementActivity(
         when(v!!.id){
             R.id.iv_morning -> {
                 val i = Intent(this, DietCameraActivity::class.java)
-
+                i.putExtra("date", intent.getLongExtra("date", 0))
                 i.putExtra("meal", "morning")
-                startActivity(i)
+                startActivityForResult(i, 200)
             }
         }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (resultCode == 200) {
+            Log.d("tag result ", data!!.getStringExtra("file") + "_" + data.getStringExtra("foodName"))
+            realm.beginTransaction()
+            realm.commitTransaction()
+        } else {
+            Log.d("tag result ", "refused")
+        }
+
     }
 
     fun getSexPosition(sex: String): Int {
