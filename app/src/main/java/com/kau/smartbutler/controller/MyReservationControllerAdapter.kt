@@ -64,7 +64,7 @@ class MyReservationControllerAdapter (
         init {
             hospital = itemView.findViewById<ImageView>(R.id.iv_direct_call)
             name = itemView.findViewById<TextView>(R.id.tv_hospital_name)
-            taxi = itemView.findViewById<ImageView>(R.id.iv_direct_call)
+            taxi = itemView.findViewById<ImageView>(R.id.iv_taxi_call)
         }
 
     }

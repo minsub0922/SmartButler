@@ -75,11 +75,10 @@
                 <EditText
                     android:id="@+id/et_age"
                     android:layout_width="48dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:textSize="14sp"
                     android:textColor="#6d7278"
                     android:lineSpacingExtra="14sp"
-                    android:inputType="number"
                     />
 
                 <TextView
@@ -104,8 +103,7 @@
                 android:gravity="center_vertical"
                 app:layout_constraintStart_toEndOf="@+id/layout_age"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/layout_age"
-                app:layout_constraintBottom_toBottomOf="@+id/layout_age">
+                app:layout_constraintTop_toTopOf="parent">
                 <TextView
                     android:id="@+id/tv_sex"
                     android:layout_width="54dp"
@@ -115,11 +113,9 @@
                     android:lineSpacingExtra="14sp"
                     android:text="성별"
                     />
-
                 <Spinner
-                    android:id="@+id/spinner_sex"
                     android:layout_width="70dp"
-                    android:layout_height="wrap_content">
+                    android:layout_height="24dp">
 
                 </Spinner>
 
@@ -160,11 +156,11 @@
                 <EditText
                     android:id="@+id/et_weight"
                     android:layout_width="48dp"
-                    android:layout_height="wrap_content"
-                    android:inputType="number"
-                    android:lineSpacingExtra="14sp"
+                    android:layout_height="24dp"
+                    android:textSize="14sp"
                     android:textColor="#6d7278"
-                    android:textSize="14sp" />
+                    android:lineSpacingExtra="14sp"
+                    />
 
                 <TextView
                     android:id="@+id/tv_weight_dummy"
@@ -200,11 +196,10 @@
                 <EditText
                     android:id="@+id/et_goal_weight"
                     android:layout_width="48dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="24dp"
                     android:textSize="14sp"
                     android:textColor="#6d7278"
                     android:lineSpacingExtra="14sp"
-                    android:inputType="number"
                     />
 
                 <TextView
@@ -251,9 +246,7 @@
                     android:lineSpacingExtra="14sp"
                     android:text="활동성"
                     />
-
                 <Spinner
-                    android:id="@+id/spinner_activity"
                     android:layout_width="70dp"
                     android:layout_height="24dp">
 

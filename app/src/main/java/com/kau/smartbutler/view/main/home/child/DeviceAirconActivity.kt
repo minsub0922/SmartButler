@@ -5,9 +5,6 @@ import android.view.View
 import android.widget.Button
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
-import com.kau.smartbutler.util.network.getNetworkInstance
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_device_aircon.*
 
 class DeviceAirconActivity(
@@ -21,27 +18,12 @@ class DeviceAirconActivity(
         arrayOf(stateButton1, stateButton2, stateButton3, stateButton4)
     }
 
-    var airconState = false
-
     override fun setupView() {
         super.setupView()
 
         powerButton.isSelected = true
 
         for (b in stateButtonArray) b.setOnClickListener(this)
-
-        powerButton.setOnClickListener{
-
-            getNetworkInstance()
-                    .postOrder( "harmonyhub_device_HarmonyHub_48428499_buttonPress",if (airconState) "PowerOff" else "PowerOn")
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        Log.d("tagg result ", it.toString())
-                    }
-            airconState = !airconState
-
-        }
 
     }
 

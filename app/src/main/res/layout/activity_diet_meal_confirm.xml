@@ -35,16 +35,13 @@
 
     <ImageView
         android:id="@+id/iv_food"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintDimensionRatio="1:1"
-        android:layout_marginStart="105dp"
-        android:layout_marginEnd="105dp"
         app:layout_constraintTop_toBottomOf="@+id/appbar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        />
+        android:src="@drawable/img_yellow_logo"/>
 
     <TextView
         android:id="@+id/tv_food_name"
@@ -58,7 +55,7 @@
         android:text="음식 이름"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_food"
-        app:layout_constraintEnd_toStartOf="@+id/refreshButton"
+        app:layout_constraintEnd_toStartOf="@+id/et_food_name"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         />
     <EditText
@@ -68,23 +65,13 @@
         android:textSize="14sp"
         android:textColor="#6d7278"
         android:lineSpacingExtra="14sp"
+        android:layout_marginEnd="20dp"
         android:textAlignment="viewEnd"
         android:hint="음식 이름"
         app:layout_constraintTop_toTopOf="@+id/tv_food_name"
         app:layout_constraintBottom_toBottomOf="@+id/tv_food_name"
-        app:layout_constraintEnd_toStartOf="@id/refreshButton"/>
-
-    <ImageView
-        android:id="@+id/refreshButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/btn_refresh_n"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintStart_toEndOf="@id/tv_food_name"
-        app:layout_constraintTop_toTopOf="@id/et_food_name"
-        app:layout_constraintBottom_toBottomOf="@id/et_food_name"
-        app:layout_constraintEnd_toEndOf="parent"
-        />
+        app:layout_constraintStart_toEndOf="@+id/tv_food_name"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <View
         android:id="@+id/line"
@@ -93,7 +80,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="14dp"
         android:background="@color/divider"
-        app:layout_constraintEnd_toEndOf="@+id/refreshButton"
+        app:layout_constraintEnd_toEndOf="@+id/et_food_name"
         app:layout_constraintStart_toStartOf="@+id/tv_food_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_food_name" />
 
@@ -124,7 +111,7 @@
         app:layout_constraintTop_toTopOf="@+id/tv_intake"
         app:layout_constraintBottom_toBottomOf="@+id/tv_intake"
         app:layout_constraintStart_toEndOf="@+id/tv_intake"
-        app:layout_constraintEnd_toEndOf="@+id/refreshButton"/>
+        app:layout_constraintEnd_toEndOf="@+id/et_food_name"/>
 
 
     <View
@@ -134,7 +121,7 @@
         android:layout_gravity="center"
         android:layout_marginTop="14dp"
         android:background="@color/divider"
-        app:layout_constraintEnd_toEndOf="@id/refreshButton"
+        app:layout_constraintEnd_toEndOf="@id/et_food_name"
         app:layout_constraintStart_toStartOf="@id/tv_food_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_intake" />
 
@@ -189,8 +176,6 @@
         app:layout_constraintTop_toBottomOf="@id/carbohydrate"
         app:layout_constraintStart_toStartOf="@id/et_intake"
         />
-
-
 
     <TextView
         android:id="@+id/protein_calorie"
@@ -256,7 +241,7 @@
         android:textColor="#efb824"
         android:textSize="16sp"
         app:layout_constraintTop_toBottomOf="@+id/tv_record_confirm"
-        app:layout_constraintEnd_toStartOf="@id/btn_yes"
+        app:layout_constraintEnd_toStartOf="btn_yes"
         app:layout_constraintStart_toStartOf="parent"
         />
 
@@ -273,6 +258,6 @@
         app:layout_constraintTop_toTopOf="@id/btn_no"
         app:layout_constraintBottom_toBottomOf="@id/btn_no"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/btn_no" />
+        app:layout_constraintStart_toEndOf="btn_no" />
     
 </androidx.constraintlayout.widget.ConstraintLayout>

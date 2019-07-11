@@ -5,15 +5,8 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-feature android:name="android.hardware.camera2.full"/>
-
 
     <application
-        android:name=".SmartButlerApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -21,10 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.main.life.child.DietMealConfirmActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.life.child.DietCameraActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.life.child.DietMealConfirmActivity"></activity>
+        <activity android:name=".view.main.life.child.DietCameraActivity" />
         <activity
             android:name=".view.main.life.child.PillDietApplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -122,17 +113,6 @@
         <activity
             android:name=".view.main.nav.NavSetDeviceModeActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
-        <provider
-            android:name="androidx.core.content.FileProvider"
-            android:authorities="com.kau.smartbutler.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/filepaths" />
-        </provider>
-
     </application>
 
 </manifest>
