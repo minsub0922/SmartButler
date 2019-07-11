@@ -13,6 +13,8 @@ import com.kau.smartbutler.model.CalendarItem
 import com.kau.smartbutler.view.main.life.child.DietManagementActivity
 import com.kau.smartbutler.view.main.life.child.DietOrderActivity
 import kotlinx.android.synthetic.main.activity_health_care.*
+import java.text.SimpleDateFormat
+import java.util.*
 import kotlin.collections.ArrayList
 
 class CalendarAdapter (
@@ -40,8 +42,19 @@ class CalendarAdapter (
         holder.dateTextView.text = model.date
         holder.dietAddedButton.visibility = if (model.registered) View.VISIBLE else View.INVISIBLE
         holder.itemView.setOnClickListener {
-            if(type == "manage")
-                mContext.startActivity(Intent(mContext, DietManagementActivity::class.java))
+            if(type == "manage") {
+                val currentTime = System.currentTimeMillis()
+                val currentDate = Date(currentTime)
+                val cal = Calendar.getInstance(TimeZone.getTimeZone("Asia/Tokyo"))
+                cal.time = currentDate
+                cal.get(Calendar.YEAR)
+                val i = Intent(mContext, DietManagementActivity::class.java)
+                i.putExtra("year", cal.get(Calendar.YEAR))
+                i.putExtra("month", cal.get(Calendar.MONTH))
+                i.putExtra("day", cal.get(Calendar.DAY_OF_MONTH))
+                i.putExtra("date", currentTime)
+                mContext.startActivity(i)
+            }
             else
                 mContext.startActivity(Intent(mContext, DietOrderActivity::class.java))
         }

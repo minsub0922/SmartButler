@@ -1,7 +1,11 @@
 package com.kau.smartbutler.view
 
+import android.Manifest
 import android.content.Intent
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
 
 import com.google.android.material.navigation.NavigationView
 
@@ -12,6 +16,8 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.ImageButton
 import android.widget.ImageView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.kau.smartbutler.R
@@ -38,10 +44,32 @@ class MainActivity(
 
     private var preitem: Int = 0
     lateinit var TABS: Array<String>
-
+    private val REQUIRED_PERMISSIONS =
+            arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.RECORD_AUDIO, Manifest.permission.INTERNET)
+    private val PERMISSIONS_REQUEST_CODE = 100
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            // OS가 Marshmallow 이상일 경우 권한체크를 해야 합니다.
+            val permissionCheckCamera
+                    = ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+            val permissionCheckStorage
+                    = ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+            if (permissionCheckCamera ==
+                    PackageManager.PERMISSION_GRANTED && permissionCheckStorage == PackageManager.PERMISSION_GRANTED) {
+                // 권한 있음
+            } else {
+                // 권한 없음
+                ActivityCompat.requestPermissions(this,
+                        REQUIRED_PERMISSIONS,
+                        PERMISSIONS_REQUEST_CODE)
+            }
+        } else {
+            // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
+            Log.d("MyTag", "마시멜로 버전 이하로 권한 이미 있음")
+        }
+
 
         setDrawaerWithNavigationView()
 
