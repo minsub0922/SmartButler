@@ -38,6 +38,12 @@ interface NetworkRouters {
     fun nutrients(
             @Query("label") label: String
     ) : Observable<JsonObject>
+
+    @GET("/ids-utas/GetUserServlet")
+    fun getUserServlet(
+            @Query("mode") mode: String,
+            @Query("stringInput") stringInput : String
+    ) : Observable<String>
     //이런식으로 라우터를 interface로 빼서 갖다 쓰면댐
 
 

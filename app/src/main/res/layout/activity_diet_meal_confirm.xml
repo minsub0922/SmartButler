@@ -108,7 +108,7 @@
         android:text="섭취량"
         app:layout_constraintStart_toStartOf="@+id/tv_food_name"
         app:layout_constraintTop_toBottomOf="@+id/tv_food_name"
-        app:layout_constraintEnd_toStartOf="@+id/et_intake"
+        app:layout_constraintEnd_toStartOf="@+id/refreshIntake"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         />
 
@@ -123,8 +123,19 @@
         android:hint="0 인분"
         app:layout_constraintTop_toTopOf="@+id/tv_intake"
         app:layout_constraintBottom_toBottomOf="@+id/tv_intake"
-        app:layout_constraintStart_toEndOf="@+id/tv_intake"
-        app:layout_constraintEnd_toEndOf="@+id/refreshButton"/>
+        app:layout_constraintEnd_toStartOf="@+id/refreshIntake"/>
+
+    <ImageView
+        android:id="@+id/refreshIntake"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/btn_refresh_n"
+        android:layout_marginEnd="20dp"
+        app:layout_constraintStart_toEndOf="@id/tv_intake"
+        app:layout_constraintTop_toTopOf="@id/tv_intake"
+        app:layout_constraintBottom_toBottomOf="@id/tv_intake"
+        app:layout_constraintEnd_toEndOf="parent"
+        />
 
 
     <View

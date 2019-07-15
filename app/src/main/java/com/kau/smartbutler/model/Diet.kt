@@ -3,7 +3,7 @@ package com.kau.smartbutler.model
 import io.realm.RealmObject
 
 open class Diet(
-        var year: Long = 0,
-        var month: Long = 0,
-        var day: Long = 0
+        var year: Int = 0,
+        var month: Int = 0,
+        var day: Int = 0
 ) : RealmObject()

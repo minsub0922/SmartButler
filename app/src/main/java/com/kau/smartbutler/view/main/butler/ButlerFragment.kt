@@ -2,19 +2,30 @@ package com.kau.smartbutler.view.main.butler
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.speech.RecognitionListener
 import android.speech.RecognizerIntent
 import android.speech.SpeechRecognizer
 import android.speech.tts.TextToSpeech
 import android.speech.tts.TextToSpeech.ERROR
+import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_butler.*
 import java.util.*
 import androidx.databinding.adapters.TextViewBindingAdapter.setText
-
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.kau.smartbutler.controller.ConversationAdapter
+import com.kau.smartbutler.model.Conversation
+import com.kau.smartbutler.util.network.getListNetworkInstance
+import io.reactivex.Scheduler
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
+import androidx.core.os.HandlerCompat.postDelayed
+import com.kau.smartbutler.util.network.getUtasNetworkInstance
 
 
 class ButlerFragment : BaseFragment(), View.OnClickListener {
@@ -23,6 +34,9 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
 
     lateinit var tts:TextToSpeech
     lateinit var speechRecognizer: SpeechRecognizer
+
+    val conversationList = ConversationSingleton.getInstance().list
+    val conversationAdapter by lazy { ConversationAdapter(activity!!, conversationList) }
 
 
     companion object {
@@ -37,6 +51,11 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
         fun newInstance(): ButlerFragment {
             return ButlerFragment()
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        conversationAdapter.notifyDataSetChanged()
     }
 
     override fun setupView(view: View) {
@@ -105,6 +124,13 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
 
             speechRecognizer.startListening(sttIntent)
         }
+
+        val manager = LinearLayoutManager(activity)
+        butlerMicView.layoutManager = manager
+        butlerMicView.setHasFixedSize(true)
+        butlerMicView.adapter = conversationAdapter
+
+        iv_butler_send.setOnClickListener(this)
     }
 
 
@@ -116,9 +142,44 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                 butlerMicView.visibility = View.VISIBLE
                 iv_butler_send.visibility = View.VISIBLE
 
-                tts.speak("안녕하세요. 버틀러입니다.", TextToSpeech.QUEUE_FLUSH, null, null)
+                initButlerConversation()
+                butlerMicView.adapter = conversationAdapter
+                Log.d("tag result ", conversationList.size.toString())
+            }
+            R.id.iv_butler_send -> {
+                userConversation(et_butler_text.text.toString())
+                getUtasNetworkInstance()
+                        .getUserServlet("dialog", et_butler_text.text.toString())
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(){
+                            butlerConversation(it.toString())
+                            Log.d("tag result ", it.toString())
+                        }
+                et_butler_text.text.clear()
             }
         }
+    }
+
+    fun butlerConversation(s: String) {
+        conversationList.add(Conversation(0, s))
+        conversationAdapter.notifyDataSetChanged()
+        Handler().postDelayed(Runnable { butlerMicView.scrollToPosition(conversationAdapter.getItemCount() - 1) }, 200)
+        tts.speak(s, TextToSpeech.QUEUE_ADD, null, null)
+    }
+
+    fun userConversation(s: String) {
+        conversationList.add(Conversation(1, s))
+        conversationAdapter.notifyDataSetChanged()
+        Handler().postDelayed(Runnable { butlerMicView.scrollToPosition(conversationAdapter.getItemCount() - 1) }, 200)
+
+    }
+    fun initButlerConversation() {
+        conversationList.clear()
+        butlerConversation("안녕하세요.")
+        butlerConversation("제 이름은 버틀러에요.")
+        butlerConversation("무엇을 도와드릴까요?")
+        butlerConversation("테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트")
     }
 
 }

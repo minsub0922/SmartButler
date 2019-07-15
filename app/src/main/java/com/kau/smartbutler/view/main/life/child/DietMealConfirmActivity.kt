@@ -99,6 +99,11 @@ class DietMealConfirmActivity(
 
                         }
             }
+            R.id.refreshIntake -> {
+                carbohydrate_calorie.text = (carbohydrate_calorie.text.toString().toFloat() * 2).toString()
+                protein_calorie.text = (protein_calorie.text.toString().toFloat() * 2).toString()
+                fat_calorie.text = (fat_calorie.text.toString().toFloat() * 2).toString()
+            }
         }
     }
 }

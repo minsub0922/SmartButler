@@ -92,6 +92,15 @@ class DietManagementActivity(
         if (resultCode == 200) {
             Log.d("tag result ", data!!.getStringExtra("file") + "_" + data.getStringExtra("foodName"))
             realm.beginTransaction()
+            var dietItem = realm.where<Diet>()
+                    .equalTo("year", intent.getIntExtra("year", 0))
+                    .equalTo("month", intent.getIntExtra("month", 0))
+                    .equalTo("day", intent.getIntExtra("day", 0))
+                    .findFirst()
+            if (dietItem == null) {
+                dietItem =  Diet(intent.getIntExtra("year", 0), intent.getIntExtra("month", 0), intent.getIntExtra("day", 0))
+                realm.copyToRealm(dietItem)
+            }
             realm.commitTransaction()
         } else {
             Log.d("tag result ", "refused")
