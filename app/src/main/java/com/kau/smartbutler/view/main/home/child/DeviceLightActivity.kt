@@ -43,7 +43,7 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
             lightSeekbar.progress = lightSeekbar.progress - 20
 
             getNetworkInstance()
-                    .postOrder( "hue_0210_0017881c8274_6_color", defaultValue+lightSeekbar.progress.toString())
+                    .postOrder( device.path, defaultValue+lightSeekbar.progress.toString())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
