@@ -76,10 +76,6 @@ class DeviceControllerAdpater (
                 if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_on)
                 else holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_off)
             }
-            4 -> {
-                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_library_on)
-                else holder.button.background = mContext.getDrawable(R.drawable.btn_library_off)
-            }
             else -> {
                 if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_etc_device_on)
                 else holder.button.background = mContext.getDrawable(R.drawable.btn_etc_device_off)

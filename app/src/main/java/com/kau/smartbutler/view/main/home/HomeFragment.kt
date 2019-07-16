@@ -26,6 +26,11 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
     override fun onClick(v: View?) {
         if (v!!.id == R.id.btn_temperature){
             startActivity(Intent(activity, TemperatureHumidityActivity::class.java))
+        }else if (v!!.id == R.id.btn_cctv){
+            startActivity(Intent(activity, CCTVListActivity::class.java))
+        }else if (v!!.id == R.id.btn_device_switch){
+            adapter.toggleSwitch = !adapter.toggleSwitch
+            adapter.notifyDataSetChanged()
         }
     }
 
@@ -72,12 +77,9 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
         refreshOFF()
 
-        btn_device_switch.setOnClickListener { v->
-            adapter.toggleSwitch = !adapter.toggleSwitch
-            adapter.notifyDataSetChanged()
-        }
-
+        btn_device_switch.setOnClickListener(this)
         btn_temperature.setOnClickListener(this)
+        btn_cctv.setOnClickListener(this)
 
     }
 

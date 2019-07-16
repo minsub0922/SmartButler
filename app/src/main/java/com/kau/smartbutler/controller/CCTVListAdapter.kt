@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kau.smartbutler.R
 import com.kau.smartbutler.model.CCTV
+import com.kau.smartbutler.view.main.home.child.CCTVDetailActivity
 import com.kau.smartbutler.view.main.home.child.DeviceModifiedActivity
 import java.util.*
 
@@ -34,7 +35,7 @@ class CCTVListAdapter (
 
         holder.itemView.setOnClickListener{
 
-            mContext.startActivity(Intent(mContext, DeviceModifiedActivity::class.java).putExtra("cctv", model))
+            mContext.startActivity(Intent(mContext, CCTVDetailActivity::class.java).putExtra("cctv", model))
 
         }
 
