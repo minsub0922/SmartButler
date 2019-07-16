@@ -21,9 +21,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home_state.*
 import org.json.JSONObject
 
-
-
-
 class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpater.DeviceControllerItemClickListener{
 
     override fun onClick(v: View?) {

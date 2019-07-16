@@ -42,7 +42,6 @@
     </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
-
     <!-- 영상이 뿌려질 뷰 -->
     <View
         android:background="@color/white"
@@ -70,7 +69,7 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="제습"
+            android:text="침입"
             app:layout_constraintHorizontal_bias="0.13"
             android:background="@drawable/rounded_rec_buttons_selector"
             android:textColor="@color/selector_reserve_time_text"
@@ -84,7 +83,7 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="송풍"
+            android:text="배회"
             app:layout_constraintHorizontal_bias="0.375"
             android:background="@drawable/rounded_rec_buttons_selector"
             android:textColor="@color/selector_reserve_time_text"
@@ -98,7 +97,7 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="냉방"
+            android:text="유기"
             app:layout_constraintHorizontal_bias="0.62"
             android:background="@drawable/rounded_rec_buttons_selector"
             android:textColor="@color/selector_reserve_time_text"
@@ -113,7 +112,7 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="난방"
+            android:text="쓰러짐"
             app:layout_constraintHorizontal_bias="0.86"
             android:background="@drawable/rounded_rec_buttons_selector"
             android:textColor="@color/selector_reserve_time_text"
