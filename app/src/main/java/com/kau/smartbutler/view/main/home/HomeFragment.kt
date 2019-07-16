@@ -103,15 +103,20 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({res ->
 
+                    Log.d("tagg res : ", res.toString())
+
                     res.forEach{
                         try {
                             val str = it.asJsonObject.get("label").toString()
-                            val link = it.asJsonObject.get("channels").asJsonArray.get(0).asJsonObject.get("linkedItems")
+                            var link = it.asJsonObject.get("channels").asJsonArray.get(0).asJsonObject.get("linkedItems").toString()
+                            link = link.substring(2 .. link.length-3)
                             val idx = str.indexOf("_")
 
-                            if (idx > 0 ) { //is registered device
+                            if (idx > 0 || link.length < 1 ) { //is registered device
 
                                 val name = str.substring(idx+1 until str.length-1)
+
+                                Log.d("tagg path ", link.toString())
 
                                 when(val stringType = str.substring(1 until idx)){
                                     //deviceTypes
