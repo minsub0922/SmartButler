@@ -76,19 +76,13 @@ class DeviceControllerAdpater (
                 if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_on)
                 else holder.button.background = mContext.getDrawable(R.drawable.btn_aircon_off)
             }
-            4 -> {
-                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_library_on)
-                else holder.button.background = mContext.getDrawable(R.drawable.btn_library_off)
+            else -> {
+                if (switch) holder.button.background = mContext.getDrawable(R.drawable.btn_etc_device_on)
+                else holder.button.background = mContext.getDrawable(R.drawable.btn_etc_device_off)
             }
         }
 
-        if (switch) {
-            holder.name.alpha = 1f
-        }
-        else {
-
-            holder.name.alpha = 0.5f
-        }
+        holder.name.alpha = if (switch) 1f else 0.5f
 
     }
 
@@ -107,9 +101,9 @@ class DeviceControllerAdpater (
         var deviceSwitch: Switch
 
         init {
-            button = itemView.findViewById<ImageView>(R.id.btn_device_control)
-            name = itemView.findViewById<TextView>(R.id.txt_device_name)
-            deviceSwitch = itemView.findViewById<Switch>(R.id.switch_device)
+            button = itemView.findViewById(R.id.btn_device_control)
+            name = itemView.findViewById(R.id.txt_device_name)
+            deviceSwitch = itemView.findViewById(R.id.switch_device)
         }
 
     }
