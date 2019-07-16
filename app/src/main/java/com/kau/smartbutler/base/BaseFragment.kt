@@ -68,7 +68,7 @@ abstract class BaseFragment : Fragment() {
 
     }
 
-    fun refrestOFF(){refreshView = false}
-    fun refrestON(){refreshView = true}
+    fun refreshOFF(){refreshView = false}
+    fun refreshON(){refreshView = true}
 
 }
