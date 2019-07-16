@@ -2,6 +2,7 @@ package com.kau.smartbutler.view.main.home.child
 import android.util.Log
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
+import com.kau.smartbutler.model.Device
 import com.kau.smartbutler.util.network.GetHueRequest
 import com.kau.smartbutler.util.network.getNetworkInstance
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -16,6 +17,7 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
     val minValue = 0
     val maxValue = 100
     var state = 0
+    val device by lazy { intent.getParcelableExtra("device") as Device }
 
     override fun setupView() {
         super.setupView()
@@ -26,7 +28,7 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
             lightSeekbar.progress = lightSeekbar.progress + 20
 
             getNetworkInstance()
-                    .postOrder( "hue_0210_0017881c8274_6_color", defaultValue+lightSeekbar.progress.toString())
+                    .postOrder( device.path, defaultValue+lightSeekbar.progress.toString())
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {
