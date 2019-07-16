@@ -1,4 +1,4 @@
-package com.kau.smartbutler.view.main.home.child
+package com.kau.smartbutler.view.main.home.child.cctv
 
 import android.content.Intent
 import com.kau.smartbutler.R

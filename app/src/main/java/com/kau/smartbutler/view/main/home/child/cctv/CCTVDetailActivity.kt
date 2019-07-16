@@ -1,4 +1,4 @@
-package com.kau.smartbutler.view.main.home.child
+package com.kau.smartbutler.view.main.home.child.cctv
 
 import android.content.Intent
 import com.google.gson.JsonObject
@@ -6,11 +6,9 @@ import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.PostDetectionAreaRequest
 import com.kau.smartbutler.util.network.getCCTVNetworkInstance
-import com.kau.smartbutler.util.network.getNetworkInstance
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_cctv_detail.*
-import java.util.*
 
 class CCTVDetailActivity(
         override val layoutRes : Int = R.layout.activity_cctv_detail,
