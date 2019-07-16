@@ -91,5 +91,9 @@
         <activity android:name=".view.main.home.child.MyPageModifyActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.main.home.child.DeviceAddActivity" android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".view.main.nav.NavSetDeviceModeActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.DeviceDefaultActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.CCTVListActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.CCTVDetailActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.CCTVSetDomainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 </manifest>

@@ -29,7 +29,5 @@ class DeviceTVActivity(override val layoutRes: Int = R.layout.activity_device_tv
                     }
             tvState = !tvState
         }
-
     }
-
 }
