@@ -9,8 +9,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.kau.smartbutler.R
 import com.kau.smartbutler.model.CCTV
-import com.kau.smartbutler.view.main.home.child.CCTVDetailActivity
-import com.kau.smartbutler.view.main.home.child.DeviceModifiedActivity
+import com.kau.smartbutler.view.main.home.child.cctv.CCTVDetailActivity
 import java.util.*
 
 class CCTVListAdapter (

@@ -1,25 +1,20 @@
 package com.kau.smartbutler.view.main.home
 
 import android.content.Intent
-import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Switch
-import androidx.appcompat.widget.SwitchCompat
-import androidx.databinding.ObservableField
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseFragment
 import com.kau.smartbutler.controller.DeviceControllerAdpater
 import com.kau.smartbutler.model.Device
-import com.kau.smartbutler.util.network.getNetworkInstance
 import com.kau.smartbutler.util.network.getNetworkInstanceForJson
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.kau.smartbutler.util.recylcerview.GridSpacingItemDecoration
 import com.kau.smartbutler.view.main.home.child.*
+import com.kau.smartbutler.view.main.home.child.cctv.CCTVListActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home_state.*
-import org.json.JSONObject
 
 class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpater.DeviceControllerItemClickListener{
 
