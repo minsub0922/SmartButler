@@ -15,6 +15,8 @@ class CCTVSetDomainActivity(
     override fun setupView() {
         super.setupView()
 
+        stateButton1.setOnClickListener {
+            
+        }
     }
-
 }
