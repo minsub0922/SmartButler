@@ -256,11 +256,18 @@ class DietCameraActivity (
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode== 200) {
             setResult(200, data!!)
+            closeCamera()
             finish()
         } else  {
             setResult(500, data!!)
+            closeCamera()
             finish()
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        closeCamera()
     }
 
     private fun setUpCameraOutputs(width: Int, height: Int) {

@@ -179,7 +179,6 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
         butlerConversation("안녕하세요.")
         butlerConversation("제 이름은 버틀러에요.")
         butlerConversation("무엇을 도와드릴까요?")
-        butlerConversation("테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트테스트")
     }
 
 }

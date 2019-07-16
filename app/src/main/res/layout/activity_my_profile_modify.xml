@@ -12,25 +12,25 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
 
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="개인정보 수정"
-            android:layout_gravity="center"
-            android:id="@+id/toolbarTitle"
-            android:textColor="@color/titleColor"
-            android:textSize="18sp"
-            />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개인정보 수정"
+                android:layout_gravity="center"
+                android:id="@+id/toolbarTitle"
+                android:textColor="@color/titleColor"
+                android:textSize="18sp"
+                />
 
-    </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
@@ -49,38 +49,241 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 android:layout_marginTop="30dp"
-                android:src="@drawable/btn_myprofile"
+                android:src="@drawable/btn_myprofile_change"
                 android:layout_width="70dp"
                 android:layout_height="70dp" />
-            <TextView
-                android:id="@+id/nameTextView"
-                android:text="사진 변경"
-                android:textColor="@color/black"
-                android:textSize="18dp"
-                app:layout_constraintRight_toRightOf="parent"
-                android:layout_marginTop="16dp"
-                app:layout_constraintTop_toBottomOf="@id/myprofileImageView"
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
 
-            <EditText
-                android:id="@+id/userNameEditText"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameTextView"
-                android:layout_marginRight="@dimen/my_page_horizontal_margin"
-                android:textAlignment="viewEnd"
-                android:text="asdasd"
-                android:layout_marginTop="50dp"
-                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
-                android:background="@color/transparent"
-                android:textColor="@color/AppThemeColor"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_calorie_compute"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="21dp"
+                android:layout_marginEnd="21dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_calorie_compute"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myprofileImageView"
+                >
+
+                <LinearLayout
+                    android:id="@+id/layout_age"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/layout_sex"
+                    app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintTop_toTopOf="parent">
+                    <TextView
+                        android:id="@+id/tv_age"
+                        android:layout_width="54dp"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="나이"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_age"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:inputType="number"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_age_dummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="세"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_sex"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginTop="9dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toEndOf="@+id/layout_age"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/layout_age"
+                    app:layout_constraintBottom_toBottomOf="@+id/layout_age">
+                    <TextView
+                        android:id="@+id/tv_sex"
+                        android:layout_width="54dp"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="성별"
+                        />
+
+                    <Spinner
+                        android:id="@+id/spinnerSex"
+                        android:layout_width="70dp"
+                        android:layout_height="wrap_content">
+
+                    </Spinner>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/line5"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_age" />
+
+
+                <LinearLayout
+                    android:id="@+id/layout_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="9dp"
+                    android:layout_marginTop="9dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/line5">
+                    <TextView
+                        android:id="@+id/tv_weight"
+                        android:layout_width="54dp"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="체중"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_weight"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:inputType="number"
+                        android:lineSpacingExtra="14sp"
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
+
+                    <TextView
+                        android:id="@+id/tv_weight_dummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="kg"
+                        />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/layout_goal_weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    app:layout_constraintStart_toStartOf="@id/layout_sex"
+                    app:layout_constraintBottom_toBottomOf="@+id/layout_weight"
+                    app:layout_constraintTop_toTopOf="@id/layout_weight">
+                    <TextView
+                        android:id="@+id/tv_goal_weight"
+                        android:layout_width="54dp"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="목표체중"
+                        />
+
+                    <EditText
+                        android:id="@+id/et_goal_weight"
+                        android:layout_width="48dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:inputType="number"
+                        />
+
+                    <TextView
+                        android:id="@+id/tv_goal_weight_dummy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="kg"
+                        />
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/line6"
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/divider"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/layout_weight" />
+
+                <LinearLayout
+                    android:id="@+id/layout_activity"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="9dp"
+                    android:layout_marginTop="9dp"
+                    android:layout_marginBottom="9dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/layout_sex"
+                    app:layout_constraintTop_toBottomOf="@id/line6">
+                    <TextView
+                        android:id="@+id/tv_activity"
+                        android:layout_width="54dp"
+                        android:layout_height="20dp"
+                        android:textSize="14sp"
+                        android:textColor="#6d7278"
+                        android:lineSpacingExtra="14sp"
+                        android:text="활동성"
+                        />
+
+                    <Spinner
+                        android:id="@+id/spinnerActivity"
+                        android:layout_width="70dp"
+                        android:layout_height="24dp">
+
+                    </Spinner>
+
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <EditText
                 android:id="@+id/ageEditText"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/userNameEditText"
+                app:layout_constraintTop_toBottomOf="@id/layout_calorie_compute"
                 android:layout_marginRight="@dimen/my_page_horizontal_margin"
                 android:textAlignment="viewEnd"
                 android:text="asdasd"
@@ -120,25 +323,13 @@
             <TextView
                 app:layout_constraintLeft_toLeftOf="parent"
                 android:layout_marginLeft="@dimen/my_page_horizontal_margin"
-                app:layout_constraintTop_toTopOf="@id/userNameEditText"
-                app:layout_constraintBottom_toBottomOf="@id/userNameEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#6d7278"
-                android:text="사용자"
-                android:textStyle="bold"
-                />
-            <TextView
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
                 app:layout_constraintTop_toTopOf="@id/ageEditText"
                 app:layout_constraintBottom_toBottomOf="@id/ageEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="14sp"
                 android:textColor="#6d7278"
-                android:text="나이"
+                android:text="전화"
                 android:textStyle="bold"
                 />
             <TextView
@@ -166,17 +357,6 @@
                 android:textStyle="bold"
                 />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
-                android:layout_marginRight="@dimen/my_page_horizontal_margin"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/userNameEditText"
-                android:background="@color/divider"
-                android:layout_marginTop="9.5dp"
-                />
 
             <View
                 android:layout_width="0dp"
@@ -215,7 +395,7 @@
                 />
 
             <Button
-                android:id="@+id/paymentManageButton"
+                android:id="@+id/myProfileModify"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/addressEditText"

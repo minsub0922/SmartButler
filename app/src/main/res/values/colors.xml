@@ -29,5 +29,6 @@
     <color name="carbo">#5aded0</color>
     <color name="protein">#4a90e2</color>
     <color name="fat">#ff7f97</color>
+    <color name="remainCalorie">#e0e0e0</color>
 
 </resources>

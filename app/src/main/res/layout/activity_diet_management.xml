@@ -42,6 +42,7 @@
             android:id="@+id/layout_calorie_compute"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:layout_marginStart="21dp"
             android:layout_marginEnd="21dp"
             android:background="@drawable/rectangle_calorie_compute"
@@ -114,6 +115,7 @@
                     android:text="성별"
                     />
                 <Spinner
+                    android:id="@+id/spinner_sex"
                     android:layout_width="70dp"
                     android:layout_height="24dp">
 
@@ -247,6 +249,7 @@
                     android:text="활동성"
                     />
                 <Spinner
+                    android:id="@+id/spinner_activity"
                     android:layout_width="70dp"
                     android:layout_height="24dp">
 
@@ -356,109 +359,20 @@
             app:layout_constraintEnd_toEndOf="@id/layout_calorie_compute"
             app:layout_constraintTop_toBottomOf="@id/tv_today_calorie">
 
-            <ProgressBar
-                android:id="@+id/progressBarCarbo"
-                style="?android:attr/progressBarStyleHorizontal"
+            <com.kau.smartbutler.controller.CustomProgressBar
+                android:id="@+id/calroieSeekBar"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
-                android:progressDrawable="@drawable/progressbar_carbo"
-                android:progress="70"
+                android:max="100"
+                android:progress="0"
+                android:layout_centerInParent="true"
+                android:progressDrawable="@android:color/transparent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/progressBarProtein"
-                />
-
-            <TextView
-                android:id="@+id/tv_carbo_percent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="18sp"
-                android:text="70%"
-                app:layout_constraintHorizontal_bias="0.6"
-                app:layout_constraintTop_toTopOf="@id/progressBarCarbo"
-                app:layout_constraintBottom_toBottomOf="@id/progressBarCarbo"
-                app:layout_constraintStart_toStartOf="@id/progressBarCarbo"
-                app:layout_constraintEnd_toEndOf="@id/progressBarCarbo"
-                />
-
-            <View
-                android:id="@+id/verticalLine1"
-                android:layout_width="2dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                android:background="@color/verticaldivider"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/progressBarCarbo"
-                app:layout_constraintEnd_toStartOf="@id/progressBarProtein"/>
-
-            <ProgressBar
-                android:id="@+id/progressBarProtein"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="14dp"
-                android:progressDrawable="@drawable/progressbar_protein"
-                android:progress="80"
-                app:layout_constraintStart_toEndOf="@+id/progressBarCarbo"
-                app:layout_constraintEnd_toStartOf="@id/progressBarFat"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                />
-            <TextView
-                android:id="@+id/tv_protein_percent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="18sp"
-                android:text="80%"
-                app:layout_constraintHorizontal_bias="0.7"
-                app:layout_constraintTop_toTopOf="@id/progressBarProtein"
-                app:layout_constraintBottom_toBottomOf="@id/progressBarProtein"
-                app:layout_constraintStart_toStartOf="@id/progressBarProtein"
-                app:layout_constraintEnd_toEndOf="@id/progressBarProtein"
-                />
-
-            <View
-                android:id="@+id/verticalLine2"
-                android:layout_width="2dp"
-                android:layout_height="26dp"
-                android:layout_gravity="center"
-                android:background="@color/verticaldivider"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@id/progressBarProtein"
-                app:layout_constraintEnd_toStartOf="@id/progressBarFat"/>
-
-            <ProgressBar
-                android:id="@+id/progressBarFat"
-                style="?android:attr/progressBarStyleHorizontal"
-                android:layout_width="0dp"
-                android:layout_height="14dp"
-                android:progressDrawable="@drawable/progressbar_fat"
-                android:progress="30"
-                app:layout_constraintStart_toEndOf="@id/progressBarProtein"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 />
-            <TextView
-                android:id="@+id/tv_fat_percent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10sp"
-                android:textColor="#ffffff"
-                android:lineSpacingExtra="18sp"
-                android:text="30%"
-                app:layout_constraintHorizontal_bias="0.2"
-                app:layout_constraintTop_toTopOf="@id/progressBarFat"
-                app:layout_constraintBottom_toBottomOf="@id/progressBarFat"
-                app:layout_constraintStart_toStartOf="@id/progressBarFat"
-                app:layout_constraintEnd_toEndOf="@id/progressBarFat"
-                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
         <ImageView
             android:id="@+id/iv_carbo"

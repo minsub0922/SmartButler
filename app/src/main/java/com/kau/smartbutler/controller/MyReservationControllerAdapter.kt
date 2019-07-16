@@ -47,7 +47,6 @@ class MyReservationControllerAdapter (
             }
         }
         holder.name.text = model.name
-        holder.taxi.setOnClickListener {  }
         holder.hospital.setOnClickListener {
             val tel = "tel:01087559529"
             mContext.startActivity(Intent(Intent.ACTION_DIAL, Uri.parse(tel)))
@@ -57,14 +56,12 @@ class MyReservationControllerAdapter (
 
     class HospitalViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-        var taxi: ImageView
         var name : TextView
         var hospital: ImageView
 
         init {
             hospital = itemView.findViewById<ImageView>(R.id.iv_direct_call)
             name = itemView.findViewById<TextView>(R.id.tv_hospital_name)
-            taxi = itemView.findViewById<ImageView>(R.id.iv_taxi_call)
         }
 
     }

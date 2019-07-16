@@ -15,6 +15,7 @@ import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.Diet
 import com.kau.smartbutler.model.PersonalInformation
+import com.kau.smartbutler.model.ProgressItem
 import com.kau.smartbutler.util.network.getNetworkInstance
 import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
@@ -28,6 +29,7 @@ class DietManagementActivity(
         BaseActivity(), View.OnClickListener {
     override var isChildActivity: Boolean = true
     private var realm = Realm.getDefaultInstance()
+    private val progressItemList by lazy { ArrayList<ProgressItem>() }
     var age: Int? = null
     var sex: String? = null
     var weight: Int? = null
@@ -74,6 +76,9 @@ class DietManagementActivity(
             tv_need_calorie.text = test.requiredCalorie.toString() + " kcal"
         }
 
+
+        calroieSeekBar.thumb.mutate().alpha = 0
+        initDataToSeekbar()
     }
 
     override fun onClick(v: View?) {
@@ -108,6 +113,23 @@ class DietManagementActivity(
 
     }
 
+    fun initDataToSeekbar() {
+        var progressItem = ProgressItem(R.color.carbo, 20.toFloat())
+        progressItemList.add(progressItem)
+
+        progressItem = ProgressItem(R.color.protein, 20.toFloat())
+        progressItemList.add(progressItem)
+
+        progressItem = ProgressItem(R.color.fat, 20.toFloat())
+        progressItemList.add(progressItem)
+
+        progressItem = ProgressItem(R.color.remainCalorie, 1.toFloat())
+        progressItemList.add(progressItem)
+
+        calroieSeekBar.initData(progressItemList)
+        calroieSeekBar.invalidate()
+    }
+
     fun getSexPosition(sex: String): Int {
         when(sex) {
             "남" -> { return 0}
@@ -124,4 +146,5 @@ class DietManagementActivity(
         }
         return -1
     }
+
 }
