@@ -28,9 +28,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
     override fun onClick(v: View?) {
         if (v!!.id == R.id.btn_temperature){
-
             startActivity(Intent(activity, TemperatureHumidityActivity::class.java))
-
         }
     }
 
@@ -57,10 +55,8 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
     override fun onResume() {
         super.onResume()
-        Log.d("tagg","resume!!")
 
         if (updateDeviceState) {
-            Log.d("tagg","in,.,.?")
             adapter.notifyDataSetChanged()
             updateDeviceState = false
         }
@@ -77,14 +73,11 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         rv_home_control.adapter = adapter
         rv_home_control.addItemDecoration(GridSpacingItemDecoration(3, 40, false))
 
-        refrestOFF()
+        refreshOFF()
 
         btn_device_switch.setOnClickListener { v->
-
             adapter.toggleSwitch = !adapter.toggleSwitch
-
             adapter.notifyDataSetChanged()
-
         }
 
         btn_temperature.setOnClickListener(this)
@@ -92,13 +85,18 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
     }
 
     override fun OnDeiveClicked(device: Device) {
-        when(device.type){
 
-            0 -> startActivity(Intent(activity, DeviceListActivity::class.java))
-            1 -> startActivity(Intent(activity, DeviceLightActivity::class.java))
-            2 -> startActivity(Intent(activity, DeviceTVActivity::class.java))
-            3 -> startActivity(Intent(activity, DeviceAirconActivity::class.java))
+        val intent = when(device.type){
+
+            0 -> Intent(activity, DeviceListActivity::class.java)
+            1 -> Intent(activity, DeviceLightActivity::class.java)
+            2 -> Intent(activity, DeviceTVActivity::class.java)
+            3 -> Intent(activity, DeviceAirconActivity::class.java)
+            else -> Intent(activity, DeviceDefaultActivity::class.java)
         }
+
+        intent.putExtra("device", device)
+        startActivity(intent)
     }
 
     private fun setModels(){
@@ -108,16 +106,6 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({res ->
 
-                    Log.d("tagg : ,", res[0].toString())
-//                    try {
-//
-//                        val obj = JSONObject(res)
-//
-//                        Log.d("tagg : ", obj.toString())
-//
-//                    } catch (t: Throwable) {
-//                        Log.e("tagg : ", "Could not parse malformed JSON: \"$res\"")
-//                    }
                     res.forEach{
                         try {
                             val str = it.asJsonObject.get("label").toString()
@@ -128,50 +116,22 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
 
                                 val name = str.substring(idx+1 until str.length-1)
 
-                                Log.d("tagg ","id : ${str.substring(0 until idx)}, name : ${name}, path : ${link}")
-
-                                when(str.substring(1 until idx)){
-
-                                    "71","72","73" -> modelList.add(Device(1, name = name, path = link.toString()))
-                                    "10" -> modelList.add(Device(3, name = name, path = link.toString()))
-                                    "11" -> modelList.add(Device(2, name = name, path = link.toString()))
-                                    "1","6","8" -> modelList.add(Device(4, name = name, path = link.toString()))
-
+                                when(val stringType = str.substring(1 until idx)){
+                                    //deviceTypes
+                                    "71","72","73" -> modelList.add(Device(1, name = name, path = link.toString(), stringType = stringType))
+                                    "10" -> modelList.add(Device(3, name = name, path = link.toString(), stringType = stringType))
+                                    "11" -> modelList.add(Device(2, name = name, path = link.toString(), stringType = stringType))
+                                    "1","6","8" -> modelList.add(Device(4, name = name, path = link.toString(), stringType = stringType))
                                 }
-
                             }
                         }catch (ex: Exception){
                             Log.d("tagg error!", ex.toString())
                         }
-
-
-
-
                     }
 
                     adapter.notifyDataSetChanged()
 
-
-                },{
-
-                })
-
-
-
-        //modelList.add(Device(0,""))
-//        modelList.add(Device(1,"서재 조명"))
-//        modelList.add(Device(2,"안방 에어컨"))
-//        modelList.add(Device(3,"침실 조명"))
-//        modelList.add(Device(1,"안방 tv"))
-//        modelList.add(Device(2,"거실 tv"))
-//        modelList.add(Device(1,"거실 조명"))
-//        modelList.add(Device(1,"서재 조명"))
-//        modelList.add(Device(2,"안방 에어컨"))
-//        modelList.add(Device(3,"침실 조명"))
-//        modelList.add(Device(1,"안방 tv"))
-//        modelList.add(Device(2,"거실 tv"))
-//        modelList.add(Device(1,"거실 조명"))
-
+                },{})
 
     }
 }

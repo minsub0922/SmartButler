@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <androidx.appcompat.widget.Toolbar
+
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:popupTheme="@style/AppTheme.PopupOverlay"
+        android:background="@color/white"
+        >
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="조명"
+            android:layout_gravity="center"
+            android:id="@+id/toolbarTitle"
+            android:textColor="@color/titleColor"
+            android:textSize="18sp"
+            />
+
+    </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/deviceSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:theme="@style/SwitchCompatTheme"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginTop="25dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#ffc12f"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="@id/deviceSwitch"
+        app:layout_constraintBottom_toBottomOf="@id/deviceSwitch"
+        app:layout_constraintRight_toLeftOf="@id/deviceSwitch"
+        android:layout_marginRight="10dp"
+        android:text="OFF"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="16sp"
+        android:textColor="#afafaf"
+        android:gravity="center_horizontal"
+        app:layout_constraintTop_toTopOf="@id/deviceSwitch"
+        app:layout_constraintBottom_toBottomOf="@id/deviceSwitch"
+        app:layout_constraintLeft_toRightOf="@id/deviceSwitch"
+        android:layout_marginLeft="10dp"
+        android:text="ON"
+        />
+
+    <ImageButton
+        android:id="@+id/powerButton"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintWidth_percent="0.6"
+        android:background="@drawable/ic_devicecontrol_default"
+        app:layout_constraintDimensionRatio="1:1"
+        android:layout_width="0dp"
+        android:layout_height="0dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
