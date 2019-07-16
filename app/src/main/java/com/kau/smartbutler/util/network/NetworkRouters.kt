@@ -3,6 +3,7 @@ package com.kau.smartbutler.util.network
 import android.telecom.Call
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.kau.smartbutler.model.PostDetectionAreaRequest
 import io.reactivex.Observable
 import io.reactivex.Single
 import retrofit2.http.*
@@ -21,6 +22,14 @@ interface NetworkRouters {
 
     @GET("/rest/things")
     fun getDeviceNames(): Single<JsonArray>
+
+    @GET("/event")
+    fun getDetectedEvent(): Single<JsonObject>
+
+    @POST("/area")
+    fun postDetectionArea(
+            @Body area: PostDetectionAreaRequest
+    ): Single<JsonObject>
 
     //이런식으로 라우터를 interface로 빼서 갖다 쓰면댐
 
@@ -53,12 +62,7 @@ interface NetworkRouters {
 //        Toast.makeText(this, "네트워크 오류입니다. 관리자에게 문의하세요.", Toast.LENGTH_SHORT).show()
 //    })
 
-
-
     //get 예시
-
-
-
 
 //    getNetworkInstance().getBuskingSchedules().subscribeOn(Schedulers.io())
 //    .observeOn(AndroidSchedulers.mainThread())

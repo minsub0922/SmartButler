@@ -16,7 +16,7 @@ class CCTVSetDomainActivity(
         super.setupView()
 
         stateButton1.setOnClickListener {
-            
+
         }
     }
 }
