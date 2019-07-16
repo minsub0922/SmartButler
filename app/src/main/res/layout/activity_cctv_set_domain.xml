@@ -43,7 +43,7 @@
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- 영상이 뿌려질 뷰 -->
-    <View
+    <ImageView
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/appbar"
         app:layout_constraintLeft_toLeftOf="parent"
