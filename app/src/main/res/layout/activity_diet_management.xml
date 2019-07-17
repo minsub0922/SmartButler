@@ -359,8 +359,21 @@
             app:layout_constraintEnd_toEndOf="@id/layout_calorie_compute"
             app:layout_constraintTop_toBottomOf="@id/tv_today_calorie">
 
+            <View
+                android:id="@+id/line1"
+                android:layout_width="1dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="14dp"
+                android:background="@color/divider"
+                app:layout_constraintEnd_toStartOf="@id/calorieSeekBar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
             <com.kau.smartbutler.controller.CustomProgressBar
-                android:id="@+id/calroieSeekBar"
+                android:id="@+id/calorieSeekBar"
                 android:layout_width="0dp"
                 android:layout_height="14dp"
                 android:max="100"
@@ -373,135 +386,149 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 />
 
+            <View
+                android:id="@+id/line2"
+                android:layout_width="1dp"
+                android:layout_height="25dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="14dp"
+                android:background="@color/divider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/calorieSeekBar"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
-        <ImageView
-            android:id="@+id/iv_carbo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/oval_carbo"
-            app:layout_constraintEnd_toStartOf="@id/tv_carbo"
-            app:layout_constraintTop_toTopOf="@+id/tv_fat"
-            app:layout_constraintBottom_toBottomOf="@id/tv_fat"/>
 
         <TextView
-            android:id="@+id/tv_carbo"
+            android:id="@+id/tv_calorie_zero"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#6d7278"
-            android:lineSpacingExtra="16sp"
-            android:layout_marginEnd="6dp"
-            android:text="탄"
-            app:layout_constraintEnd_toStartOf="@id/iv_protein"
-            app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
-            />
-
-        <ImageView
-            android:id="@+id/iv_protein"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/oval_protein"
-            app:layout_constraintEnd_toStartOf="@id/tv_protein"
-            app:layout_constraintTop_toTopOf="@+id/tv_fat"
-            app:layout_constraintBottom_toBottomOf="@id/tv_fat"/>
-
-        <TextView
-            android:id="@+id/tv_protein"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#6d7278"
-            android:lineSpacingExtra="16sp"
-            android:layout_marginEnd="6dp"
-            android:text="단"
-            app:layout_constraintEnd_toStartOf="@id/iv_fat"
-            app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
-            />
-
-        <ImageView
-            android:id="@+id/iv_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/oval_fat"
-            app:layout_constraintEnd_toStartOf="@id/tv_fat"
-            app:layout_constraintTop_toTopOf="@+id/tv_fat"
-            app:layout_constraintBottom_toBottomOf="@id/tv_fat"/>
-
-        <TextView
-            android:id="@+id/tv_fat"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="12sp"
-            android:textColor="#6d7278"
-            android:lineSpacingExtra="16sp"
-            android:text="지"
-            app:layout_constraintEnd_toEndOf="@id/layout_calorie_compute"
-            app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
-            />
-
-        <TextView
-            android:id="@+id/tv_prescription"
-            android:layout_width="wrap_content"
-            android:layout_height="28dp"
-            android:textSize="14sp"
+            android:textSize="10sp"
             android:textColor="#afafaf"
-            android:lineSpacingExtra="14sp"
-            android:layout_marginTop="29dp"
-            android:text="처방 칼로리"
-            app:layout_constraintTop_toBottomOf="@id/tv_fat"
+            android:lineSpacingExtra="18sp"
+            android:text="0"
+            app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
+            app:layout_constraintStart_toStartOf="@id/layout_progress_group"/>
+
+        <TextView
+            android:id="@+id/requiredCalorieSeekBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10sp"
+            android:textColor="#afafaf"
+            android:lineSpacingExtra="18sp"
+            android:text="1880"
+            app:layout_constraintTop_toBottomOf="@id/layout_progress_group"
+            app:layout_constraintEnd_toEndOf="@id/layout_progress_group"/>
+
+        <ImageView
+            android:id="@+id/rectRequired"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rect_required"
+            android:layout_marginTop="23dp"
+            app:layout_constraintTop_toBottomOf="@id/tv_calorie_zero"
             app:layout_constraintStart_toStartOf="@id/layout_calorie_compute"
             />
 
         <TextView
-            android:id="@+id/tv_need_calorie_today"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#6d7278"
-            android:lineSpacingExtra="14sp"
-            android:text="하루 동안 섭취해야할 음식 칼로리"
-            app:layout_constraintTop_toBottomOf="@id/tv_prescription"
-            app:layout_constraintStart_toStartOf="@+id/layout_calorie_compute"
-            />
-        <TextView
-            android:id="@+id/tv_need_calorie"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#ffc12f"
-            android:lineSpacingExtra="14sp"
-            android:gravity="end"
-            android:text="1500 kcal"
-            app:layout_constraintEnd_toEndOf="@id/layout_calorie_compute"
-            app:layout_constraintTop_toTopOf="@id/tv_need_calorie_today"
-            app:layout_constraintBottom_toBottomOf="@id/tv_need_calorie_today"
+            android:textSize="12sp"
+            android:textColor="#828282"
+            android:lineSpacingExtra="16sp"
+            android:text="하루 권장 칼로리"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@id/rectRequired"
+            app:layout_constraintTop_toTopOf="@id/rectRequired"
+            app:layout_constraintBottom_toBottomOf="@id/rectRequired"
             />
 
         <TextView
-            android:id="@+id/tv_waste_calorie_today"
+            android:id="@+id/requiredCalorie"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#6d7278"
-            android:lineSpacingExtra="14sp"
-            android:layout_marginTop="8dp"
-            android:text="하루 동안 운동으로 소모해야할 칼로리"
-            app:layout_constraintTop_toBottomOf="@id/tv_need_calorie_today"
-            app:layout_constraintStart_toStartOf="@id/layout_calorie_compute"
-            />
+            android:textSize="12sp"
+            android:textColor="#535353"
+            android:lineSpacingExtra="16sp"
+            android:gravity="end"
+            android:text="1880 kcal"
+            app:layout_constraintEnd_toEndOf="@+id/layout_calorie_compute"
+            app:layout_constraintTop_toTopOf="@id/rectRequired"
+            app:layout_constraintBottom_toBottomOf="@+id/rectRequired"/>
+
+        <ImageView
+            android:id="@+id/rectCarbo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rect_carbo"
+            android:layout_marginTop="14dp"
+            app:layout_constraintTop_toBottomOf="@id/rectRequired"
+            app:layout_constraintStart_toStartOf="@id/layout_calorie_compute"/>
 
         <TextView
-            android:id="@+id/tv_waste_calorie"
+            android:id="@+id/carboText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="14sp"
-            android:textColor="#ff5f57"
-            android:lineSpacingExtra="14sp"
-            android:gravity="end"
-            android:text="292 kcal"
-            app:layout_constraintTop_toTopOf="@id/tv_waste_calorie_today"
-            app:layout_constraintEnd_toEndOf="@id/layout_calorie_compute"
+            android:textSize="12sp"
+            android:textColor="#828282"
+            android:lineSpacingExtra="16sp"
+            android:text="탄수화물"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@id/rectCarbo"
+            app:layout_constraintTop_toTopOf="@id/rectCarbo"
+            app:layout_constraintBottom_toBottomOf="@id/rectCarbo"
             />
+
+        <ImageView
+            android:id="@+id/rectProtein"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rect_protein"
+            android:layout_marginStart="66dp"
+            app:layout_constraintTop_toTopOf="@+id/rectCarbo"
+            app:layout_constraintBottom_toBottomOf="@id/rectCarbo"
+            app:layout_constraintStart_toEndOf="@id/rectCarbo"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#828282"
+            android:lineSpacingExtra="16sp"
+            android:text="단백질"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@id/rectProtein"
+            app:layout_constraintTop_toTopOf="@id/rectProtein"
+            app:layout_constraintBottom_toBottomOf="@id/rectProtein"
+            />
+
+
+        <ImageView
+            android:id="@+id/rectFat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/rect_fat"
+            android:layout_marginStart="66dp"
+            app:layout_constraintTop_toTopOf="@+id/rectCarbo"
+            app:layout_constraintBottom_toBottomOf="@id/rectCarbo"
+            app:layout_constraintStart_toEndOf="@id/rectProtein"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#828282"
+            android:lineSpacingExtra="16sp"
+            android:text="지방"
+            android:layout_marginStart="6dp"
+            app:layout_constraintStart_toEndOf="@id/rectFat"
+            app:layout_constraintTop_toTopOf="@id/rectFat"
+            app:layout_constraintBottom_toBottomOf="@id/rectFat"
+            />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

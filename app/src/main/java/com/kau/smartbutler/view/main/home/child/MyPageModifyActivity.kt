@@ -84,14 +84,14 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                             .getDailyCalorieRequirements(70, 29, "male", "good")
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe {
+                            .subscribe({
                                 realm.beginTransaction()
                                 val test = realm.where(PersonalInformation::class.java).findFirstAsync()
                                 test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
                                 realm.commitTransaction()
 
                                 Log.d("tag result ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
-                            }
+                            },{})
                 } else {
                     realm.beginTransaction()
                     val modifyInfo = realm.where(PersonalInformation::class.java).findFirstAsync()
@@ -106,14 +106,14 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                             .getDailyCalorieRequirements(70, 29, "male", "good")
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe {
+                            .subscribe({
                                 realm.beginTransaction()
                                 val test = realm.where(PersonalInformation::class.java).findFirstAsync()
                                 test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
                                 realm.commitTransaction()
 
                                 Log.d("tag result modify ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
-                            }
+                            },{})
                 }
 
 

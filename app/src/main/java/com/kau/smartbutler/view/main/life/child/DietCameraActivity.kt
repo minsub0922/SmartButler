@@ -194,7 +194,7 @@ class DietCameraActivity (
             Log.d("MyTag", "마시멜로 버전 이하로 권한 이미 있음")
         }
 
-        tv_camera_dummy.setOnClickListener(this)
+        captureButton.setOnClickListener(this)
         date = intent.getLongExtra("date", 0)
         file = File(this.getExternalFilesDir(null),  date.toString() + "_" + intent.getStringExtra("meal") + "_" +  PIC_FILE_NAME)
 
@@ -217,7 +217,7 @@ class DietCameraActivity (
 
     override fun onClick(v: View?) {
         when(v!!.id){
-            R.id.tv_camera_dummy -> {
+            R.id.captureButton -> {
                 lockFocus()
                 while (!captureComplete) {
                 }
@@ -234,7 +234,7 @@ class DietCameraActivity (
                         .predict(image, filename)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
+                        .subscribe({
                             /*realm.beginTransaction()
                             val test = realm.where(PersonalInformation::class.java).findFirstAsync()
                             test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
@@ -246,7 +246,7 @@ class DietCameraActivity (
                             i.putExtra("file", file.toString())
                             i.putExtra("foodName", it.get(0).asJsonObject.get("label").toString())
                             startActivityForResult(i, 200)
-                        }
+                        }, {})
 
             }
         }

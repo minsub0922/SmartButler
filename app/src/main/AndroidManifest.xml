@@ -133,6 +133,11 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
+
+        <activity android:name=".view.main.home.child.DeviceDefaultActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.cctv.CCTVListActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.cctv.CCTVDetailActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".view.main.home.child.cctv.CCTVSetDomainActivity" android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>
