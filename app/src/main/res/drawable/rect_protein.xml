@@ -5,14 +5,14 @@
         android:left="1dp"
         android:right="1dp"
         android:top="1dp">
-        <shape android:shape="oval" >
+        <shape android:shape="rectangle" >
             <stroke
-                android:width="1dp"
+                android:width="0dp"
                 android:color="#c8c8c8" />
             <solid android:color="@color/protein" />
             <size
-                android:width="8dp"
-                android:height="8dp"
+                android:width="12dp"
+                android:height="12dp"
                 />
         </shape>
 

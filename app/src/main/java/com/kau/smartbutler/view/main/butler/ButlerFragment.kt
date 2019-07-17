@@ -152,10 +152,10 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                         .getUserServlet("dialog", et_butler_text.text.toString())
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(){
+                        .subscribe({
                             butlerConversation(it.toString())
                             Log.d("tag result ", it.toString())
-                        }
+                        }, {})
                 et_butler_text.text.clear()
             }
         }

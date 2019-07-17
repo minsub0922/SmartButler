@@ -26,9 +26,9 @@
     <color name="progressbarBaseColorNoOpacity">#d8d8d8</color>
     <color name="progressbarBorder">#979797</color>
 
-    <color name="carbo">#5aded0</color>
-    <color name="protein">#4a90e2</color>
-    <color name="fat">#ff7f97</color>
+    <color name="carbo">#11c022</color>
+    <color name="protein">#ffc939</color>
+    <color name="fat">#ff8d00</color>
     <color name="remainCalorie">#e0e0e0</color>
 
 </resources>

@@ -57,14 +57,14 @@ class DietMealConfirmActivity(
                 .nutrients(foodName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
+                .subscribe({
                     Log.d("tag result ", it.toString())
                     val gson = GsonBuilder().setPrettyPrinting().create()
                     val nutrients : Array<Float> = gson.fromJson(it.get("nutrients"), Array<Float>::class.java)
                     carbohydrate_calorie.text = nutrients[0].toString()
                     protein_calorie.text = nutrients[1].toString()
                     fat_calorie.text = nutrients[2].toString()
-                }
+                },{})
 
     }
 
@@ -89,7 +89,7 @@ class DietMealConfirmActivity(
                         .nutrients(foodName)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
+                        .subscribe({
                             Log.d("tag result ", it.toString())
                             val gson = GsonBuilder().setPrettyPrinting().create()
                             val nutrients : Array<Float> = gson.fromJson(it.get("nutrients"), Array<Float>::class.java)
@@ -97,7 +97,7 @@ class DietMealConfirmActivity(
                             protein_calorie.text = nutrients[1].toString()
                             fat_calorie.text = nutrients[2].toString()
 
-                        }
+                        }, {})
             }
             R.id.refreshIntake -> {
                 val intake = et_intake.text.toString().toFloat()
