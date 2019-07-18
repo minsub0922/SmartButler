@@ -17,9 +17,12 @@ import android.net.Uri
 import android.os.Handler
 import android.util.Log
 import com.google.gson.GsonBuilder
+import com.kau.smartbutler.model.Meal
 import com.kau.smartbutler.util.network.getListNetworkInstance
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.realm.Realm
+import io.realm.kotlin.where
 import java.nio.file.Files.exists
 
 
@@ -29,7 +32,7 @@ class DietMealConfirmActivity(
         override val isUseDatabinding: Boolean=false) :
         BaseActivity(), View.OnClickListener {
     override var isChildActivity: Boolean = true
-
+    val realm = Realm.getDefaultInstance()
     override fun setupView() {
         super.setupView()
 
@@ -52,6 +55,7 @@ class DietMealConfirmActivity(
         foodName = foodName.substring(1, foodName.length - 1)
         et_food_name.setText(foodName)
         refreshButton.setOnClickListener(this)
+        refreshIntake.setOnClickListener(this)
 
         getListNetworkInstance()
                 .nutrients(foodName)
@@ -71,12 +75,32 @@ class DietMealConfirmActivity(
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.btn_yes -> {
-                val i = intent
-                i.putExtra("carbohydrate", carbohydrate_calorie.text.toString())
-                i.putExtra("protein", protein_calorie.text.toString())
-                i.putExtra("fat", fat_calorie.text.toString())
-                setResult(200, intent)
-                finish()
+
+                realm.executeTransactionAsync(
+                        { bgRealm: Realm ->
+                            val confirmMeal = bgRealm.where<Meal>()
+                                    .equalTo("date", intent.getLongExtra("time", 0))
+                                    .equalTo("type", intent.getStringExtra("type"))
+                                    .findFirst()
+                            confirmMeal!!.carbo = carbohydrate_calorie.text.toString().toFloat()
+                            confirmMeal.protein = protein_calorie.text.toString().toFloat()
+                            confirmMeal.fat = fat_calorie.text.toString().toFloat()
+                        },
+                        {
+                            val i = intent
+                            i.putExtra("carbohydrate", carbohydrate_calorie.text.toString())
+                            i.putExtra("protein", protein_calorie.text.toString())
+                            i.putExtra("fat", fat_calorie.text.toString())
+                            setResult(200, i)
+                            finish()
+                        },
+                        {
+                            val i = intent
+                            setResult(500, i)
+                            finish()
+                        }
+                )
+
             }
             R.id.btn_no-> {
                 val i = intent

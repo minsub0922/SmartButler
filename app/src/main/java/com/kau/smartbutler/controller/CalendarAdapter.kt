@@ -56,14 +56,13 @@ class CalendarAdapter (
         holder.itemView.setOnClickListener {
             if(type == "manage") {
                 val currentTime = System.currentTimeMillis()
-                val currentDate = Date(currentTime)
                 val cal = GregorianCalendar()
-                cal.time = currentDate
+                val calendar = GregorianCalendar(cal.get(Calendar.YEAR), cal.get(Calendar.MONTH), cal.get(Calendar.DAY_OF_MONTH), 0, 0, 0)
                 val i = Intent(mContext, DietManagementActivity::class.java)
-                i.putExtra("year", cal.get(Calendar.YEAR))
-                i.putExtra("month", cal.get(Calendar.MONTH))
-                i.putExtra("date", cal.get(Calendar.DAY_OF_MONTH))
-                i.putExtra("date", currentTime)
+                i.putExtra("year", calendar.get(Calendar.YEAR).toLong())
+                i.putExtra("month", calendar.get(Calendar.MONTH).toLong())
+                i.putExtra("date", calendar.get(Calendar.DAY_OF_MONTH).toLong())
+                i.putExtra("time", currentTime)
                 mContext.startActivity(i)
             }
             else

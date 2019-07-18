@@ -302,10 +302,10 @@
             app:layout_constraintTop_toTopOf="@id/iv_morning"
             app:layout_constraintBottom_toBottomOf="@id/iv_morning"
             app:layout_constraintStart_toEndOf="@id/iv_morning"
-            app:layout_constraintEnd_toStartOf="@id/iv_evening"/>
+            app:layout_constraintEnd_toStartOf="@id/iv_dinner"/>
 
         <ImageView
-            android:id="@+id/iv_evening"
+            android:id="@+id/iv_dinner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/btn_evening"
@@ -321,7 +321,7 @@
             android:src="@drawable/btn_diet_etc"
             app:layout_constraintTop_toTopOf="@id/iv_morning"
             app:layout_constraintBottom_toBottomOf="@id/iv_morning"
-            app:layout_constraintStart_toEndOf="@id/iv_evening"
+            app:layout_constraintStart_toEndOf="@id/iv_dinner"
             app:layout_constraintEnd_toEndOf="@id/layout_calorie_compute"/>
 
         <TextView

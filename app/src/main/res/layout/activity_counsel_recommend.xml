@@ -29,7 +29,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="월격 심리 상담"
+                    android:text="원격 심리 상담"
                     android:layout_gravity="center"
                     android:id="@+id/toolbarTitle"
                     android:textColor="@color/titleColor"

@@ -94,7 +94,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
     }
 
     private fun setModels(){
-
+        modelList.clear()
         getNetworkInstanceForJson().getDeviceNames()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

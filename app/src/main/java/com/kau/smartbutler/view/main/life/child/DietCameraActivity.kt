@@ -195,8 +195,8 @@ class DietCameraActivity (
         }
 
         captureButton.setOnClickListener(this)
-        date = intent.getLongExtra("date", 0)
-        file = File(this.getExternalFilesDir(null),  date.toString() + "_" + intent.getStringExtra("meal") + "_" +  PIC_FILE_NAME)
+        date = intent.getLongExtra("time", 0)
+        file = File(this.getExternalFilesDir(null),  date.toString() + "_" + intent.getStringExtra("type") + "_" +  PIC_FILE_NAME)
 
     }
 
@@ -219,14 +219,9 @@ class DietCameraActivity (
         when(v!!.id){
             R.id.captureButton -> {
                 lockFocus()
-                while (!captureComplete) {
+                while(state != STATE_PREVIEW) {
+                    Log.d("result", "hello there")
                 }
-                Log.d("tag result ", file.exists().toString())
-                realm.beginTransaction()
-                val newMeal = Meal(date, intent.getStringExtra("meal"), file.toString())
-                realm.copyToRealm(newMeal)
-                realm.commitTransaction()
-                Log.d("tag result ", file.toString())
                 val imageRequestBody = RequestBody.create(MediaType.parse("image/*"), file)
                 val image = MultipartBody.Part.createFormData("file", file.name, imageRequestBody)
                 val filename = RequestBody.create(MediaType.parse("text/plain"), file.name)
@@ -240,12 +235,36 @@ class DietCameraActivity (
                             test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
                             realm.commitTransaction()*/
                             Log.d("tag result ", it.toString())
-                            val i = Intent(this, DietMealConfirmActivity::class.java)
-                            i.putExtra("meal", "morning")
-                            i.putExtra("date", date)
-                            i.putExtra("file", file.toString())
-                            i.putExtra("foodName", it.get(0).asJsonObject.get("label").toString())
-                            startActivityForResult(i, 200)
+
+                            realm.executeTransactionAsync(
+                                    { bgRealm: Realm ->
+                                        val newMeal = Meal(date,
+                                                intent.getStringExtra("type"),
+                                                file.toString(),
+                                                it.get(0).asJsonObject.get("label").toString(),
+                                                intent.getLongExtra("year", 0),
+                                                intent.getLongExtra("month", 0),
+                                                intent.getLongExtra("date", 0))
+                                        bgRealm.copyToRealm(newMeal)
+                                    },
+                                    {
+                                        closeCamera()
+                                        stopBackgroundThread()
+                                        val i = Intent(this, DietMealConfirmActivity::class.java)
+                                        i.putExtra("type", intent.getStringExtra("type"))
+                                        i.putExtra("date", intent.getLongExtra("date", 0))
+                                        i.putExtra("year", intent.getLongExtra("year", 0))
+                                        i.putExtra("month", intent.getLongExtra("month", 0))
+                                        i.putExtra("time", intent.getLongExtra("time", 0))
+                                        i.putExtra("file", file.toString())
+                                        i.putExtra("foodName", it.get(0).asJsonObject.get("label").toString())
+                                        startActivityForResult(i, 200)
+                                    },
+                                    {
+
+                                    }
+                            )
+
                         }, {})
 
             }
@@ -255,19 +274,29 @@ class DietCameraActivity (
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode== 200) {
+            Log.d("result", data!!.getStringExtra("carbohydrate"))
             setResult(200, data!!)
             closeCamera()
+            stopBackgroundThread()
             finish()
         } else  {
             setResult(500, data!!)
             closeCamera()
+            stopBackgroundThread()
             finish()
         }
     }
 
     override fun onDestroy() {
-        super.onDestroy()
         closeCamera()
+        stopBackgroundThread()
+        super.onDestroy()
+    }
+
+    override fun onPause() {
+        closeCamera()
+        stopBackgroundThread()
+        super.onPause()
     }
 
     private fun setUpCameraOutputs(width: Int, height: Int) {
@@ -586,7 +615,7 @@ class DietCameraActivity (
                 override fun onCaptureCompleted(session: CameraCaptureSession,
                                                 request: CaptureRequest,
                                                 result: TotalCaptureResult) {
-                    Toast.makeText(this@DietCameraActivity, "Saved: $file", Toast.LENGTH_LONG).show()
+                    // Toast.makeText(this@DietCameraActivity, "Saved: $file", Toast.LENGTH_LONG).show()
 
                     Log.d(TAG, file.toString())
                     unlockFocus()

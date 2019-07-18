@@ -97,7 +97,7 @@ class DietCalendarActivity(override val layoutRes: Int = R.layout.activity_diet_
             for (i in 0 .. 31)
                 dateList.add(0)
             for (diet in dietListOfMonth) {
-                dateList[diet.date] = 1
+                dateList[diet.date.toInt()] = 1
             }
             realm.commitTransaction()
 
@@ -114,7 +114,7 @@ class DietCalendarActivity(override val layoutRes: Int = R.layout.activity_diet_
                     else if (j > cal.get(Calendar.DATE)) {
                         calendarList.add(CalendarItem(0,j.toString(), false))
                     } else {
-                        if(j in dateList)
+                        if(dateList[j] == 1)
                             calendarList.add(CalendarItem(0,j.toString(), true))
                         else
                             calendarList.add(CalendarItem(0,j.toString(), false))
@@ -132,18 +132,18 @@ class DietCalendarActivity(override val layoutRes: Int = R.layout.activity_diet_
 
     fun getMonthLetter(month: Int): String {
         when(month) {
-            1 -> return "Jan"
-            2 -> return "Feb"
-            3 -> return "Mar"
-            4 -> return "Apr"
-            5 -> return "May"
-            6 -> return "Jun"
-            7 -> return "Jul"
-            8 -> return "Aug"
-            9 -> return "Sep"
-            10 -> return "Oct"
-            11 -> return "Nov"
-            12 -> return "Dec"
+            0 -> return "Jan"
+            1 -> return "Feb"
+            2 -> return "Mar"
+            3 -> return "Apr"
+            4 -> return "May"
+            5 -> return "Jun"
+            6 -> return "Jul"
+            7 -> return "Aug"
+            8 -> return "Sep"
+            9 -> return "Oct"
+            10 -> return "Nov"
+            11 -> return "Dec"
         }
         return "Jan"
     }
