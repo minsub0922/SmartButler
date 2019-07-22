@@ -42,6 +42,14 @@ class CCTVDetailActivity(
     lateinit var res : JsonObject
     override fun setupView() {
         super.setupView()
+
+        var detected_info = ""
+
+        if (intent.hasExtra("Detected_Event")  && ! intent.getStringExtra("Detected_Event").equals("")){
+            detected_info = intent.getStringExtra("Detected_Event")
+        }
+        detectedInfoTextView.setText(detected_info)
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         val iv = findViewById(R.id.cctv_image) as ImageView
         val t = Thread(Runnable {
@@ -51,7 +59,7 @@ class CCTVDetailActivity(
                         while (true) {
                             try {
 
-                                val url = URL("http://172.16.28.2/cgi-bin/encoder?USER=admin&PWD=123456&SNAPSHOT")
+                                val url = URL("http://112.169.29.116:25001/cgi-bin/viewer/video.jpg?resolution=640x480")
 
                                 Log.d("myapp", "kkk: " + iv.width)
                                 Log.d("myapp", "kkk : "+ iv.height)
