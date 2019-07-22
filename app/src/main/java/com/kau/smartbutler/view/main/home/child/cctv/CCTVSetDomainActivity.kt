@@ -1,5 +1,4 @@
 package com.kau.smartbutler.view.main.home.child.cctv
-//현문제. 화면크기를 imageview에 맞추면 된다리. 버튼 누를때 ontouch와 imageview의 톱 위치를 맞게 설정
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.*
@@ -26,14 +25,6 @@ class CCTVSetDomainActivity(
     //터치했던곳의 좌표 배열
     internal var vy = ArrayList<Float>()
     internal var vx = ArrayList<Float>()
-
-    //상대좌표
-    internal var relative_coordinate_X = -1f
-    internal var relative_coordinate_Y = -1f
-
-    //상대좌표 list
-    internal var relative_coordinateX_V = ArrayList<Float>()
-    internal var relative_coordinateY_V = ArrayList<Float>()
 
     //좌표를 ArrayList에 저장할지 설정 ( 1 받음 0 안받음)
     internal var input_flag = 1
@@ -85,14 +76,28 @@ class CCTVSetDomainActivity(
         }
     }
     ///////////////////////////////////////////////////////////////////////////////////////////////////
+
     fun initJson() {
         val arr = JSONArray()
+        val coordinate_point = String()
+        coordinate_point + "[ "
+
+        for(i in coordinates) {
+            var temp = i[0].toString()
+            temp + ","
+            temp + i[1].toString()
+
+        }
+        coordinate_point + " ]"
+
+
 
         try {
             sObject.put("Intrusion", arr)
             sObject.put("Loitering", arr)
             sObject.put("Abandon", arr)
             sObject.put("Falldown", arr)
+
         } catch (e: JSONException) {
             e.printStackTrace()
         }
@@ -164,23 +169,23 @@ class CCTVSetDomainActivity(
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
                     val points = ArrayList<Float>()// 임시 좌표비
-//                    Log.d("myapp", "AAA3: " + iv.width)
-//                    Log.d("myapp", "AAA3: "+ iv.height)
                     x = motionEvent.getX()
                     y = motionEvent.getY()
-                    relative_coordinate_X = x/1080f
-                    relative_coordinate_Y = y/1170f
+                    val relative_coordinate_X = x/1080f
+                    val relative_coordinate_Y = y/1170f
+                    val tempX =java.lang.String.format("%.2f", relative_coordinate_X).toFloat()
+                    val tempY =java.lang.String.format("%.2f", relative_coordinate_Y).toFloat()
 
                     //좌표벡터에 넣어준다.
                     if (input_flag == 1) {
                         vx.add(x)
                         vy.add(y)
-                        points.add(relative_coordinate_X)//현좌표비를 넣는다
-                        points.add(relative_coordinate_Y)//현좌표비를 넣는다.
+                        points.add(tempX)//현좌표비를 넣는다
+                        points.add(tempY)//현좌표비를 넣는다.
                         coordinates.add(points) //최종 좌표비 (x비,y비) 변수에 넣는다.
-                        Log.d("sedo", "coordintessize : "+ coordinates.size)
                         Log.d("sedo", "현좌표X : "+ coordinates[coordinates.size-1][0])
                         Log.d("sedo", "현좌표Y : "+ coordinates[coordinates.size-1][1])
+
                     }
                 }
             }
@@ -232,5 +237,4 @@ class CCTVSetDomainActivity(
             }
         }
     }
-    ///?S?D?FA?
 }
