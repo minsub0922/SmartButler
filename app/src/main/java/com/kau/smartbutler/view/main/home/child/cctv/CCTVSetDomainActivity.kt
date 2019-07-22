@@ -21,8 +21,8 @@ class CCTVSetDomainActivity(
     : BaseActivity() {
     var mPaint = Paint()
     //터치 한 곳의 좌표를 저장할 변수
-    var x = -1f
-    var y = -1f
+    internal var x = -1f
+    internal var y = -1f
     //터치했던곳의 좌표 배열
     internal var vy = ArrayList<Float>()
     internal var vx = ArrayList<Float>()
@@ -128,9 +128,25 @@ class CCTVSetDomainActivity(
         val resized = Bitmap.createScaledBitmap(bm,1080 , 1170, true)
         var canvas =Canvas()
         iv.setImageBitmap(resized)
-
-
         initJson()
+        //한번실행 full 좌표
+//        for (i in 0..3) {
+//            val points = java.util.ArrayList<Int>()
+//            if (i == 0) {
+//                points.add(0)
+//                points.add(0)
+//            } else if (i == 1) {
+//                points.add(iv.getWidth())
+//                points.add(0)
+//            } else if (i == 2) {
+//                points.add(iv.getWidth())
+//                points.add(iv.getHeight())
+//            } else {
+//                points.add(0)
+//                points.add(iv.getHeight())
+//            }
+//            coordinates_full.add(points)
+//        }
 
 //패인트 색깔
         mPaint.setColor(Color.BLUE)
@@ -147,32 +163,32 @@ class CCTVSetDomainActivity(
         iv.setOnTouchListener(){ view, motionEvent ->
             when (motionEvent.action) {
                 MotionEvent.ACTION_DOWN -> {
-                    Log.d("myapp", "AAA3: " + iv.width)
-                    Log.d("myapp", "AAA3: "+ iv.height)
+                    val points = ArrayList<Float>()// 임시 좌표비
+//                    Log.d("myapp", "AAA3: " + iv.width)
+//                    Log.d("myapp", "AAA3: "+ iv.height)
                     x = motionEvent.getX()
                     y = motionEvent.getY()
                     relative_coordinate_X = x/1080f
                     relative_coordinate_Y = y/1170f
+
                     //좌표벡터에 넣어준다.
                     if (input_flag == 1) {
-                        vx.add(x.toFloat())
-                        vy.add(y.toFloat())
-                        relative_coordinateX_V.add(relative_coordinate_X)
-                        relative_coordinateY_V.add(relative_coordinate_Y)
-                        Log.d("myapp", "좌표X: " + x)
-                        Log.d("myapp", "좌표Y : "+ y)
-
-                        Log.d("setdo", "RCX: " + relative_coordinate_X)
-                        Log.d("sedo", "RCY : "+ relative_coordinate_Y)
-
+                        vx.add(x)
+                        vy.add(y)
+                        points.add(relative_coordinate_X)//현좌표비를 넣는다
+                        points.add(relative_coordinate_Y)//현좌표비를 넣는다.
+                        coordinates.add(points) //최종 좌표비 (x비,y비) 변수에 넣는다.
+                        Log.d("sedo", "coordintessize : "+ coordinates.size)
+                        Log.d("sedo", "현좌표X : "+ coordinates[coordinates.size-1][0])
+                        Log.d("sedo", "현좌표Y : "+ coordinates[coordinates.size-1][1])
                     }
                 }
             }
-
             onDraw(canvas)
             iv.invalidate()
             return@setOnTouchListener true
         }
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
         //button event
