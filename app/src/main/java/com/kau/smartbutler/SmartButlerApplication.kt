@@ -17,25 +17,5 @@ open class SmartButlerApplication: Application(){
                 networkInit()
             }
         }).start()
-
-        getEvent()
-
-    }
-
-    fun getEvent(){
-
-
-        //이벤트 감지 및 페이지 접근
-
-//        getCCTVNetworkInstance()
-//                .getDetectedEvent()
-//                .subscribeOn(Schedulers.io())
-//                .observeOn(AndroidSchedulers.mainThread())
-//                .subscribe({ res ->
-//                  //startActivity(Intent(this, className ))
-//                })
-
-
-
     }
 }
