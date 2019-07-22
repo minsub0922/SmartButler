@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.WindowManager
 import android.widget.ImageView
+import android.widget.Toast
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_cctv_set_domain.*
@@ -79,18 +80,12 @@ class CCTVSetDomainActivity(
 
     fun initJson() {
         val arr = JSONArray()
-        val coordinate_point = String()
-        coordinate_point + "[ "
-
-        for(i in coordinates) {
-            var temp = i[0].toString()
-            temp + ","
-            temp + i[1].toString()
-
+        val coordinate_point = JSONArray()
+        val coordinate_final = JSONArray()
+        for(i in coordinates-1){
+            coordinate_point.put(i)
         }
-        coordinate_point + " ]"
-
-
+        arr.put(coordinate_point)
 
         try {
             sObject.put("Intrusion", arr)
@@ -123,6 +118,8 @@ class CCTVSetDomainActivity(
 
 
 
+
+
     override var isChildActivity: Boolean = true
     @SuppressLint("ClickableViewAccessibility")
     override fun setupView() {
@@ -135,23 +132,7 @@ class CCTVSetDomainActivity(
         iv.setImageBitmap(resized)
         initJson()
         //한번실행 full 좌표
-//        for (i in 0..3) {
-//            val points = java.util.ArrayList<Int>()
-//            if (i == 0) {
-//                points.add(0)
-//                points.add(0)
-//            } else if (i == 1) {
-//                points.add(iv.getWidth())
-//                points.add(0)
-//            } else if (i == 2) {
-//                points.add(iv.getWidth())
-//                points.add(iv.getHeight())
-//            } else {
-//                points.add(0)
-//                points.add(iv.getHeight())
-//            }
-//            coordinates_full.add(points)
-//        }
+
 
 //패인트 색깔
         mPaint.setColor(Color.BLUE)
@@ -185,7 +166,10 @@ class CCTVSetDomainActivity(
                         coordinates.add(points) //최종 좌표비 (x비,y비) 변수에 넣는다.
                         Log.d("sedo", "현좌표X : "+ coordinates[coordinates.size-1][0])
                         Log.d("sedo", "현좌표Y : "+ coordinates[coordinates.size-1][1])
-
+                    }
+                    else if(input_flag == 0){
+                        //마지막인자 제거
+                        coordinates.dropLast(1)
                     }
                 }
             }
@@ -201,9 +185,15 @@ class CCTVSetDomainActivity(
             if (stateButton1.isChecked()) {
                 Log.d("Intrusion", "Enable")
                 set_detect_area_event("Intrusion", false)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             } else {
                 Log.d("Intrusion", "Disable")
                 set_detect_area_event("Intrusion", true)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             }
         }
 
@@ -211,9 +201,15 @@ class CCTVSetDomainActivity(
             if (stateButton2.isChecked()) {
                 Log.d("Loitering", "Enable")
                 set_detect_area_event("Loitering", false)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             } else {
                 Log.d("Loitering", "Disable")
                 set_detect_area_event("Loitering", true)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             }
         }
 
@@ -221,9 +217,15 @@ class CCTVSetDomainActivity(
             if (stateButton3.isChecked()) {
                 Log.d("Abandon", "Enable")
                 set_detect_area_event("Abandon", false)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             } else {
                 Log.d("Abandon", "Disable")
                 set_detect_area_event("Abandon", true)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             }
         }
 
@@ -231,9 +233,15 @@ class CCTVSetDomainActivity(
             if (stateButton4.isChecked()) {
                 Log.d("Falldown", "Enable")
                 set_detect_area_event("Falldown", false)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             } else {
                 Log.d("Falldown", "Disable")
                 set_detect_area_event("Falldown", true)
+                initJson()
+                Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
+
             }
         }
     }
