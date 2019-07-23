@@ -51,7 +51,9 @@ class CCTVDetailActivity(
                         while (true) {
                             try {
 
-                                val url = URL("http://172.16.28.2/cgi-bin/encoder?USER=admin&PWD=123456&SNAPSHOT")
+                              val url = URL("http://172.16.28.2/cgi-bin/encoder?USER=admin&PWD=123456&SNAPSHOT")
+//                              val url = URL("http://192.168.1.12:25001/cgi-bin/viewer/video.jpg?resolution=640x480")
+//                                val url = URL("http://112.169.29.116:25001/cgi-bin/viewer/video.jpg?resolution=640x480")
 
                                 Log.d("myapp", "kkk: " + iv.width)
                                 Log.d("myapp", "kkk : "+ iv.height)

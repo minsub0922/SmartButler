@@ -2,9 +2,11 @@ package com.kau.smartbutler.view.main.home.child.cctv
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.*
+import android.graphics.drawable.LayerDrawable
 import android.util.Log
 import android.view.MotionEvent
 import android.view.View
+import android.view.ViewTreeObserver
 import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.Toast
@@ -26,23 +28,20 @@ class CCTVSetDomainActivity(
     //터치했던곳의 좌표 배열
     internal var vy = ArrayList<Float>()
     internal var vx = ArrayList<Float>()
-
     //좌표를 ArrayList에 저장할지 설정 ( 1 받음 0 안받음)
     internal var input_flag = 1
     // 이전단계의 터치 좌표
     private var start_x = -1f
     private var start_y = -1f
     //경로 설정 변수(이거대신 일단 drawLine씀)
-    private val path: Path? = null
     /////////////////////////////////////////////////////////////////////////////
     internal var sObject = JSONObject()
-
     internal var coordinates = java.util.ArrayList<java.util.ArrayList<*>>()
     internal var coordinates_full = java.util.ArrayList<java.util.ArrayList<*>>()
 
 
 
-    ////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////////////////////
 //onDrawfunction
     internal fun onDraw(canvas :Canvas) {
         mPaint.setColor(Color.GREEN)
@@ -76,13 +75,14 @@ class CCTVSetDomainActivity(
             start_y = y
         }
     }
-    ///////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////////////////////
 
     fun initJson() {
+        Log.d("initjson", "현좌표사이즈 : "+ coordinates.size)
+
         val arr = JSONArray()
         val coordinate_point = JSONArray()
-        val coordinate_final = JSONArray()
-        for(i in coordinates-1){
+        for(i in (coordinates)-1){
             coordinate_point.put(i)
         }
         arr.put(coordinate_point)
@@ -116,67 +116,68 @@ class CCTVSetDomainActivity(
 
 
 
-
-
-
-
     override var isChildActivity: Boolean = true
     @SuppressLint("ClickableViewAccessibility")
     override fun setupView() {
         super.setupView()
+
         val iv = findViewById(R.id.cctv_image) as ImageView
-        val arr = intent.getByteArrayExtra("image")
-        val bm = BitmapFactory.decodeByteArray(arr, 0, arr.size)
-        val resized = Bitmap.createScaledBitmap(bm,1080 , 1170, true)
-        var canvas =Canvas()
-        iv.setImageBitmap(resized)
-        initJson()
-        //한번실행 full 좌표
-
-
+        val vto = iv.getViewTreeObserver()
+        //뷰가 만들어지고 실행하도록 변경
+        vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
+            override fun onGlobalLayout() {
+                Log.d("cctvsetdomain","imageview생성"+iv.height)
+                val arr = intent.getByteArrayExtra("image")
+                val bm = BitmapFactory.decodeByteArray(arr, 0, arr.size)
+                var canvas =Canvas()
+                val resized = Bitmap.createScaledBitmap(bm,iv.width , iv.height, true)
+                iv.setImageBitmap(resized)
 //패인트 색깔
-        mPaint.setColor(Color.BLUE)
-        mPaint.setStrokeWidth(10F)
-        mPaint.setStyle(Paint.Style.STROKE)
-        mPaint.setAntiAlias(true)
-        mPaint.setDither(true)
+                mPaint.setColor(Color.BLUE)
+                mPaint.setStrokeWidth(10F)
+                mPaint.setStyle(Paint.Style.STROKE)
+                mPaint.setAntiAlias(true)
+                mPaint.setDither(true)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //will use variable
-        canvas.setBitmap(resized)
-        Log.d("myapp", "AAA2: " + iv.width)
-        Log.d("myapp", "AAA2: "+ iv.height)
+                canvas.setBitmap(resized)
 
-        iv.setOnTouchListener(){ view, motionEvent ->
-            when (motionEvent.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    val points = ArrayList<Float>()// 임시 좌표비
-                    x = motionEvent.getX()
-                    y = motionEvent.getY()
-                    val relative_coordinate_X = x/1080f
-                    val relative_coordinate_Y = y/1170f
-                    val tempX =java.lang.String.format("%.2f", relative_coordinate_X).toFloat()
-                    val tempY =java.lang.String.format("%.2f", relative_coordinate_Y).toFloat()
+                iv.setOnTouchListener(){ view, motionEvent ->
+                    when (motionEvent.action) {
+                        MotionEvent.ACTION_DOWN -> {
+                            val points = ArrayList<Float>()// 임시 좌표비
+                            x = motionEvent.getX()
+                            y = motionEvent.getY()
+                            val relative_coordinate_X = x/iv.width
+                            val relative_coordinate_Y = y/iv.height
+                            val tempX =java.lang.String.format("%.2f", relative_coordinate_X).toFloat()
+                            val tempY =java.lang.String.format("%.2f", relative_coordinate_Y).toFloat()
 
-                    //좌표벡터에 넣어준다.
-                    if (input_flag == 1) {
-                        vx.add(x)
-                        vy.add(y)
-                        points.add(tempX)//현좌표비를 넣는다
-                        points.add(tempY)//현좌표비를 넣는다.
-                        coordinates.add(points) //최종 좌표비 (x비,y비) 변수에 넣는다.
-                        Log.d("sedo", "현좌표X : "+ coordinates[coordinates.size-1][0])
-                        Log.d("sedo", "현좌표Y : "+ coordinates[coordinates.size-1][1])
+                            //좌표벡터에 넣어준다.
+                            if (input_flag == 1) {
+                                vx.add(x)
+                                vy.add(y)
+                                points.add(tempX)//현좌표비를 넣는다
+                                points.add(tempY)//현좌표비를 넣는다.
+                                coordinates.add(points) //최종 좌표비 (x비,y비) 변수에 넣는다.
+                                Log.d("sedo", "현좌표X : "+ coordinates[coordinates.size-1][0])
+                                Log.d("sedo", "현좌표Y : "+ coordinates[coordinates.size-1][1])
+                                Log.d("sedo", "현좌표사이즈 : "+ coordinates.size)
+                            }
+                            else if(input_flag == 0){
+                                //마지막인자 제거
+                                coordinates.dropLast(1)
+                            }
+                        }
                     }
-                    else if(input_flag == 0){
-                        //마지막인자 제거
-                        coordinates.dropLast(1)
-                    }
+                    onDraw(canvas)
+                    iv.invalidate()
+                    return@setOnTouchListener true
+
                 }
             }
-            onDraw(canvas)
-            iv.invalidate()
-            return@setOnTouchListener true
-        }
+        })
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
