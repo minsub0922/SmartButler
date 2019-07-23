@@ -81,7 +81,8 @@ class CCTVSetDomainActivity(
         var temp = JSONObject()
         val arr = JSONArray()
         val emptyarr = JSONArray()
-        for(i in 0..(coordinates.size -2) ) {
+        for(i in 0..(coordinates.size -2
+                ) ) {
             arr.put(coordinates[i])
         }
         try {
