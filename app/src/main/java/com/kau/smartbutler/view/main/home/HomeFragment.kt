@@ -87,6 +87,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         btn_device_switch.setOnClickListener(this)
         btn_temperature.setOnClickListener(this)
         btn_cctv.setOnClickListener(this)
+        btn_fall.setOnClickListener(this)
 
     }
 
