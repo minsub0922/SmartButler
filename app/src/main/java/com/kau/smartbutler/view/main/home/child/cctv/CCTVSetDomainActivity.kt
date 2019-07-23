@@ -38,7 +38,7 @@ class CCTVSetDomainActivity(
     internal var sObject = JSONObject()
     internal var coordinates = java.util.ArrayList<java.util.ArrayList<*>>()
     internal var coordinates_full = java.util.ArrayList<java.util.ArrayList<*>>()
-
+    internal var jsonstate = arrayOf(false,false,false,false)
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -77,25 +77,38 @@ class CCTVSetDomainActivity(
     }
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
-    fun initJson() {
+    fun initJson(array:Array<Boolean> ) {
+        var temp = JSONObject()
         val arr = JSONArray()
+        val emptyarr = JSONArray()
         val coordinate_point = JSONArray()
         for(i in (coordinates -1)){
             Log.d("initjson", "현좌표사이즈 : "+ i)
-            coordinate_point.put(i)
+            arr.put(i)
         }
-        arr.put(coordinate_point)
-
         try {
-            sObject.put("Intrusion", arr)
-            sObject.put("Loitering", arr)
-            sObject.put("Abandon", arr)
-            sObject.put("Falldown", arr)
-
+            if(array[0] == true)
+                temp.put("Intrusion", arr)
+            else if(array[0] == false)
+                temp.put("Intrusion", emptyarr)
+            if(array[1] == true)
+                temp.put("Loitering", arr)
+            else if(array[1] == false)
+                temp.put("Loitering", emptyarr)
+            if(array[2] == true)
+                temp.put("Abandon", arr)
+            else if(array[2] == false)
+                temp.put("Abandon", emptyarr)
+            if(array[3] == true)
+                temp.put("Falldown", arr)
+            else if(array[3] == false)
+                temp.put("Falldown", emptyarr)
         } catch (e: JSONException) {
             e.printStackTrace()
         }
+        sObject=temp
     }
+
 
     fun set_detect_area_event(event_name: String, is_reset: Boolean) {
         try {
@@ -140,7 +153,6 @@ class CCTVSetDomainActivity(
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //will use variable
                 canvas.setBitmap(resized)
-
                 iv.setOnTouchListener(){ view, motionEvent ->
                     when (motionEvent.action) {
                         MotionEvent.ACTION_DOWN -> {
@@ -185,13 +197,15 @@ class CCTVSetDomainActivity(
             if (stateButton1.isChecked()) {
                 Log.d("Intrusion", "Enable")
                 set_detect_area_event("Intrusion", false)
-                initJson()
+                jsonstate[0] =true
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             } else {
                 Log.d("Intrusion", "Disable")
                 set_detect_area_event("Intrusion", true)
-                initJson()
+                jsonstate[0] =false
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             }
@@ -201,13 +215,15 @@ class CCTVSetDomainActivity(
             if (stateButton2.isChecked()) {
                 Log.d("Loitering", "Enable")
                 set_detect_area_event("Loitering", false)
-                initJson()
+                jsonstate[1] =true
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             } else {
                 Log.d("Loitering", "Disable")
                 set_detect_area_event("Loitering", true)
-                initJson()
+                jsonstate[1] =false
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             }
@@ -217,13 +233,15 @@ class CCTVSetDomainActivity(
             if (stateButton3.isChecked()) {
                 Log.d("Abandon", "Enable")
                 set_detect_area_event("Abandon", false)
-                initJson()
+                jsonstate[2] =true
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             } else {
                 Log.d("Abandon", "Disable")
                 set_detect_area_event("Abandon", true)
-                initJson()
+                jsonstate[2] =false
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             }
@@ -233,13 +251,15 @@ class CCTVSetDomainActivity(
             if (stateButton4.isChecked()) {
                 Log.d("Falldown", "Enable")
                 set_detect_area_event("Falldown", false)
-                initJson()
+                jsonstate[3] =true
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             } else {
                 Log.d("Falldown", "Disable")
                 set_detect_area_event("Falldown", true)
-                initJson()
+                jsonstate[3] =false
+                initJson(jsonstate)
                 Toast.makeText(this,sObject.toString(),Toast.LENGTH_LONG).show()
 
             }
