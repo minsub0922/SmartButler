@@ -59,10 +59,11 @@
         />
 
     <TextView
+        android:id="@+id/detectedInfoTextView"
         android:textColor="@color/white"
         android:layout_gravity="center"
         android:layout_margin="16dp"
-        android:text="거실에서 쓰러짐이 감지 되었습니다"
+        android:text=""
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
