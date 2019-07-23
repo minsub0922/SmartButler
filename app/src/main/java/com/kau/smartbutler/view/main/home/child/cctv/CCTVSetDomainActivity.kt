@@ -81,9 +81,8 @@ class CCTVSetDomainActivity(
         var temp = JSONObject()
         val arr = JSONArray()
         val emptyarr = JSONArray()
-        for(i in (coordinates -1)){
-            Log.d("initjson", "현좌표사이즈 : "+ i)
-            arr.put(i)
+        for(i in 0..(coordinates.size -2) ) {
+            arr.put(coordinates[i])
         }
         try {
             if(array[0] == true)
@@ -131,7 +130,6 @@ class CCTVSetDomainActivity(
     @SuppressLint("ClickableViewAccessibility")
     override fun setupView() {
         super.setupView()
-
         val iv = findViewById(R.id.cctv_image) as ImageView
         val vto = iv.getViewTreeObserver()
         //뷰가 만들어지고 실행하도록 변경
