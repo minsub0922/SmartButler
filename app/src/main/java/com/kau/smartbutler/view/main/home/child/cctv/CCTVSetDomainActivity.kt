@@ -82,7 +82,7 @@ class CCTVSetDomainActivity(
 
         val arr = JSONArray()
         val coordinate_point = JSONArray()
-        for(i in (coordinates)-1){
+        for(i in coordinates-1){
             coordinate_point.put(i)
         }
         arr.put(coordinate_point)
