@@ -44,6 +44,7 @@
 
     <!-- 영상이 뿌려질 뷰 -->
     <ImageView
+        android:adjustViewBounds="true"
         android:id="@+id/cctv_image"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/appbar"
