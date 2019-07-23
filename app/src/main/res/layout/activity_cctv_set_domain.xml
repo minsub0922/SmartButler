@@ -71,11 +71,11 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:textOn ="침입 ON"
-            android:textOff ="침입 OFF"
+            android:textOn ="침입"
+            android:textOff ="침입"
             app:layout_constraintHorizontal_bias="0.13"
             android:background="@drawable/cctv_toggle_button"
-            android:textColor="@color/selector_reserve_time_text"
+            android:textColor="@color/cctv_togglebutton_color"
             />
         <ToggleButton
             android:id="@+id/stateButton2"
@@ -86,11 +86,11 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:textOn ="배회 ON"
-            android:textOff ="배회 OFF"
+            android:textOn ="배회"
+            android:textOff ="배회"
             app:layout_constraintHorizontal_bias="0.375"
             android:background="@drawable/cctv_toggle_button"
-            android:textColor="@color/selector_reserve_time_text"
+            android:textColor="@color/cctv_togglebutton_color"
             />
         <ToggleButton
             android:id="@+id/stateButton3"
@@ -101,11 +101,11 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:textOn ="유기 ON"
-            android:textOff ="유기 OFF"
+            android:textOn ="유기"
+            android:textOff ="유기"
             app:layout_constraintHorizontal_bias="0.62"
             android:background="@drawable/cctv_toggle_button"
-            android:textColor="@color/selector_reserve_time_text"
+            android:textColor="@color/cctv_togglebutton_color"
             />
 
         <ToggleButton
@@ -117,11 +117,11 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:textOn ="쓰러짐 ON"
-            android:textOff ="쓰러짐 OFF"
+            android:textOn ="쓰러짐"
+            android:textOff ="쓰러짐"
             app:layout_constraintHorizontal_bias="0.86"
             android:background="@drawable/cctv_toggle_button"
-            android:textColor="@color/selector_reserve_time_text"
+            android:textColor="@color/cctv_togglebutton_color"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
