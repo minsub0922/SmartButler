@@ -78,11 +78,10 @@ class CCTVSetDomainActivity(
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
     fun initJson() {
-        Log.d("initjson", "현좌표사이즈 : "+ coordinates.size)
-
         val arr = JSONArray()
         val coordinate_point = JSONArray()
-        for(i in coordinates-1){
+        for(i in (coordinates -1)){
+            Log.d("initjson", "현좌표사이즈 : "+ i)
             coordinate_point.put(i)
         }
         arr.put(coordinate_point)
