@@ -74,7 +74,7 @@
             android:textOn ="침입 ON"
             android:textOff ="침입 OFF"
             app:layout_constraintHorizontal_bias="0.13"
-            android:background="@drawable/rounded_rec_buttons_selector"
+            android:background="@drawable/cctv_toggle_button"
             android:textColor="@color/selector_reserve_time_text"
             />
         <ToggleButton
@@ -89,7 +89,7 @@
             android:textOn ="배회 ON"
             android:textOff ="배회 OFF"
             app:layout_constraintHorizontal_bias="0.375"
-            android:background="@drawable/rounded_rec_buttons_selector"
+            android:background="@drawable/cctv_toggle_button"
             android:textColor="@color/selector_reserve_time_text"
             />
         <ToggleButton
@@ -104,7 +104,7 @@
             android:textOn ="유기 ON"
             android:textOff ="유기 OFF"
             app:layout_constraintHorizontal_bias="0.62"
-            android:background="@drawable/rounded_rec_buttons_selector"
+            android:background="@drawable/cctv_toggle_button"
             android:textColor="@color/selector_reserve_time_text"
             />
 
@@ -120,7 +120,7 @@
             android:textOn ="쓰러짐 ON"
             android:textOff ="쓰러짐 OFF"
             app:layout_constraintHorizontal_bias="0.86"
-            android:background="@drawable/rounded_rec_buttons_selector"
+            android:background="@drawable/cctv_toggle_button"
             android:textColor="@color/selector_reserve_time_text"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

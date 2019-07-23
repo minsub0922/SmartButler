@@ -81,7 +81,6 @@ class CCTVSetDomainActivity(
         var temp = JSONObject()
         val arr = JSONArray()
         val emptyarr = JSONArray()
-        val coordinate_point = JSONArray()
         for(i in (coordinates -1)){
             Log.d("initjson", "현좌표사이즈 : "+ i)
             arr.put(i)
