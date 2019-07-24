@@ -25,6 +25,7 @@ import com.kau.smartbutler.view.main.home.child.MyPageActivity
 import com.kau.smartbutler.view.main.home.child.NavClientCenterActivity
 import com.kau.smartbutler.view.main.life.LifeFragment
 import com.kau.smartbutler.view.main.nav.NavSetDeviceModeActivity
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_main_navi.*
 import kotlinx.android.synthetic.main.activity_main_content.*
 import kotlinx.android.synthetic.main.nav_header_main.*
@@ -42,6 +43,7 @@ class MainActivity(
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+        Realm.init(this)
 
         setDrawaerWithNavigationView()
 
@@ -220,6 +222,11 @@ class MainActivity(
         //super.onActivityResult(requestCode, resultCode, data);
         val fragment = supportFragmentManager.findFragmentById(R.id.main_activity_fragment_container)
         fragment!!.onActivityResult(requestCode, resultCode, data)
+
+    }
+    override fun onDestroy() {
+        super.onDestroy()
+
 
     }
 
