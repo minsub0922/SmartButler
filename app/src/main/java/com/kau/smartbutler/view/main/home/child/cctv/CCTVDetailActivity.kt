@@ -50,8 +50,6 @@ class CCTVDetailActivity(
         val viewItem =realm.where<CCTVRealmStruct>(CCTVRealmStruct::class.java).equalTo("Location",infoCCTV.name)?.findFirst()
         Toast.makeText(this,viewItem.toString(), Toast.LENGTH_LONG).show()
 
-/////////////////////////////////////////////////////////////////
-// /////////////////////////////////
         val iv = findViewById(R.id.video_view) as ImageView
         val t = Thread(Runnable {
             try {
@@ -133,7 +131,6 @@ class CCTVDetailActivity(
             i.putExtra("image", byteArray)
             i.putExtra("cctv", infoCCTV)
             OffActivity = true
-            finish()
             startActivity(i)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
