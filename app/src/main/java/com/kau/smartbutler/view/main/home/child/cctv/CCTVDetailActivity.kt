@@ -59,18 +59,18 @@ class CCTVDetailActivity(
                         while (true) {
                             try {
 
-                                val url = URL("http://172.16.28.2/cgi-bin/encoder?USER=admin&PWD=123456&SNAPSHOT")
+                                val url = URL("http://112.169.29.116:25001/cgi-bin/viewer/video.jpg?resolution=640x480")
 
-                                Log.d("myapp", "kkk: " + iv.width)
-                                Log.d("myapp", "kkk : "+ iv.height)
+//                                Log.d("myapp", "kkk: " + iv.width)
+//                                Log.d("myapp", "kkk : "+ iv.height)
 
                                 val t_connection = url.openConnection()
                                 t_connection.readTimeout = 10000
                                 val `is` = t_connection.getInputStream()
                                 val bm = BitmapFactory.decodeStream(`is`)
-
-                                Log.d("myapp", "kkk: " + iv.width)
-                                Log.d("myapp", "kkk : "+ iv.height)
+//
+//                                Log.d("myapp", "kkk: " + iv.width)
+//                                Log.d("myapp", "kkk : "+ iv.height)
 
                                 //화면크기
                                 val display = windowManager.defaultDisplay
