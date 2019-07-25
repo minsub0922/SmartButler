@@ -43,7 +43,6 @@ class MainActivity(
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
-        Realm.init(this)
 
         setDrawaerWithNavigationView()
 
@@ -224,10 +223,4 @@ class MainActivity(
         fragment!!.onActivityResult(requestCode, resultCode, data)
 
     }
-    override fun onDestroy() {
-        super.onDestroy()
-
-
-    }
-
 }

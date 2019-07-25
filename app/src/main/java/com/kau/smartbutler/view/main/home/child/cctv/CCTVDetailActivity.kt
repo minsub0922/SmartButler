@@ -45,6 +45,7 @@ class CCTVDetailActivity(
     lateinit var res : JsonObject
     override fun setupView() {
         super.setupView()
+        Realm.init(this)
         val infoCCTV = intent.getParcelableExtra<CCTV>("cctv")
         realm = Realm.getDefaultInstance()
         val viewItem =realm.where<CCTVRealmStruct>(CCTVRealmStruct::class.java).equalTo("Location",infoCCTV.name)?.findFirst()
@@ -131,6 +132,7 @@ class CCTVDetailActivity(
             i.putExtra("image", byteArray)
             i.putExtra("cctv", infoCCTV)
             OffActivity = true
+            realm.close()
             startActivity(i)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////

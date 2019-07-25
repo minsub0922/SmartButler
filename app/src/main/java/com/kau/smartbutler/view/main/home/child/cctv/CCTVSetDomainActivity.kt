@@ -18,6 +18,7 @@ import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_cctv_set_domain.*
+import kotlinx.android.synthetic.main.nav_header_main.*
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
@@ -138,6 +139,7 @@ class CCTVSetDomainActivity(
 
     override fun setupView() {
         super.setupView()
+        Realm.init(this)
         realm = Realm.getDefaultInstance()  //realm 데이터 받기.
 
         var iv = findViewById<View>(R.id.bg_view) as ImageView  //xml의 배경이미지 화면을 iv로 받아옴.
@@ -153,6 +155,7 @@ class CCTVSetDomainActivity(
                 var canvas = Canvas()
                 val resized = Bitmap.createScaledBitmap(bm, iv.width, iv.height, true)  //이미지 크기 조절
                 iv.setImageBitmap(resized)
+
 
                 //취소버튼. 현재-> 누르면 좌표 초기화 후 액티비티 종료.
                 cancleButton.setOnClickListener {
@@ -253,6 +256,7 @@ class CCTVSetDomainActivity(
                     Companion.relative_vy.clear()
 
                     //액티비티 종료
+                    realm.close()
                     finish()
                 }
 
