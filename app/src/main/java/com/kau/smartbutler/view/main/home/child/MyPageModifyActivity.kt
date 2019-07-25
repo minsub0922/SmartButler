@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.PersonalInformation
@@ -68,56 +69,29 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.myProfileModify -> {
+                age = if(et_age.text.toString() == "") 30 else et_age.text.toString().toInt()
+                weight = if(et_weight.text.toString() == "") 70 else et_weight.text.toString().toInt()
+                goalWeight = if(et_goal_weight.text.toString() == "") 70 else et_goal_weight.text.toString().toInt()
                 realm.beginTransaction()
-                val currentInfo = realm.where<PersonalInformation>().findFirst()
+                info = PersonalInformation(age!!, sex!!, weight!!, goalWeight!!, activity!!)
+                realm.copyToRealm(info!!)
                 realm.commitTransaction()
-                if (currentInfo == null) {
-                    age = if(et_age.text.toString() == "") 30 else et_age.text.toString().toInt()
-                    weight = if(et_weight.text.toString() == "") 70 else et_weight.text.toString().toInt()
-                    goalWeight = if(et_goal_weight.text.toString() == "") 70 else et_goal_weight.text.toString().toInt()
-                    realm.beginTransaction()
-                    info = PersonalInformation(age!!, sex!!, weight!!, goalWeight!!, activity!!)
-                    realm.copyToRealm(info!!)
-                    realm.commitTransaction()
 
-                    getListNetworkInstance()
-                            .getDailyCalorieRequirements(70, 29, "male", "good")
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                realm.beginTransaction()
-                                val test = realm.where(PersonalInformation::class.java).findFirstAsync()
-                                test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
-                                realm.commitTransaction()
+                getListNetworkInstance()
+                        .getDailyCalorieRequirements(weight!!, age!!, sex!!, activity!!)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            realm.beginTransaction()
+                            val test = realm.where(PersonalInformation::class.java).findFirstAsync()
+                            test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
+                            realm.commitTransaction()
 
-                                Log.d("tag result ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
-                            },{})
-                } else {
-                    realm.beginTransaction()
-                    val modifyInfo = realm.where(PersonalInformation::class.java).findFirstAsync()
-                    modifyInfo.age = if(et_age.text.toString() == "") 30 else et_age.text.toString().toInt()
-                    modifyInfo.weight = if(et_weight.text.toString() == "") 70 else et_weight.text.toString().toInt()
-                    modifyInfo.goalWeight = if(et_goal_weight.text.toString() == "") 70 else et_goal_weight.text.toString().toInt()
-                    modifyInfo.sex = sex!!
-                    modifyInfo.activity = activity!!
-                    realm.commitTransaction()
-
-                    getListNetworkInstance()
-                            .getDailyCalorieRequirements(70, 29, "male", "good")
-                            .subscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .subscribe({
-                                realm.beginTransaction()
-                                val test = realm.where(PersonalInformation::class.java).findFirstAsync()
-                                test.requiredCalorie = it.get("dailyCalorieRequirements").toString().toInt()
-                                realm.commitTransaction()
-
-                                Log.d("tag result modify ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
-                            },{})
-                }
-
-
-
+                            Log.d("tag result ", it.get("dailyCalorieRequirements").toString() + ", " + test.requiredCalorie.toString())
+                            Toast.makeText(this, "저장 완료", Toast.LENGTH_SHORT).show()
+                        },{
+                            Toast.makeText(this, "저장 실패", Toast.LENGTH_SHORT).show()
+                        })
                 /*getListNetworkInstance()
                         .getDailyCalorieRequirements(70, 29, "male", "good")
                         .subscribeOn(Schedulers.io())

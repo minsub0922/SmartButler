@@ -18,9 +18,9 @@ import java.net.CookieStore
 import java.util.concurrent.TimeUnit
 
 
-var LIST_API_BASE_URL = "http://192.168.1.48:3003"
+var LIST_API_BASE_URL = "http://112.169.29.116:3003"
 
-var UTAS_API_BASE_URL = "http://192.168.1.48:8081"
+var UTAS_API_BASE_URL = "http://112.169.29.116:8081"
 
 lateinit var listClient: OkHttpClient
 

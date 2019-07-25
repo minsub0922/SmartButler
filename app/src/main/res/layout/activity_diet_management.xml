@@ -34,6 +34,7 @@
                     android:textSize="18sp"
                     />
 
+
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -73,10 +74,10 @@
                     android:text="나이"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_age"
                     android:layout_width="48dp"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#6d7278"
                     android:lineSpacingExtra="14sp"
@@ -104,7 +105,8 @@
                 android:gravity="center_vertical"
                 app:layout_constraintStart_toEndOf="@+id/layout_age"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="@id/layout_age"
+                app:layout_constraintBottom_toBottomOf="@id/layout_age">
                 <TextView
                     android:id="@+id/tv_sex"
                     android:layout_width="54dp"
@@ -114,12 +116,12 @@
                     android:lineSpacingExtra="14sp"
                     android:text="성별"
                     />
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_sex"
                     android:layout_width="70dp"
-                    android:layout_height="24dp">
+                    android:layout_height="wrap_content">
 
-                </Spinner>
+                </TextView>
 
             </LinearLayout>
 
@@ -155,10 +157,10 @@
                     android:text="체중"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_weight"
                     android:layout_width="48dp"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#6d7278"
                     android:lineSpacingExtra="14sp"
@@ -195,10 +197,10 @@
                     android:text="목표체중"
                     />
 
-                <EditText
+                <TextView
                     android:id="@+id/et_goal_weight"
                     android:layout_width="48dp"
-                    android:layout_height="24dp"
+                    android:layout_height="wrap_content"
                     android:textSize="14sp"
                     android:textColor="#6d7278"
                     android:lineSpacingExtra="14sp"
@@ -248,12 +250,12 @@
                     android:lineSpacingExtra="14sp"
                     android:text="활동성"
                     />
-                <Spinner
+                <TextView
                     android:id="@+id/spinner_activity"
                     android:layout_width="70dp"
-                    android:layout_height="24dp">
+                    android:layout_height="wrap_content">
 
-                </Spinner>
+                </TextView>
 
             </LinearLayout>
 

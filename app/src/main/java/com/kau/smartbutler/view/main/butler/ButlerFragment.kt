@@ -66,6 +66,7 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
             fun onInit(status: Int) {
                 if (status != ERROR) {
                     tts.language = Locale.KOREA
+                    tts.setSpeechRate(0.7.toFloat())
                 }
             }
         })
