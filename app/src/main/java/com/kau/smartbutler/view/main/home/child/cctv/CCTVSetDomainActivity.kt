@@ -30,7 +30,7 @@ class CCTVSetDomainActivity(
         override val isUseDatabinding: Boolean = false)
     : BaseActivity() {
     var mPaint = Paint()
-    internal var ctx: Context = this
+
     // 현재 좌표
     internal var x = -1f
     internal var y = -1f
@@ -43,7 +43,7 @@ class CCTVSetDomainActivity(
     internal var vx = ArrayList<Float>()
     //좌표의 저장 여부 ( 1 받음 0 안받음 )
     internal var input_flag = 1
-
+    internal var ctx: Context = this
     lateinit var realm: Realm   //realm 초기화
     internal var sObject = JSONObject()     //json 초기화
     internal var coordinates = java.util.ArrayList<java.util.ArrayList<*>>()    //모든 좌표 저장
@@ -135,7 +135,6 @@ class CCTVSetDomainActivity(
             Log.d("[INFO] ERROR : ", e.toString())
         }
     }
-
     override var isChildActivity: Boolean = true
     @SuppressLint("ClickableViewAccessibility")
 
@@ -211,8 +210,9 @@ class CCTVSetDomainActivity(
 
                             //realm에 장소 등록
                             newObject.Location = infoCCTV?.name
-                        }
 
+
+                        }
                         //해당 장소가 realm에 있을 경우 해당 장소에 대한 좌표 업데이트, Json 메시지 생성.
                         else if (infoCCTV?.name == updateItem.Location.toString()) {
                             updateItem.Location = infoCCTV.name
@@ -267,7 +267,6 @@ class CCTVSetDomainActivity(
                         finish()
                     }
                 }
-
                 mPaint.setColor(Color.BLUE)
                 mPaint.setStrokeWidth(10F)
                 mPaint.setStyle(Paint.Style.STROKE)
