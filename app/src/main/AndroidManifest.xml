@@ -25,6 +25,11 @@
             android:theme="@style/AppTheme.NoActionBar"/>
         <activity android:name=".view.main.life.child.DietCameraActivity"
             android:theme="@style/AppTheme.NoActionBar"/>
+        <service
+            android:name=".EventDetectionService"
+            android:enabled="true"
+            android:exported="true"></service>
+
         <activity
             android:name=".view.main.life.child.PillDietApplyActivity"
             android:theme="@style/AppTheme.NoActionBar" />

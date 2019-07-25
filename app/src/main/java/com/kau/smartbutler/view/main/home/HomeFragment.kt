@@ -3,6 +3,7 @@ package com.kau.smartbutler.view.main.home
 import android.content.Intent
 import android.util.Log
 import android.view.View
+import com.kau.smartbutler.EventDetectionService
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseFragment
 import com.kau.smartbutler.controller.DeviceControllerAdpater
@@ -26,6 +27,17 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         }else if (v!!.id == R.id.btn_device_switch){
             adapter.toggleSwitch = !adapter.toggleSwitch
             adapter.notifyDataSetChanged()
+        }else if (v!!.id == R.id.btn_fall){
+            switchEventDetection()
+        }
+    }
+
+    private fun switchEventDetection() {
+        if (btn_fall.isChecked){
+            activity?.startService(Intent(activity, EventDetectionService::class.java))
+        }
+        else{
+            activity?.stopService(Intent(activity, EventDetectionService::class.java))
         }
     }
 
@@ -75,6 +87,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         btn_device_switch.setOnClickListener(this)
         btn_temperature.setOnClickListener(this)
         btn_cctv.setOnClickListener(this)
+        btn_fall.setOnClickListener(this)
 
     }
 

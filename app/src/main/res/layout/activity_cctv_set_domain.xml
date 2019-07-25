@@ -13,37 +13,39 @@
         android:background="@color/white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    <androidx.appcompat.widget.Toolbar
+        <androidx.appcompat.widget.Toolbar
 
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        app:popupTheme="@style/AppTheme.PopupOverlay"
-        android:background="@color/white"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="CCTV"
-            android:layout_gravity="center"
-            android:id="@+id/toolbarTitle"
-            android:textColor="@color/titleColor"
-            android:textSize="18sp"
-            />
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="CCTV"
+                android:layout_gravity="center"
+                android:id="@+id/toolbarTitle"
+                android:textColor="@color/titleColor"
+                android:textSize="18sp"
+                />
 
-        <ImageButton
-            android:id="@+id/moreNavButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/btn_navi_more_n"
-            android:layout_gravity="right"
-            />
+            <ImageButton
+                android:id="@+id/moreNavButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_navi_more_n"
+                android:layout_gravity="right"
+                />
 
-    </androidx.appcompat.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
     <!-- 영상이 뿌려질 뷰 -->
     <ImageView
+        android:adjustViewBounds="true"
+        android:id="@+id/cctv_image"
         android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/appbar"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -60,7 +62,7 @@
         android:layout_marginTop="16dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <Button
+        <ToggleButton
             android:id="@+id/stateButton1"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -69,12 +71,13 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="침입"
+            android:textOn ="침입"
+            android:textOff ="침입"
             app:layout_constraintHorizontal_bias="0.13"
-            android:background="@drawable/rounded_rec_buttons_selector"
-            android:textColor="@color/selector_reserve_time_text"
+            android:background="@drawable/cctv_toggle_button"
+            android:textColor="@color/cctv_togglebutton_color"
             />
-        <Button
+        <ToggleButton
             android:id="@+id/stateButton2"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -83,12 +86,13 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="배회"
+            android:textOn ="배회"
+            android:textOff ="배회"
             app:layout_constraintHorizontal_bias="0.375"
-            android:background="@drawable/rounded_rec_buttons_selector"
-            android:textColor="@color/selector_reserve_time_text"
+            android:background="@drawable/cctv_toggle_button"
+            android:textColor="@color/cctv_togglebutton_color"
             />
-        <Button
+        <ToggleButton
             android:id="@+id/stateButton3"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -97,13 +101,14 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="유기"
+            android:textOn ="유기"
+            android:textOff ="유기"
             app:layout_constraintHorizontal_bias="0.62"
-            android:background="@drawable/rounded_rec_buttons_selector"
-            android:textColor="@color/selector_reserve_time_text"
+            android:background="@drawable/cctv_toggle_button"
+            android:textColor="@color/cctv_togglebutton_color"
             />
 
-        <Button
+        <ToggleButton
             android:id="@+id/stateButton4"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -112,10 +117,11 @@
             app:layout_constraintWidth_percent="0.18"
             app:layout_constraintDimensionRatio="72:33"
             app:layout_constraintTop_toTopOf="parent"
-            android:text="쓰러짐"
+            android:textOn ="쓰러짐"
+            android:textOff ="쓰러짐"
             app:layout_constraintHorizontal_bias="0.86"
-            android:background="@drawable/rounded_rec_buttons_selector"
-            android:textColor="@color/selector_reserve_time_text"
+            android:background="@drawable/cctv_toggle_button"
+            android:textColor="@color/cctv_togglebutton_color"
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -133,6 +139,7 @@
             app:layout_constraintRight_toLeftOf="@id/confirmButton"
             android:text="취소"
             android:textColor="@color/AppThemeColor"
+
             android:background="@drawable/rounded_yellow_border_button_background"
             android:layout_width="120dp"
             android:layout_height="35dp" />
