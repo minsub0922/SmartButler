@@ -9,13 +9,16 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.Toast
 import com.google.gson.JsonObject
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
+import com.kau.smartbutler.model.CCTV
 import com.kau.smartbutler.model.PostDetectionAreaRequest
 import com.kau.smartbutler.util.network.getCCTVNetworkInstance
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
+import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_cctv_detail.*
 import java.io.ByteArrayOutputStream
 import java.net.URL
@@ -33,7 +36,7 @@ class CCTVDetailActivity(
 
     internal var width = 300 // 축소시킬 너비
     internal var height = 300 // 축소시킬 높이
-
+    lateinit var realm: Realm
     internal var conf: Bitmap.Config = Bitmap.Config.ARGB_8888
     internal var giving_image = Bitmap.createBitmap(width, height, conf)
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -42,8 +45,13 @@ class CCTVDetailActivity(
     lateinit var res : JsonObject
     override fun setupView() {
         super.setupView()
-////////////////////////////////////////////////////////////////////////////////////////////////////
-        val iv = findViewById(R.id.cctv_image) as ImageView
+        Realm.init(this)
+        val infoCCTV = intent.getParcelableExtra<CCTV>("cctv")
+        realm = Realm.getDefaultInstance()
+        val viewItem =realm.where<CCTVRealmStruct>(CCTVRealmStruct::class.java).equalTo("Location",infoCCTV.name)?.findFirst()
+        Toast.makeText(this,viewItem.toString(), Toast.LENGTH_LONG).show()
+
+        val iv = findViewById(R.id.video_view) as ImageView
         val t = Thread(Runnable {
             try {
                 val tt = object : TimerTask() {
@@ -51,18 +59,18 @@ class CCTVDetailActivity(
                         while (true) {
                             try {
 
-                                val url = URL("http://172.16.28.2/cgi-bin/encoder?USER=admin&PWD=123456&SNAPSHOT")
+                                val url = URL("http://112.169.29.116:25001/cgi-bin/viewer/video.jpg?resolution=640x480")
 
-                                Log.d("myapp", "kkk: " + iv.width)
-                                Log.d("myapp", "kkk : "+ iv.height)
+//                                Log.d("myapp", "kkk: " + iv.width)
+//                                Log.d("myapp", "kkk : "+ iv.height)
 
                                 val t_connection = url.openConnection()
                                 t_connection.readTimeout = 10000
                                 val `is` = t_connection.getInputStream()
                                 val bm = BitmapFactory.decodeStream(`is`)
-
-                                Log.d("myapp", "kkk: " + iv.width)
-                                Log.d("myapp", "kkk : "+ iv.height)
+//
+//                                Log.d("myapp", "kkk: " + iv.width)
+//                                Log.d("myapp", "kkk : "+ iv.height)
 
                                 //화면크기
                                 val display = windowManager.defaultDisplay
@@ -89,7 +97,7 @@ class CCTVDetailActivity(
                                 }
 
 
-                                val resized = Bitmap.createScaledBitmap(bm, cctv_image.right, cctv_image.bottom, true)
+                                val resized = Bitmap.createScaledBitmap(bm, video_view.right, video_view.bottom, true)
                                 val resized2 = Bitmap.createScaledBitmap(bm, width, height, true)
 
                                 giving_image = resized2
@@ -122,8 +130,9 @@ class CCTVDetailActivity(
             val byteArray = bStream.toByteArray()
             val i = Intent(this, CCTVSetDomainActivity::class.java)
             i.putExtra("image", byteArray)
+            i.putExtra("cctv", infoCCTV)
             OffActivity = true
-            finish()
+            realm.close()
             startActivity(i)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
