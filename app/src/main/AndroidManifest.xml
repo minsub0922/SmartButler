@@ -5,12 +5,12 @@
     <uses-permission android:name="android.permission.CALL_PHONE" />
     <uses-permission android:name="android.permission.DIAL_PHONE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
-    <uses-feature android:name="android.hardware.camera2.full"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
+    <uses-feature android:name="android.hardware.camera2.full" />
 
     <application
         android:name=".SmartButlerApplication"
@@ -21,14 +21,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.main.life.child.DietMealConfirmActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
-        <activity android:name=".view.main.life.child.DietCameraActivity"
-            android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".view.main.life.TestActivity"></activity>
+        <activity
+            android:name=".view.main.life.child.DietMealConfirmActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.life.child.DietCameraActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+
         <service
             android:name=".EventDetectionService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
 
         <activity
             android:name=".view.main.life.child.PillDietApplyActivity"
@@ -138,11 +142,18 @@
                 android:resource="@xml/filepaths" />
         </provider>
 
-
-        <activity android:name=".view.main.home.child.DeviceDefaultActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.main.home.child.cctv.CCTVListActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.main.home.child.cctv.CCTVDetailActivity" android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".view.main.home.child.cctv.CCTVSetDomainActivity" android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.DeviceDefaultActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.cctv.CCTVListActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.cctv.CCTVDetailActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.cctv.CCTVSetDomainActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     android:background="@color/white"
     android:layout_width="match_parent"
@@ -36,8 +37,10 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/appbar"
-        app:layout_constraintBottom_toBottomOf="parent">
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -45,13 +48,13 @@
 
             <ImageView
                 android:id="@+id/myprofileImageView"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
                 android:layout_marginTop="30dp"
                 android:src="@drawable/btn_myprofile_change"
-                android:layout_width="70dp"
-                android:layout_height="70dp" />
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -59,13 +62,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="21dp"
-                android:layout_marginEnd="21dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginEnd="21dp"
                 android:background="@drawable/rectangle_calorie_compute"
-                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/myprofileImageView"
-                >
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myprofileImageView">
 
                 <LinearLayout
                     android:id="@+id/layout_age"
@@ -73,41 +75,39 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="9dp"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    app:layout_constraintStart_toStartOf="parent"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@+id/layout_sex"
                     app:layout_constraintHorizontal_chainStyle="spread_inside"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
+
                     <TextView
                         android:id="@+id/tv_age"
                         android:layout_width="54dp"
                         android:layout_height="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="나이"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_age"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
-                        android:lineSpacingExtra="14sp"
                         android:inputType="number"
-                        />
+                        android:lineSpacingExtra="14sp"
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_age_dummy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="세"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -115,23 +115,23 @@
                     android:id="@+id/layout_sex"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="9dp"
                     android:layout_marginTop="9dp"
-                    android:orientation="horizontal"
+                    android:layout_marginEnd="9dp"
                     android:gravity="center_vertical"
-                    app:layout_constraintStart_toEndOf="@+id/layout_age"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="@+id/layout_age"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/layout_age"
-                    app:layout_constraintBottom_toBottomOf="@+id/layout_age">
+                    app:layout_constraintStart_toEndOf="@+id/layout_age"
+                    app:layout_constraintTop_toTopOf="@+id/layout_age">
+
                     <TextView
                         android:id="@+id/tv_sex"
                         android:layout_width="54dp"
                         android:layout_height="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="성별"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <Spinner
                         android:id="@+id/spinnerSex"
@@ -160,19 +160,19 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="9dp"
                     android:layout_marginTop="9dp"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/line5">
+
                     <TextView
                         android:id="@+id/tv_weight"
                         android:layout_width="54dp"
                         android:layout_height="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="체중"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_weight"
@@ -187,11 +187,10 @@
                         android:id="@+id/tv_weight_dummy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="kg"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -199,40 +198,38 @@
                     android:id="@+id/layout_goal_weight"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
-                    app:layout_constraintStart_toStartOf="@id/layout_sex"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="@+id/layout_weight"
+                    app:layout_constraintStart_toStartOf="@id/layout_sex"
                     app:layout_constraintTop_toTopOf="@id/layout_weight">
+
                     <TextView
                         android:id="@+id/tv_goal_weight"
                         android:layout_width="54dp"
                         android:layout_height="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="목표체중"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <EditText
                         android:id="@+id/et_goal_weight"
                         android:layout_width="48dp"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
-                        android:lineSpacingExtra="14sp"
                         android:inputType="number"
-                        />
+                        android:lineSpacingExtra="14sp"
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <TextView
                         android:id="@+id/tv_goal_weight_dummy"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="kg"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                 </LinearLayout>
 
@@ -251,23 +248,23 @@
                     android:id="@+id/layout_activity"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="9dp"
                     android:layout_marginTop="9dp"
+                    android:layout_marginEnd="9dp"
                     android:layout_marginBottom="9dp"
-                    android:orientation="horizontal"
                     android:gravity="center_vertical"
+                    android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/layout_sex"
                     app:layout_constraintTop_toBottomOf="@id/line6">
+
                     <TextView
                         android:id="@+id/tv_activity"
                         android:layout_width="54dp"
                         android:layout_height="20dp"
-                        android:textSize="14sp"
-                        android:textColor="#6d7278"
                         android:lineSpacingExtra="14sp"
                         android:text="활동성"
-                        />
+                        android:textColor="#6d7278"
+                        android:textSize="14sp" />
 
                     <Spinner
                         android:id="@+id/spinnerActivity"
@@ -281,131 +278,174 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
-                android:id="@+id/ageEditText"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_calorie_compute"
-                android:layout_marginRight="@dimen/my_page_horizontal_margin"
-                android:textAlignment="viewEnd"
-                android:text="asdasd"
-                android:layout_marginTop="30dp"
-                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
-                android:background="@color/transparent"
-                android:textColor="@color/AppThemeColor"
+                android:id="@+id/phoneEditText"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:text="010-0000-0000"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                android:inputType="phone"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_calorie_compute" />
+
             <EditText
                 android:id="@+id/emailEditText"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ageEditText"
-                android:layout_marginRight="@dimen/my_page_horizontal_margin"
-                android:textAlignment="viewEnd"
-                android:text="asdasd"
-                android:layout_marginTop="30dp"
-                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
-                android:background="@color/transparent"
-                android:textColor="@color/AppThemeColor"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:text="asdasd@test.com"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                android:inputType="textEmailAddress"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/phoneEditText" />
+
             <EditText
                 android:id="@+id/addressEditText"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailEditText"
-                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:textAlignment="viewEnd"
-                android:text="asdasd"
-                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
                 android:background="@color/transparent"
+                android:text="asdasd"
+                android:textAlignment="viewEnd"
                 android:textColor="@color/AppThemeColor"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emailEditText" />
+
+            <EditText
+                android:id="@+id/cctvIP"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:text="111.111.111.111"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                android:inputType="number"
+                android:digits="123456789."
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/addressEditText" />
+
+            <EditText
+                android:id="@+id/openhabIP"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:text="111.111.111.111"
+                android:inputType="number"
+                android:digits="123456789."
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/cctvIP" />
 
             <TextView
-                app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
-                app:layout_constraintTop_toTopOf="@id/ageEditText"
-                app:layout_constraintBottom_toBottomOf="@id/ageEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#6d7278"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
                 android:text="전화"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                />
-            <TextView
+                app:layout_constraintBottom_toBottomOf="@id/phoneEditText"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
-                app:layout_constraintTop_toTopOf="@id/emailEditText"
-                app:layout_constraintBottom_toBottomOf="@id/emailEditText"
+                app:layout_constraintTop_toTopOf="@id/phoneEditText" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#6d7278"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
                 android:text="메일"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                />
-            <TextView
+                app:layout_constraintBottom_toBottomOf="@id/emailEditText"
                 app:layout_constraintLeft_toLeftOf="parent"
-                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
-                app:layout_constraintTop_toTopOf="@id/addressEditText"
-                app:layout_constraintBottom_toBottomOf="@id/addressEditText"
+                app:layout_constraintTop_toTopOf="@id/emailEditText" />
+
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14sp"
-                android:textColor="#6d7278"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
                 android:text="주소"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
                 android:textStyle="bold"
-                />
+                app:layout_constraintBottom_toBottomOf="@id/addressEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/addressEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="IP 설정"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/cctvIP"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/cctvIP" />
 
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
                 android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/ageEditText"
-                android:background="@color/divider"
-                android:layout_marginTop="9.5dp"
-                />
+                app:layout_constraintTop_toBottomOf="@id/phoneEditText" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
                 android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailEditText"
-                android:background="@color/divider"
-                android:layout_marginTop="9.5dp"
-                />
+                app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
                 android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
                 android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addressEditText"
-                android:background="@color/divider"
-                android:layout_marginTop="9.5dp"
-                />
+                app:layout_constraintTop_toBottomOf="@id/addressEditText" />
 
             <Button
                 android:id="@+id/myProfileModify"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/btn_modified_n"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/addressEditText"
-                android:layout_marginTop="80dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/btn_modified_n"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
-
+                app:layout_constraintTop_toBottomOf="@id/openhabIP" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

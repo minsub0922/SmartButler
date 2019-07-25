@@ -60,37 +60,14 @@ class DietManagementActivity(
         iv_diet_etc.setOnClickListener(this)
 
 
-        val adapterSex = ArrayAdapter.createFromResource(this, R.array.sex, R.layout.my_profile_spinner_item)
-        spinner_sex.adapter = adapterSex
-        spinner_sex.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                sex = spinner_sex.getItemAtPosition(p2).toString()
-            }
-        }
-
-        val adapterActivity = ArrayAdapter.createFromResource(this, R.array.activity, R.layout.my_profile_spinner_item)
-        spinner_activity.adapter = adapterActivity
-        spinner_activity.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(p0: AdapterView<*>?) {
-            }
-
-            override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                activity = spinner_activity.getItemAtPosition(p2).toString()
-            }
-        }
-
-
         realm.executeTransactionAsync (
                 { bgRealm: Realm ->
                     personalInformation = bgRealm.where<PersonalInformation>().findFirst()!!
                     et_age.setText(personalInformation.age.toString())
                     et_weight.setText(personalInformation.weight.toString())
                     et_goal_weight.setText(personalInformation.goalWeight.toString())
-                    spinner_sex.setSelection(getSexPosition(personalInformation.sex))
-                    spinner_activity.setSelection(getActivityPosition(personalInformation.activity))
+                    spinner_sex.setText(personalInformation.sex.toString())
+                    spinner_activity.setText(personalInformation.activity.toString())
                     requiredCalorieSeekBar.text = personalInformation.requiredCalorie.toString()
                     requiredCalorie.text = personalInformation.requiredCalorie.toString() + " kcal"
                     requiredCal = personalInformation.requiredCalorie.toString().toFloat()

@@ -9,6 +9,9 @@ import android.widget.Toast
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.PersonalInformation
+import com.kau.smartbutler.model.Profile
+import com.kau.smartbutler.util.network.API_BASE_URL
+import com.kau.smartbutler.util.network.CCTV_BASE_URL
 import com.kau.smartbutler.util.network.getListNetworkInstance
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -64,6 +67,18 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                 activity = spinnerActivity.getItemAtPosition(p2).toString()
             }
         }
+        realm.beginTransaction()
+        val initialProfile = realm.where<Profile>().findFirst()
+        realm.commitTransaction()
+        if (initialProfile != null) {
+            phoneEditText.setText(initialProfile.phone)
+            emailEditText.setText(initialProfile.email)
+            addressEditText.setText(initialProfile.address)
+            cctvIP.setText(initialProfile.cctvIP)
+            openhabIP.setText(initialProfile.openhapIP)
+        }
+
+
     }
 
     override fun onClick(v: View?) {
@@ -92,13 +107,22 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                         },{
                             Toast.makeText(this, "저장 실패", Toast.LENGTH_SHORT).show()
                         })
-                /*getListNetworkInstance()
-                        .getDailyCalorieRequirements(70, 29, "male", "good")
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe {
-                            Log.d("tag result ", it.toString())
-                        }*/
+
+                val phone = if(phoneEditText.text.toString() == "") "010-0000-0000" else phoneEditText.text.toString()
+                val email = if(emailEditText.text.toString() == "") "example@example.com" else emailEditText.text.toString()
+                val address = if(addressEditText.text.toString() == "") "서울시 서대문구" else addressEditText.text.toString()
+                val cctvIP = if(cctvIP.text.toString() == "") "172.16.16.87" else cctvIP.text.toString()
+                val openhabIP = if(openhabIP.text.toString() == "" ) "112.168.29.116" else openhabIP.text.toString()
+
+                realm.beginTransaction()
+                val profile = Profile("홍길동", phone, email, address, cctvIP, openhabIP)
+                realm.copyToRealm(profile)
+                realm.commitTransaction()
+
+                CCTV_BASE_URL = "http://$cctvIP:10005"
+                API_BASE_URL = "http://$openhabIP:8080"
+
+
             }
         }
     }

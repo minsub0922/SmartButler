@@ -11,8 +11,8 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import java.util.concurrent.TimeUnit
 
 
-val API_BASE_URL = "http://112.169.29.116:8080"
-val CCTV_BASE_URL = "http://172.16.16.87:10005"
+var API_BASE_URL = "http://112.169.29.116:8080"
+var CCTV_BASE_URL = "http://172.16.16.87:10005"
 
 lateinit var client: OkHttpClient
 
