@@ -14,6 +14,10 @@ import android.widget.Toast
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.CCTV
+import com.kau.smartbutler.model.PostDetectionAreaRequest
+import com.kau.smartbutler.util.network.getCCTVNetworkInstance
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import io.realm.Realm
 import io.realm.kotlin.createObject
 import io.realm.kotlin.where
@@ -163,6 +167,8 @@ class CCTVSetDomainActivity(
                     Companion.vy.clear()
                     Companion.relative_vx.clear()
                     Companion.relative_vy.clear()
+
+                    realm.close()
                     finish()
                 }
                 //확인 버튼.
@@ -255,6 +261,8 @@ class CCTVSetDomainActivity(
                     Companion.relative_vx.clear()
                     Companion.relative_vy.clear()
 
+                    postArea()
+
                     //액티비티 종료
                     realm.close()
                     finish()
@@ -296,6 +304,20 @@ class CCTVSetDomainActivity(
             }
         })
 
+    }
+
+    fun postArea() {
+        //네트워크 Examples
+        getCCTVNetworkInstance()
+                .postDetectionArea(PostDetectionAreaRequest(sObject.getString("Intrusion"), sObject.getString("Loitering"), sObject.getString("Abandon"), sObject.getString("Falldown")))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe ({
+                    Log.d("tagg result ", it.toString())
+                },
+                        {
+                            error->
+                        })
     }
 
     //좌표들을 coordanates에 저장하는 함수
