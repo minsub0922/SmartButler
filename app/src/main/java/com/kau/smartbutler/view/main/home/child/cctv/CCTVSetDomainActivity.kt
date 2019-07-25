@@ -30,14 +30,14 @@ class CCTVSetDomainActivity(
         override val isUseDatabinding: Boolean = false)
     : BaseActivity() {
     var mPaint = Paint()
-
+    internal var ctx: Context = this
     // 현재 좌표
     internal var x = -1f
     internal var y = -1f
     // 현재로부터 -1번째 좌표
     private var start_x = -1f
     private var start_y = -1f
-    internal var ctx: Context = this
+
     // 좌표 저장 배열
     internal var vy = ArrayList<Float>()
     internal var vx = ArrayList<Float>()
@@ -169,17 +169,15 @@ class CCTVSetDomainActivity(
                     finish()
                 }
                 //확인 버튼.
-
                 confirmButton.setOnClickListener {
                     if (input_flag == 1) {
                         val alert = AlertDialog.Builder(ctx)
                         alert.setMessage("처음과 끝점을 이어주세요.")
                                 .setTitle(R.string.app_name)
                                 .setPositiveButton("OK", null)
+                                .setIcon(R.drawable.btn_tab_butler_selected)
                         alert.create().show()
-                    }
-
-                    else if (input_flag == 0) {
+                    } else if (input_flag == 0) {
                         convert_pointlist()     //모든 좌표를 저장하여 coordinate에 담아주는 함수.
                         realm.beginTransaction()    // 온전한 데이터 저장을 위한 트랙잭션 On
                         // 현재 장소의 데이터를 가져옴
@@ -213,9 +211,8 @@ class CCTVSetDomainActivity(
 
                             //realm에 장소 등록
                             newObject.Location = infoCCTV?.name
-
-
                         }
+
                         //해당 장소가 realm에 있을 경우 해당 장소에 대한 좌표 업데이트, Json 메시지 생성.
                         else if (infoCCTV?.name == updateItem.Location.toString()) {
                             updateItem.Location = infoCCTV.name
@@ -270,6 +267,7 @@ class CCTVSetDomainActivity(
                         finish()
                     }
                 }
+
                 mPaint.setColor(Color.BLUE)
                 mPaint.setStrokeWidth(10F)
                 mPaint.setStyle(Paint.Style.STROKE)

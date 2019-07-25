@@ -25,7 +25,6 @@ class CCTVListActivity(override val isUseDatabinding: Boolean = false) : BaseAct
     private fun setDeviceList(){
 
         modelList.add(CCTV(1,"현관"))
-        modelList.add(CCTV(2,"침실"))
         adapter.notifyDataSetChanged()
 
     }
