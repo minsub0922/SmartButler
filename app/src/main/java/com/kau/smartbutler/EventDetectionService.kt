@@ -1,6 +1,8 @@
 package com.kau.smartbutler
 
+import android.app.ActivityManager
 import android.app.Service
+import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.IBinder
@@ -33,7 +35,7 @@ class EventDetectionService : Service() {
 
         override fun run() {
             while (true) {
-                if (isStop) {
+                if (isStop or ! isAppOnForeground(applicationContext)) {
                     break
                 }
 
@@ -86,10 +88,10 @@ class EventDetectionService : Service() {
                             startActivity(i)
                         }
                     },
-                    {
-                        error ->
-                        Log.d("Error",error.toString())
-                    })
+                            {
+                                error ->
+                                Log.d("Error",error.toString())
+                            })
         }
     }
 
@@ -104,5 +106,17 @@ class EventDetectionService : Service() {
         super.onTaskRemoved(rootIntent)
         Log.d("Service", "Exit")
         this.stopSelf()
+    }
+
+    fun isAppOnForeground(context: Context): Boolean {
+        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val appProcessInfoList = activityManager.runningAppProcesses ?: return false
+        val packageName = context.packageName
+        for (appProcessInfo in appProcessInfoList) {
+            if (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcessInfo.processName == packageName) {
+                return true
+            }
+        }
+        return false
     }
 }
