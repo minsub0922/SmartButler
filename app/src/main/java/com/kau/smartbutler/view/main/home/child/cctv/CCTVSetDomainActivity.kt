@@ -53,6 +53,7 @@ class CCTVSetDomainActivity(
     internal var relative_coordinates = java.util.ArrayList<java.util.ArrayList<*>>()      // 모든 상대좌표 저장(소숫점 2자리까지)
     var relative_coordinates_full = java.util.ArrayList<java.util.ArrayList<*>>()       //모든 상대좌표 저장(화면 최대치로)
     internal var jsonstate = arrayOf(false, false, false, false)
+    lateinit var i : Intent
 
     companion object {
         var vx = java.util.ArrayList<Float>()
@@ -146,12 +147,14 @@ class CCTVSetDomainActivity(
         Realm.init(this)
         realm = Realm.getDefaultInstance()  //realm 데이터 받기.
 
+        i = Intent(this, CCTVDetailActivity::class.java)
         var iv = findViewById<View>(R.id.bg_view) as ImageView  //xml의 배경이미지 화면을 iv로 받아옴.
         val vto = iv.getViewTreeObserver()
 
         //뷰가 만들어지고 실행하도록 변경
         vto.addOnGlobalLayoutListener(object : ViewTreeObserver.OnGlobalLayoutListener {
             override fun onGlobalLayout() {
+
                 val arr = intent.getByteArrayExtra("image")
                 val bm = BitmapFactory.decodeByteArray(arr, 0, arr.size)
                 val infoCCTV = intent.getParcelableExtra<CCTV>("cctv") // CCTVDetailActivity 에서 보낸 객체 받아옴 (CCTV 장소)
@@ -170,6 +173,8 @@ class CCTVSetDomainActivity(
 
                     realm.close()
                     finish()
+                    startActivity(i)
+
                 }
                 //확인 버튼.
                 confirmButton.setOnClickListener {
@@ -266,6 +271,8 @@ class CCTVSetDomainActivity(
                     //액티비티 종료
                     realm.close()
                     finish()
+                    startActivity(i)
+
                 }
 
                 mPaint.setColor(Color.BLUE)
@@ -304,6 +311,13 @@ class CCTVSetDomainActivity(
             }
         })
 
+    }
+
+    override fun onBackPressed(){
+        realm.close()
+        finish()
+        startActivity(i)
+        super.onBackPressed()
     }
 
     fun postArea() {
@@ -372,5 +386,4 @@ class CCTVSetDomainActivity(
     }
 
 }
-
 
