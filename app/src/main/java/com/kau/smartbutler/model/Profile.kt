@@ -8,5 +8,8 @@ open class Profile (
         var email: String = "test@naver.com",
         var address: String = "서울시 서대문구",
         var cctvIP: String = "112.169.29.116", // 1: 하, 2: 중, 3: 상
-        var openhapIP: String = "112.169.29.116"
+        var openhapIP: String = "112.169.29.116",
+        var serverIP: String = "000.000.00.000",
+        var serverPort: String = "10001"
+
 ) : RealmObject()
