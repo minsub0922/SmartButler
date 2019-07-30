@@ -322,7 +322,7 @@
                 app:layout_constraintTop_toBottomOf="@id/emailEditText" />
 
             <EditText
-                android:id="@+id/cctvIP"
+                android:id="@+id/openhabIP"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -338,7 +338,7 @@
                 app:layout_constraintTop_toBottomOf="@id/addressEditText" />
 
             <EditText
-                android:id="@+id/openhabIP"
+                android:id="@+id/cctvIP"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -351,7 +351,7 @@
                 android:textColor="@color/AppThemeColor"
                 app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/cctvIP" />
+                app:layout_constraintTop_toBottomOf="@id/openhabIP" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -397,9 +397,9 @@
                 android:textColor="#6d7278"
                 android:textSize="14sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="@id/cctvIP"
+                app:layout_constraintBottom_toBottomOf="@id/openhabIP"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toTopOf="@id/cctvIP" />
+                app:layout_constraintTop_toTopOf="@id/openhabIP" />
 
 
             <View
@@ -445,7 +445,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/openhabIP" />
+                app:layout_constraintTop_toBottomOf="@id/cctvIP" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

@@ -2,6 +2,9 @@ package com.kau.smartbutler.util.network
 
 
 import com.google.gson.GsonBuilder
+import com.kau.smartbutler.model.Profile
+import io.realm.Realm
+import io.realm.kotlin.where
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -20,12 +23,20 @@ lateinit var retrofit: Retrofit
 lateinit var retrofitForJson: Retrofit
 lateinit var retrofitForCCTV: Retrofit
 
-val networkInterface: NetworkRouters by lazy {  retrofit.create(NetworkRouters::class.java) }
-val networkInterfaceForJsonTypes: NetworkRouters by lazy {  retrofitForJson.create(NetworkRouters::class.java) }
-val cctvNetworkInterface: NetworkRouters by lazy {  retrofitForCCTV.create(NetworkRouters::class.java) }
+lateinit var networkInterface: NetworkRouters
+lateinit var networkInterfaceForJsonTypes: NetworkRouters
+lateinit var cctvNetworkInterface: NetworkRouters
 
 fun networkInit() {
     var logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+    val realm = Realm.getDefaultInstance()
+    realm.beginTransaction()
+    val initialProfile = realm.where<Profile>().findFirst()
+    realm.commitTransaction()
+    if (initialProfile != null) {
+        API_BASE_URL = "http://${initialProfile.openhapIP}:8080"
+        CCTV_BASE_URL = "http://${initialProfile.cctvIP}:10005"
+    }
 
     client = OkHttpClient.Builder()
             .addInterceptor(logging)
@@ -54,6 +65,10 @@ fun networkInit() {
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
             .build()
+
+    networkInterface = retrofit.create(NetworkRouters::class.java)
+    networkInterfaceForJsonTypes = retrofitForJson.create(NetworkRouters::class.java)
+    cctvNetworkInterface = retrofitForCCTV.create(NetworkRouters::class.java)
 }
 
 fun getNetworkInstance() = networkInterface

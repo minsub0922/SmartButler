@@ -6,19 +6,23 @@ import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.Toast
+import com.google.gson.GsonBuilder
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.PersonalInformation
 import com.kau.smartbutler.model.Profile
-import com.kau.smartbutler.util.network.API_BASE_URL
-import com.kau.smartbutler.util.network.CCTV_BASE_URL
-import com.kau.smartbutler.util.network.getListNetworkInstance
+import com.kau.smartbutler.util.network.*
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.realm.Realm
 import io.realm.kotlin.createObject
+import io.realm.kotlin.delete
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_my_profile_modify.*
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_profile_modify, override val isUseDatabinding: Boolean = false) : BaseActivity(), View.OnClickListener {
     override var isChildActivity: Boolean = true
@@ -115,12 +119,38 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                 val openhabIP = if(openhabIP.text.toString() == "" ) "112.168.29.116" else openhabIP.text.toString()
 
                 realm.beginTransaction()
+                val initialProfile = realm.where<Profile>().findAll()
+                if (initialProfile != null)
+                    initialProfile.deleteAllFromRealm()
                 val profile = Profile("홍길동", phone, email, address, cctvIP, openhabIP)
                 realm.copyToRealm(profile)
                 realm.commitTransaction()
 
                 CCTV_BASE_URL = "http://$cctvIP:10005"
+                retrofitForCCTV = Retrofit.Builder()
+                        .baseUrl(CCTV_BASE_URL)
+                        .client(client)
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+                        .build()
                 API_BASE_URL = "http://$openhabIP:8080"
+                retrofitForJson = Retrofit.Builder()
+                        .baseUrl(API_BASE_URL)
+                        .client(client)
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+                        .build()
+                retrofit = Retrofit.Builder()
+                        .baseUrl(API_BASE_URL)
+                        .client(client)
+                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                        //.addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
+                        .addConverterFactory(ScalarsConverterFactory.create())  //for string body
+                        .build()
+
+                networkInterface = retrofit.create(NetworkRouters::class.java)
+                networkInterfaceForJsonTypes = retrofitForJson.create(NetworkRouters::class.java)
+                cctvNetworkInterface = retrofitForCCTV.create(NetworkRouters::class.java)
 
 
             }
