@@ -21,9 +21,11 @@ open class SmartButlerApplication: Application(){
         Thread(Runnable {
             run {
                 // TODO Auto-generated method stub
+                Realm.init(this)
+                Realm.deleteRealm(Realm.getDefaultConfiguration())
                 networkInit()
                 listNetworkInit()
-                Realm.init(this)
+
             }
         }).start()
     }

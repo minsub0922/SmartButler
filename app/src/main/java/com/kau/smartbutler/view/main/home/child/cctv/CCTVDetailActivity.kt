@@ -12,10 +12,15 @@ import com.google.gson.JsonObject
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.CCTV
+import com.kau.smartbutler.model.Profile
 import io.realm.Realm
 import io.realm.CCTVRealmStructRealmProxy
+import io.realm.ProfileRealmProxy
 import kotlinx.android.synthetic.main.activity_cctv_detail.*
+import kotlinx.android.synthetic.main.activity_my_profile_modify.*
+//import kotlinx.android.synthetic.main.activity_my_profile_modify.*
 import java.io.ByteArrayOutputStream
+import java.net.ConnectException
 
 import java.net.ProtocolException
 import java.net.URL
@@ -39,12 +44,15 @@ class CCTVDetailActivity(
     var canvas = Canvas()
     var mPaint = Paint()
 
+    lateinit var cctv_ip : String
+    lateinit var cctv_url : String
+
     override var isChildActivity: Boolean = true
     lateinit var res : JsonObject
     override fun setupView() {
         super.setupView()
         Realm.init(this)
-        Realm.deleteRealm(Realm.getDefaultConfiguration())
+
         val infoCCTV : CCTV
 
         if (intent.hasExtra("cctv")){
@@ -61,12 +69,19 @@ class CCTVDetailActivity(
 
         realm = Realm.getDefaultInstance()
         var viewItem =realm.where<CCTVRealmStruct>(CCTVRealmStruct::class.java).equalTo("Location",infoCCTV.name)?.findFirst()
+        var profileItem = realm.where<Profile>(Profile::class.java).findFirst()
+        if (profileItem != null){
+            cctv_ip = (profileItem as ProfileRealmProxy).`realmGet$cctvIP`().toString()
+            cctv_url = "http://$cctv_ip:25001/cgi-bin/viewer/video.jpg?resolution=640x480"
+        }else{
+            Toast.makeText(applicationContext,"CCTV 주소를 올바르게 입력해주세요",Toast.LENGTH_LONG).show()
+        }
 
         var is_area = false
         if (viewItem != null){
             is_area = getArea(viewItem)
         }
-        Toast.makeText(this,viewItem.toString(), Toast.LENGTH_LONG).show()
+//        Toast.makeText(this,viewItem.toString(), Toast.LENGTH_LONG).show()
         realm.close()
         video_view.setLayerType(video_view.layerType, null)
 
@@ -79,7 +94,7 @@ class CCTVDetailActivity(
                 mPaint.setAntiAlias(true)
                 mPaint.setDither(true)
 
-                val url = URL("http://112.169.29.116:25001/cgi-bin/viewer/video.jpg?resolution=640x480")
+                val url = URL(cctv_url)
 
                 Thread(Runnable {
                     run {
@@ -112,7 +127,7 @@ class CCTVDetailActivity(
                                 }
 //                                bm.recycle()
 //                                iv.invalidate()
-                            }catch (e: ProtocolException)
+                            }catch (e: Exception)
                             {
                                 Log.d("Error: ", e.toString())
                             }
