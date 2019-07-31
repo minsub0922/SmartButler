@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 
 
 var API_BASE_URL = "http://112.169.29.116:8080"
-var CCTV_BASE_URL = "http://172.16.16.87:10005"
+var CCTV_ANALYSIS_URL = "http://172.16.16.87:10005"
 
 lateinit var client: OkHttpClient
 
@@ -29,13 +29,14 @@ lateinit var cctvNetworkInterface: NetworkRouters
 
 fun networkInit() {
     var logging = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+
     val realm = Realm.getDefaultInstance()
     realm.beginTransaction()
-    val initialProfile = realm.where<Profile>().findFirst()
+    val initialProfile = realm.where<Profile>(Profile::class.java).findFirst()
     realm.commitTransaction()
     if (initialProfile != null) {
         API_BASE_URL = "http://${initialProfile.openhapIP}:8080"
-        CCTV_BASE_URL = "http://${initialProfile.cctvIP}:10005"
+        CCTV_ANALYSIS_URL = "http://${initialProfile.serverIP}:${initialProfile.serverPort}"
     }
 
     client = OkHttpClient.Builder()
@@ -60,7 +61,7 @@ fun networkInit() {
             .build()
 
     retrofitForCCTV = Retrofit.Builder()
-            .baseUrl(CCTV_BASE_URL)
+            .baseUrl(CCTV_ANALYSIS_URL)
             .client(client)
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))

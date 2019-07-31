@@ -3,6 +3,7 @@ package com.kau.smartbutler.util.network
 import android.telecom.Call
 import com.google.gson.JsonArray
 import com.google.gson.JsonObject
+import com.kau.smartbutler.model.PostCctvIpRequest
 import com.kau.smartbutler.model.PostDetectionAreaRequest
 import io.reactivex.Observable
 import io.reactivex.Single
@@ -28,6 +29,11 @@ interface NetworkRouters {
 
     @GET("/event")
     fun getDetectedEvent(): Single<JsonObject>
+
+    @POST("/cctv")
+    fun postCctvIp(
+            @Body cctv_ip: PostCctvIpRequest
+    ): Single<JsonObject>
 
     @POST("/area")
     fun postDetectionArea(

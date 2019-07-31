@@ -10,6 +10,7 @@ import com.google.gson.GsonBuilder
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.PersonalInformation
+import com.kau.smartbutler.model.PostCctvIpRequest
 import com.kau.smartbutler.model.Profile
 import com.kau.smartbutler.util.network.*
 import io.reactivex.schedulers.Schedulers
@@ -80,12 +81,17 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
             addressEditText.setText(initialProfile.address)
             cctvIP.setText(initialProfile.cctvIP)
             openhabIP.setText(initialProfile.openhapIP)
+            serverIP.setText(initialProfile.serverIP)
+            serverPort.setText(initialProfile.serverPort)
         }
 
 
     }
 
     override fun onClick(v: View?) {
+        var server_ip = ""
+        var server_port = ""
+        var cctv_ip = ""
         when(v!!.id){
             R.id.myProfileModify -> {
                 age = if(et_age.text.toString() == "") 30 else et_age.text.toString().toInt()
@@ -116,8 +122,12 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                 val email = if(emailEditText.text.toString() == "") "example@example.com" else emailEditText.text.toString()
                 val address = if(addressEditText.text.toString() == "") "서울시 서대문구" else addressEditText.text.toString()
                 val cctvIP = if(cctvIP.text.toString() == "") "172.16.16.87" else cctvIP.text.toString()
-                val openhabIP = if(openhabIP.text.toString() == "" ) "112.168.29.116" else openhabIP.text.toString()
-
+                val openhabIP = if(openhabIP.text.toString() == "" ) "0.0.0.0" else openhabIP.text.toString()
+                val serverIP = if(serverIP.text.toString() == "") "0.0.0.0" else serverIP.text.toString()
+                val serverPort = if(serverPort.text.toString() == "") "10001" else serverPort.text.toString()
+                server_ip = serverIP
+                server_port = serverPort
+                cctv_ip = cctvIP
                 realm.beginTransaction()
                 val initialProfile = realm.where<Profile>().findAll()
                 if (initialProfile != null)
@@ -126,13 +136,6 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                 realm.copyToRealm(profile)
                 realm.commitTransaction()
 
-                CCTV_BASE_URL = "http://$cctvIP:10005"
-                retrofitForCCTV = Retrofit.Builder()
-                        .baseUrl(CCTV_BASE_URL)
-                        .client(client)
-                        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                        .addConverterFactory(GsonConverterFactory.create(GsonBuilder().setLenient().create()))
-                        .build()
                 API_BASE_URL = "http://$openhabIP:8080"
                 retrofitForJson = Retrofit.Builder()
                         .baseUrl(API_BASE_URL)
@@ -150,12 +153,30 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
 
                 networkInterface = retrofit.create(NetworkRouters::class.java)
                 networkInterfaceForJsonTypes = retrofitForJson.create(NetworkRouters::class.java)
-                cctvNetworkInterface = retrofitForCCTV.create(NetworkRouters::class.java)
-
 
             }
         }
+        postCctvIp(server_ip, server_port, cctv_ip)
     }
+
+    fun postCctvIp(serverIP: String, serverPORT: String, cctvIP: String) {
+
+        CCTV_ANALYSIS_URL = "http://$serverIP:$serverPORT"
+        networkInit()
+
+        getCCTVNetworkInstance()
+                .postCctvIp(PostCctvIpRequest(cctvIP))
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe ({
+                    Log.d("CCTV_IP Setting Result:", it.toString())
+                },
+                        {
+                            error->
+                        })
+
+    }
+
     fun getSexPosition(sex: String): Int {
         when(sex) {
             "남" -> { return 0}
