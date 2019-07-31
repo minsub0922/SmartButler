@@ -33,11 +33,11 @@ abstract class BaseActivity : AppCompatActivity() {
 
             toolbar = findViewById(R.id.toolbar)
             setSupportActionBar(toolbar)
-            getSupportActionBar()?.setDisplayShowTitleEnabled(false);
+            supportActionBar?.setDisplayShowTitleEnabled(false);
 
             if (isChildActivity) {
                 supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.transparent)))
-                supportActionBar?.setDisplayHomeAsUpEnabled(true);
+                supportActionBar?.setDisplayHomeAsUpEnabled(true)
                 supportActionBar?.setDisplayShowHomeEnabled(true)
                 toolbar!!.setNavigationOnClickListener { v -> onBackPressed() }
             }

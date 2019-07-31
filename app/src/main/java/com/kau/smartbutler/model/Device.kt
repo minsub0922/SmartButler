@@ -10,16 +10,19 @@ data class Device(
         var path: String = "",
         var stateInHome:Boolean = false,
         var stateOutOfHome: Boolean = false,
-        var stringType: String = ""
-
+        var stringType: String = "",
+        var homeState: String = "",
+        var outsideState: String = ""
     //type 0: 기기 추가 / 1:서재조명 / 2:tv / 3:에어컨
-): Parcelable {
+): Parcelable{
     constructor(parcel: Parcel) : this(
             parcel.readInt(),
             parcel.readString(),
             parcel.readString(),
             parcel.readByte() != 0.toByte(),
             parcel.readByte() != 0.toByte(),
+            parcel.readString(),
+            parcel.readString(),
             parcel.readString()) {
     }
 
@@ -30,6 +33,8 @@ data class Device(
         parcel.writeByte(if (stateInHome) 1 else 0)
         parcel.writeByte(if (stateOutOfHome) 1 else 0)
         parcel.writeString(stringType)
+        parcel.writeString(homeState)
+        parcel.writeString(outsideState)
     }
 
     override fun describeContents(): Int {
@@ -45,4 +50,5 @@ data class Device(
             return arrayOfNulls(size)
         }
     }
+
 }

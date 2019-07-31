@@ -21,8 +21,10 @@ interface NetworkRouters {
             @Body order: String
     ): Observable<String>
 
-    @GET("/rest/items")
-    fun getDeviceInfos(): Observable<String>
+    @GET("/rest/items/{deviceId}")
+    fun getDeviceInfos(
+            @Path("deviceId") deviceId: String
+    ): Observable<JsonObject>
 
     @GET("/rest/things")
     fun getDeviceNames(): Single<JsonArray>

@@ -22,6 +22,8 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
     override fun setupView() {
         super.setupView()
 
+
+
         lightUpButton.setOnClickListener { v  ->
 
             if (maxValue <= lightSeekbar.progress) return@setOnClickListener
