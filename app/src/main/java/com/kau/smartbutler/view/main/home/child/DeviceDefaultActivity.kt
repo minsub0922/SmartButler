@@ -50,7 +50,7 @@ class DeviceDefaultActivity(override val layoutRes: Int = R.layout.activity_devi
         when(deviceType){
 
             "1" -> pairValue = Pair("ON","OFF")
-            "6" -> pairValue = Pair("vaccum","dock")
+            "6" -> pairValue = Pair("vacuum","dock")
             "8" -> pairValue = Pair("PowerOn","PowerOff")
 
         }

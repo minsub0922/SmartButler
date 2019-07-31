@@ -132,7 +132,7 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                 val initialProfile = realm.where<Profile>().findAll()
                 if (initialProfile != null)
                     initialProfile.deleteAllFromRealm()
-                val profile = Profile("홍길동", phone, email, address, cctvIP, openhabIP)
+                val profile = Profile("홍길동", phone, email, address, cctvIP, openhabIP, serverIP, serverPort)
                 realm.copyToRealm(profile)
                 realm.commitTransaction()
 
