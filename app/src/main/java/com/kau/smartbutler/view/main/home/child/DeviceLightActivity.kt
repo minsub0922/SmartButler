@@ -1,10 +1,12 @@
 package com.kau.smartbutler.view.main.home.child
+import android.annotation.SuppressLint
 import android.util.Log
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.Device
 import com.kau.smartbutler.util.network.GetHueRequest
 import com.kau.smartbutler.util.network.getNetworkInstance
+import com.kau.smartbutler.util.network.getNetworkInstanceForJson
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_device_light.*
@@ -22,7 +24,7 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
     override fun setupView() {
         super.setupView()
 
-
+        getHueInfo()
 
         lightUpButton.setOnClickListener { v  ->
 
@@ -54,4 +56,14 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
         }
     }
 
+    @SuppressLint("CheckResult")
+    private fun getHueInfo(){
+        getNetworkInstanceForJson().getDeviceInfos(device.path)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it.get("state").toString().replace("\"","").replace("338,100,","").toInt()}
+                .subscribe {
+                    lightSeekbar.progress = it
+                }
+    }
 }
