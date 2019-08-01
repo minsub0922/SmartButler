@@ -74,7 +74,9 @@ class CCTVDetailActivity(
             cctv_ip = (profileItem as ProfileRealmProxy).`realmGet$cctvIP`().toString()
             cctv_url = "http://$cctv_ip:25001/cgi-bin/viewer/video.jpg?resolution=640x480"
         }else{
-            Toast.makeText(applicationContext,"CCTV 주소를 올바르게 입력해주세요",Toast.LENGTH_LONG).show()
+            finish()
+            Toast.makeText(applicationContext,"CCTV  IP 주소를 입력해주세요",Toast.LENGTH_SHORT).show()
+            return
         }
 
         var is_area = false
