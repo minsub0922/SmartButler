@@ -94,6 +94,7 @@ class DietManagementActivity(
                         initProtein += meal.protein
                         initFat += meal.fat
                     }
+                    tv_calorie.text = Math.round(initCarbohydrate + initProtein + initFat).toString() + " kcal"
                     initDataToSeekbar(initCarbohydrate, initProtein, initFat, requiredCal)
                 },
                 {

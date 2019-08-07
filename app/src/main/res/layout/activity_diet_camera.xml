@@ -33,6 +33,12 @@
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
 
+    <androidx.core.widget.ContentLoadingProgressBar
+        android:id="@+id/progressBar_loading"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"
+        />
     <TextView
         android:id="@+id/tv_meal"
         android:layout_width="wrap_content"

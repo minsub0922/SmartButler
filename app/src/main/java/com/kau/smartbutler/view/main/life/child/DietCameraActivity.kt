@@ -193,6 +193,12 @@ class DietCameraActivity (
             // OS가 Marshmallow 이전일 경우 권한체크를 하지 않는다.
             Log.d("MyTag", "마시멜로 버전 이하로 권한 이미 있음")
         }
+        when (intent.getStringExtra("type")) {
+            "breakfast" -> tv_meal.text = "아침 식사"
+            "lunch" -> tv_meal.text = "점심 식사"
+            "dinner" -> tv_meal.text = "저녁 식사"
+            else -> tv_meal.text = "기타"
+        }
 
         captureButton.setOnClickListener(this)
         date = intent.getLongExtra("time", 0)
@@ -218,6 +224,7 @@ class DietCameraActivity (
     override fun onClick(v: View?) {
         when(v!!.id){
             R.id.captureButton -> {
+                
                 lockFocus()
                 while(state != STATE_PREVIEW) {
                     Log.d("result", "hello there")
