@@ -8,6 +8,7 @@ import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.controller.CalendarAdapter
 import com.kau.smartbutler.model.CalendarItem
 import com.kau.smartbutler.model.Diet
+import com.kau.smartbutler.model.Meal
 import io.realm.Realm
 import io.realm.kotlin.where
 import kotlinx.android.synthetic.main.activity_diet_calendar.*
@@ -88,18 +89,21 @@ class DietCalendarActivity(override val layoutRes: Int = R.layout.activity_diet_
             val max = calendar.getActualMaximum(Calendar.DAY_OF_MONTH) //해당 월에 마지막 요일
 
             realm.beginTransaction()
-            val dietListOfMonth = realm.where<Diet>()
+            val dietListOfMonth = realm.where<Meal>()
                     .equalTo("year", calendar.get(Calendar.YEAR))
                     .equalTo("month", calendar.get(Calendar.MONTH))
                     .findAll()
+            realm.commitTransaction()
 
+            Log.d("test", dietListOfMonth.toString())
             val dateList = ArrayList<Int>()
             for (i in 0 .. 31)
                 dateList.add(0)
             for (diet in dietListOfMonth) {
-                dateList[diet.date.toInt()] = 1
+                dateList[diet.day.toInt()] = 1
             }
-            realm.commitTransaction()
+            Log.d("test", dateList.toString())
+
 
             for (j in 0 until dayOfWeek) {
                 calendarList.add(CalendarItem(0,"", false))  //비어있는 일자 타입

@@ -21,7 +21,7 @@ class DeviceTVActivity(override val layoutRes: Int = R.layout.activity_device_tv
 
         powerButton.setOnClickListener{
             getNetworkInstance()
-                    .postOrder( device.path,if (tvState) "PowerOff" else "PowerOn")
+                    .postOrder( device.path,if (tvState) "PowerToggle" else "PowerToggle")
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe {

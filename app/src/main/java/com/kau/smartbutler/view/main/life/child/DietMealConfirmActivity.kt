@@ -131,4 +131,9 @@ class DietMealConfirmActivity(
             }
         }
     }
+
+    override fun onBackPressed() {
+        setResult(500, intent)
+        super.onBackPressed()
+    }
 }

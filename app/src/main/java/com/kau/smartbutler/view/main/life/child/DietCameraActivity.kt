@@ -287,6 +287,19 @@ class DietCameraActivity (
             stopBackgroundThread()
             finish()
         } else  {
+            date = intent.getLongExtra("time", 0)
+            realm.executeTransactionAsync(
+                    { bgRealm: Realm ->
+                        val currentMeal = bgRealm.where<Meal>().equalTo("date", date).findFirst()!!
+                        currentMeal.deleteFromRealm()
+                    },
+                    {
+
+                    },
+                    {
+
+                    }
+            )
             setResult(500, data!!)
             closeCamera()
             stopBackgroundThread()
