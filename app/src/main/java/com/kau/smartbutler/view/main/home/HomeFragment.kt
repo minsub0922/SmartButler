@@ -1,5 +1,6 @@
 package com.kau.smartbutler.view.main.home
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
 import android.view.View
@@ -8,6 +9,8 @@ import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseFragment
 import com.kau.smartbutler.controller.DeviceControllerAdpater
 import com.kau.smartbutler.model.Device
+import com.kau.smartbutler.model.HumidityTemperature
+import com.kau.smartbutler.util.network.getNetworkInstance
 import com.kau.smartbutler.util.network.getNetworkInstanceForJson
 import kotlinx.android.synthetic.main.fragment_home.*
 import com.kau.smartbutler.util.recylcerview.GridSpacingItemDecoration
@@ -18,28 +21,6 @@ import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.fragment_home_state.*
 
 class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpater.DeviceControllerItemClickListener{
-
-    override fun onClick(v: View?) {
-        if (v!!.id == R.id.btn_temperature){
-            startActivity(Intent(activity, TemperatureHumidityActivity::class.java))
-        }else if (v!!.id == R.id.btn_cctv){
-            startActivity(Intent(activity, CCTVListActivity::class.java))
-        }else if (v!!.id == R.id.btn_device_switch){
-            adapter.toggleSwitch = !adapter.toggleSwitch
-            adapter.notifyDataSetChanged()
-        }else if (v!!.id == R.id.btn_fall){
-            switchEventDetection()
-        }
-    }
-
-    private fun switchEventDetection() {
-        if (btn_fall.isChecked){
-            activity?.startService(Intent(activity, EventDetectionService::class.java))
-        }
-        else{
-            activity?.stopService(Intent(activity, EventDetectionService::class.java))
-        }
-    }
 
     override val layoutRes: Int = R.layout.fragment_home
     val modelList = DeviceListSingleton.getInstance().list
@@ -62,6 +43,24 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         }
     }
 
+    override fun setupView(view: View) {
+
+        getDevices()
+        getHumidityTemperature()
+
+        rv_home_control.adapter = adapter
+        rv_home_control.addItemDecoration(GridSpacingItemDecoration(3, 40, false))
+
+        refreshOFF()
+
+        btn_device_switch.setOnClickListener(this)
+        btn_temp.setOnClickListener(this)
+        btn_humidity.setOnClickListener(this)
+        btn_cctv.setOnClickListener(this)
+        btn_fall.setOnClickListener(this)
+
+    }
+
     override fun onResume() {
         super.onResume()
 
@@ -75,20 +74,26 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         updateDeviceState = true
     }
 
-    override fun setupView(view: View) {
+    override fun onClick(v: View?) {
+        if (v!!.id == R.id.btn_temp || v!!.id == R.id.btn_humidity ){
+            startActivity(Intent(activity, TemperatureHumidityActivity::class.java))
+        }else if (v!!.id == R.id.btn_cctv){
+            startActivity(Intent(activity, CCTVListActivity::class.java))
+        }else if (v!!.id == R.id.btn_device_switch){
+            adapter.toggleSwitch = !adapter.toggleSwitch
+            adapter.notifyDataSetChanged()
+        }else if (v!!.id == R.id.btn_fall){
+            switchEventDetection()
+        }
+    }
 
-        setModels()
-
-        rv_home_control.adapter = adapter
-        rv_home_control.addItemDecoration(GridSpacingItemDecoration(3, 40, false))
-
-        refreshOFF()
-
-        btn_device_switch.setOnClickListener(this)
-        btn_temperature.setOnClickListener(this)
-        btn_cctv.setOnClickListener(this)
-        btn_fall.setOnClickListener(this)
-
+    private fun switchEventDetection() {
+        if (btn_fall.isChecked){
+            activity?.startService(Intent(activity, EventDetectionService::class.java))
+        }
+        else{
+            activity?.stopService(Intent(activity, EventDetectionService::class.java))
+        }
     }
 
     override fun OnDeiveClicked(device: Device) {
@@ -106,15 +111,13 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
         startActivity(intent)
     }
 
-    private fun setModels(){
+    @SuppressLint("CheckResult")
+    private fun getDevices(){
         modelList.clear()
         getNetworkInstanceForJson().getDeviceNames()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({res ->
-
-                    Log.d("tagg res : ", res.toString())
-
                     res.forEach{
                         try {
                             val str = it.asJsonObject.get("label").toString()
@@ -123,11 +126,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                             val idx = str.indexOf("_")
 
                             if (idx > 0 || link.length < 1 ) { //is registered device
-
                                 val name = str.substring(idx+1 until str.length-1)
-
-                                Log.d("tagg path ", link.toString())
-
                                 when(val stringType = str.substring(1 until idx)){
                                     //deviceTypes
                                     "71","72","73" -> modelList.add(Device(1, name = name, path = link.toString(), stringType = stringType))
@@ -136,14 +135,30 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                                     "1","6","8" -> modelList.add(Device(4, name = name, path = link.toString(), stringType = stringType))
                                 }
                             }
-                        }catch (ex: Exception){
-                            Log.d("tagg error!", ex.toString())
-                        }
+                        }catch (ex: Exception){ Log.d("tagg error!", ex.toString()) }
                     }
-
                     adapter.notifyDataSetChanged()
-
                 },{})
+    }
 
+    @SuppressLint("CheckResult")
+    private fun getHumidityTemperature(){
+        getNetworkInstanceForJson().getDeviceInfos("mihome_sensor_ht_158d0001712b72_temperature")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it.get("state").toString().replace("\"","") }
+                .subscribe {temp ->
+                    txt_temp.text = temp
+                    HumidityTemperature.temperature = temp
+                }
+
+        getNetworkInstanceForJson().getDeviceInfos("mihome_sensor_ht_158d0001712b72_humidity")
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map { it.get("state").toString().replace("\"","") }
+                .subscribe {humidity ->
+                    txt_humidity.text = humidity
+                    HumidityTemperature.humidity = humidity
+                }
     }
 }

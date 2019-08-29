@@ -5,6 +5,7 @@ import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import android.view.View
 import com.kau.smartbutler.controller.SpinnerItemAdapter
+import com.kau.smartbutler.model.HumidityTemperature
 import kotlinx.android.synthetic.main.activity_temerature_humidity.*
 
 
@@ -18,8 +19,12 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
     var temp = 23
     val adapter: SpinnerItemAdapter by lazy { SpinnerItemAdapter(this, strings,0, this) }
 
+
+
     override fun setupView() {
         super.setupView()
+
+        setTempHumi()
 
         setSpinner()
 
@@ -32,6 +37,11 @@ class TemperatureHumidityActivity : BaseActivity(), SpinnerItemAdapter.ItemClick
         tempMinusButton.setOnClickListener{ txt_temp.text = (--temp).toString() }
         tempPlusButton.setOnClickListener{ txt_temp.text = (++temp).toString() }
 
+    }
+
+    private fun setTempHumi(){
+        txt_temp.text = HumidityTemperature.temperature
+        txt_humidity.text = HumidityTemperature.humidity
     }
 
     private fun setSpinner(){

@@ -60,36 +60,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="end"
-                android:lineSpacingExtra="-17sp"
-                android:text="23"
                 android:textColor="#de000000"
-                android:textSize="45sp"
+                android:textSize="35dp"
                 app:layout_constraintBottom_toBottomOf="@id/img_temp"
-                app:layout_constraintHorizontal_bias="0.44"
                 app:layout_constraintLeft_toLeftOf="@id/img_temp"
                 app:layout_constraintRight_toRightOf="@id/img_temp"
                 app:layout_constraintTop_toTopOf="@id/img_temp"
                 app:layout_constraintVertical_bias="0.43" />
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="25sp"
-                android:textColor="#de000000"
-                android:layout_marginTop="7dp"
-                android:lineSpacingExtra="3sp"
-                android:gravity="center_horizontal"
-                android:text="℃"
-                app:layout_constraintTop_toTopOf="@id/txt_temp"
-                app:layout_constraintLeft_toRightOf="@id/txt_temp"
-                android:layout_marginLeft="4dp"
-                />
-
-            <TextView
                 android:id="@+id/txt_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="22sp"
+                android:textSize="18dp"
                 app:layout_constraintTop_toBottomOf="@id/txt_temp"
                 app:layout_constraintLeft_toLeftOf="@id/img_temp"
                 android:layout_marginTop="5dp"
@@ -97,7 +80,6 @@
                 android:textColor="#6d7278"
                 android:lineSpacingExtra="6sp"
                 android:gravity="center_horizontal"
-                android:text="50%"
                 />
 
             <ImageView
