@@ -15,10 +15,10 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
                           , override val isUseDatabinding: Boolean = false) : BaseActivity() {
 
     override var isChildActivity: Boolean = true
-    val defaultValue = "338,100,"
+    var defaultValue = ""
     val minValue = 0
     val maxValue = 100
-    var state = 0
+    var state: List<String> = arrayListOf()
     val device by lazy { intent.getParcelableExtra("device") as Device }
 
     override fun setupView() {
@@ -61,9 +61,14 @@ class DeviceLightActivity(override val layoutRes: Int = R.layout.activity_device
         getNetworkInstanceForJson().getDeviceInfos(device.path)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map { it.get("state").toString().replace("\"","").replace("338,100,","").toInt()}
+                .map {
+                    it.get("state").toString()
+                            .replace("\"","")
+                }
                 .subscribe {
-                    lightSeekbar.progress = it
+                    state = it.split(",")
+                    defaultValue = state[0] + "," + state[1] + ","
+                    lightSeekbar.progress = state[2].toInt()
                 }
     }
 }
