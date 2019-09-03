@@ -46,7 +46,6 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
     override fun setupView(view: View) {
 
         getDevices()
-        getHumidityTemperature()
 
         rv_home_control.adapter = adapter
         rv_home_control.addItemDecoration(GridSpacingItemDecoration(3, 40, false))
@@ -133,6 +132,11 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                                     "10" -> modelList.add(Device(3, name = name, path = link.toString(), stringType = stringType))
                                     "11" -> modelList.add(Device(2, name = name, path = link.toString(), stringType = stringType))
                                     "1","6","8" -> modelList.add(Device(4, name = name, path = link.toString(), stringType = stringType))
+                                    "3" -> {
+                                        var link2 = it.asJsonObject.get("channels").asJsonArray.get(1).asJsonObject.get("linkedItems").toString()
+                                        link2 = link2.substring(2 .. link2.length-3)
+                                        getHumidityTemperature(tempUrl = link, humidityUrl = link2)
+                                    }
                                 }
                             }
                         }catch (ex: Exception){ Log.d("tagg error!", ex.toString()) }
@@ -141,9 +145,13 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                 },{})
     }
 
+
     @SuppressLint("CheckResult")
-    private fun getHumidityTemperature(){
-        getNetworkInstanceForJson().getDeviceInfos("mihome_sensor_ht_158d0001712b72_temperature")
+    private fun getHumidityTemperature(tempUrl: String, humidityUrl: String){
+
+        //mihome_sensor_ht_158d000315e33a_temperature
+
+        getNetworkInstanceForJson().getDeviceInfos(tempUrl)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.get("state").toString().replace("\"","") }
@@ -152,7 +160,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                     HumidityTemperature.temperature = temp
                 }
 
-        getNetworkInstanceForJson().getDeviceInfos("mihome_sensor_ht_158d0001712b72_humidity")
+        getNetworkInstanceForJson().getDeviceInfos(humidityUrl)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .map { it.get("state").toString().replace("\"","") }

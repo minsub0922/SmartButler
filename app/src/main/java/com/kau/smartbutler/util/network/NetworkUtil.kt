@@ -34,10 +34,13 @@ fun networkInit() {
     realm.beginTransaction()
     val initialProfile = realm.where<Profile>(Profile::class.java).findFirst()
     realm.commitTransaction()
+
     if (initialProfile != null) {
         API_BASE_URL = "http://${initialProfile.openhapIP}:8080"
         CCTV_ANALYSIS_URL = "http://${initialProfile.serverIP}:${initialProfile.serverPort}"
     }
+
+    API_BASE_URL = "http://39.115.189.208:8080"
 
     client = OkHttpClient.Builder()
             .addInterceptor(logging)
