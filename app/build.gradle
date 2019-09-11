@@ -58,3 +58,11 @@ dependencies {
 repositories {
     mavenCentral()
 }
+allprojects {
+    repositories {
+        maven { url 'https://jitpack.io' }
+    }
+}
+dependencies {
+    api 'com.github.pedroSG94.vlc-example-streamplayer:pedrovlc:2.5.14v3'
+}

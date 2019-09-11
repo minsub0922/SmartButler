@@ -44,33 +44,47 @@
 
 
     <!-- 영상이 뿌려질 뷰 -->
-    <ImageView
-        android:id="@+id/video_view"
+
+    <FrameLayout
+        android:id="@+id/frLay"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="6"
-        android:background="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHeight_percent="0.7"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
-        app:layout_constraintVertical_bias="0" />
+        >
+
+        <TextureView
+            android:id="@+id/video_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintHeight_percent="0.7"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appbar"
+            app:layout_constraintVertical_bias="0" />
+
+        <ImageView
+            android:id="@+id/iv_3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@color/transparent" />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/detectedInfoTextView"
-        android:textColor="@color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_margin="16dp"
         android:text=""
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:textColor="@color/white" />
 
     <ImageButton
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
         android:background="@drawable/btn_cctv_call_n"/>
+
     <TextView
         android:layout_marginTop="5dp"
         android:layout_marginBottom="30dp"
