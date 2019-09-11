@@ -42,7 +42,6 @@ class CCTVDetailActivity (
     }
 
     override fun onComplete() {
-        Toast.makeText(this, "Playing", Toast.LENGTH_SHORT).show()
     }
 
     internal var handler = Handler()
@@ -83,13 +82,13 @@ class CCTVDetailActivity (
         var profileItem = realm.where<Profile>(Profile::class.java).findFirst()
         if (profileItem != null){
             cctv_ip = (profileItem as ProfileRealmProxy).`realmGet$cctvIP`().toString()
-            cctv_url = "http://172.16.28.2/cgi-bin/encoder?USER=admin&PWD=123456&SNAPSHOT"
+            cctv_url = "rtsp://admin:123456@$cctv_ip:7070/"
         }
-//        else{
-//            finish()
-//            Toast.makeText(applicationContext,"CCTV  IP 주소를 입력해주세요",Toast.LENGTH_SHORT).show()
-//            return
-//        }
+        else{
+            finish()
+            Toast.makeText(applicationContext,"CCTV  IP 주소를 입력해주세요",Toast.LENGTH_SHORT).show()
+            return
+        }
         var is_area = false
         if (viewItem != null){
             is_area = getArea(viewItem)
@@ -111,7 +110,11 @@ class CCTVDetailActivity (
 
                     vlc_videolib.setOptions(Arrays.asList<String>(*options))
                     vlc_videolib.setWidth_Height(video_view.width, video_view.height)
-                    vlc_videolib.play("rtsp://admin:123456@172.16.28.2:7070/")
+                    vlc_videolib.play(cctv_url)
+
+                    while(vlc_videolib.player!!.media.stats!!.displayedPictures <= 1){
+                    }
+
                     if (viewItem != null){
                         // 가져온 그림 그리기
                         var bmap = Bitmap.createBitmap(video_view.width, video_view.height, Bitmap.Config.ARGB_8888)
