@@ -82,7 +82,7 @@ class CCTVDetailActivity (
         var profileItem = realm.where<Profile>(Profile::class.java).findFirst()
         if (profileItem != null){
             cctv_ip = (profileItem as ProfileRealmProxy).`realmGet$cctvIP`().toString()
-            cctv_url = "rtsp://admin:123456@$cctv_ip:7070/"
+            cctv_url = "rtsp://admin:kictech3760@$cctv_ip:554/Streaming/Channels/101"
         }
         else{
             finish()
