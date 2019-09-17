@@ -40,8 +40,6 @@ fun networkInit() {
         CCTV_ANALYSIS_URL = "http://${initialProfile.serverIP}:${initialProfile.serverPort}"
     }
 
-    API_BASE_URL = "http://39.115.189.208:8080"
-
     client = OkHttpClient.Builder()
             .addInterceptor(logging)
             .addInterceptor(DecodeInterceptor())
