@@ -61,7 +61,7 @@ class CalendarAdapter (
                 val i = Intent(mContext, DietManagementActivity::class.java)
                 i.putExtra("year", calendar.get(Calendar.YEAR).toLong())
                 i.putExtra("month", calendar.get(Calendar.MONTH).toLong())
-                i.putExtra("date", calendar.get(Calendar.DAY_OF_MONTH).toLong())
+                i.putExtra("date", model.date.toLong())
                 i.putExtra("time", currentTime)
                 mContext.startActivity(i)
             }
