@@ -45,27 +45,26 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="#ffc12f"
+        android:layout_marginRight="10dp"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toTopOf="@id/boilerSwitch"
+        android:text="조명 OFF"
+        android:textColor="#ffc12f"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/boilerSwitch"
         app:layout_constraintRight_toLeftOf="@id/boilerSwitch"
-        android:layout_marginRight="10dp"
-        android:text="난방 OFF"
-        />
+        app:layout_constraintTop_toTopOf="@id/boilerSwitch" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="16sp"
-        android:textColor="#afafaf"
+        android:layout_marginLeft="10dp"
         android:gravity="center_horizontal"
-        app:layout_constraintTop_toTopOf="@id/boilerSwitch"
+        android:text="조명 ON"
+        android:textColor="#afafaf"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@id/boilerSwitch"
         app:layout_constraintLeft_toRightOf="@id/boilerSwitch"
-        android:layout_marginLeft="10dp"
-        android:text="난방 ON"
-        />
+        app:layout_constraintTop_toTopOf="@id/boilerSwitch" />
 
     <SeekBar
         android:id="@+id/lightSeekbar"
