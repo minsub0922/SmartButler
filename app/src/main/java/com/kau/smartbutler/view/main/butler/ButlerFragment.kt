@@ -25,7 +25,10 @@ import io.reactivex.Scheduler
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import androidx.core.os.HandlerCompat.postDelayed
+import com.kau.smartbutler.model.Profile
 import com.kau.smartbutler.util.network.getUtasNetworkInstance
+import io.realm.Realm
+import io.realm.kotlin.where
 
 
 class ButlerFragment : BaseFragment(), View.OnClickListener {
@@ -34,9 +37,11 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
 
     lateinit var tts:TextToSpeech
     lateinit var speechRecognizer: SpeechRecognizer
+    lateinit var ip:String
 
     val conversationList = ConversationSingleton.getInstance().list
     val conversationAdapter by lazy { ConversationAdapter(activity!!, conversationList) }
+    private var realm = Realm.getDefaultInstance()
 
 
     companion object {
@@ -71,6 +76,16 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
             }
         })
 
+        realm.beginTransaction()
+        val profile = realm.where<Profile>().findFirst()
+
+        realm.commitTransaction()
+
+        if (profile == null) {
+            ip = "http://112.169.29.116:8080"
+        } else {
+            ip = profile.openhapIP
+        }
         val sttIntent = Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH)
         sttIntent.putExtra(RecognizerIntent.EXTRA_CALLING_PACKAGE, context!!.packageName)
         sttIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE, "ko-KR")
@@ -117,6 +132,14 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
 
                     for (match in matches!!) {
                         Toast.makeText(context, match, Toast.LENGTH_LONG).show()
+                        getUtasNetworkInstance()
+                                .getUserServlet("dialog", match, ip)
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe({
+                                    butlerConversation(it.toString())
+                                    Log.d("tag result ", it.toString())
+                                }, {})
                     }
                     clickVoice.text = "음성으로 하시려면 터치해주세요."
                 }
@@ -150,7 +173,7 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
             R.id.iv_butler_send -> {
                 userConversation(et_butler_text.text.toString())
                 getUtasNetworkInstance()
-                        .getUserServlet("dialog", et_butler_text.text.toString())
+                        .getUserServlet("dialog", et_butler_text.text.toString(), ip)
                         .subscribeOn(Schedulers.io())
                         .observeOn(AndroidSchedulers.mainThread())
                         .subscribe({

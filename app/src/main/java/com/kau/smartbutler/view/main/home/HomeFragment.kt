@@ -137,6 +137,7 @@ class HomeFragment : BaseFragment() , View.OnClickListener, DeviceControllerAdpa
                                         link2 = link2.substring(2 .. link2.length-3)
                                         getHumidityTemperature(tempUrl = link, humidityUrl = link2)
                                     }
+                                    "12" -> modelList.add(Device(2, name = name, path = link.toString(), stringType = stringType))
                                 }
                             }
                         }catch (ex: Exception){ Log.d("tagg error!", ex.toString()) }

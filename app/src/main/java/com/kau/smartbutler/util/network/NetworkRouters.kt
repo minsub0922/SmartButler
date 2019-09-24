@@ -65,7 +65,8 @@ interface NetworkRouters {
     @GET("/ids-utas/GetUserServlet")
     fun getUserServlet(
             @Query("mode") mode: String,
-            @Query("stringInput") stringInput : String
+            @Query("stringInput") stringInput : String,
+            @Query("ip") ip: String
     ) : Observable<String>
     //이런식으로 라우터를 interface로 빼서 갖다 쓰면댐
 }
