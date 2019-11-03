@@ -137,7 +137,7 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                                 .subscribeOn(Schedulers.io())
                                 .observeOn(AndroidSchedulers.mainThread())
                                 .subscribe({
-                                    butlerConversation(it.toString())
+                                    tts.speak(it.toString(), TextToSpeech.QUEUE_ADD, null, null)
                                     Log.d("tag result ", it.toString())
                                 }, {})
                     }
