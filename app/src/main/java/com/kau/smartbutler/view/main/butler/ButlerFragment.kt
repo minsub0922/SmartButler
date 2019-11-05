@@ -130,21 +130,17 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                 override fun onResults(results: Bundle) {
                     val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
                     val scores = results.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES)
-
-                    for (index in matches!!.indices) {
-                        if (scores[index] > 0.5)
-                        {
-                            Toast.makeText(context, matches[index]+" : "+scores[index], Toast.LENGTH_LONG).show()
-                            getUtasNetworkInstance()
-                                    .getUserServlet("dialog", matches[index], ip)
-                                    .subscribeOn(Schedulers.io())
-                                    .observeOn(AndroidSchedulers.mainThread())
-                                    .subscribe({
-                                        tts.speak(it.toString(), TextToSpeech.QUEUE_ADD, null, null)
-                                        Log.d("tag result ", it.toString())
-                                    }, {})
-                        }
-                    }
+                    val maxIndex = scores.indexOf(scores.max()!!)
+                    Log.d("tag result", maxIndex.toString() + matches[maxIndex] + scores[maxIndex])
+                    getUtasNetworkInstance()
+                            .getUserServlet("dialog", matches[maxIndex], ip)
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({
+                                tts.speak(it.toString(), TextToSpeech.QUEUE_ADD, null, null)
+                                Toast.makeText(context, it.toString(), Toast.LENGTH_LONG).show()
+                                Log.d("tag result ", it.toString())
+                            }, {})
                     clickVoice.text = "음성으로 하시려면 터치해주세요."
                 }
                 // 결과 값을 받음
