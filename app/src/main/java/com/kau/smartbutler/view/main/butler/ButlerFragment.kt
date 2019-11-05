@@ -129,17 +129,21 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                 // 오류가 발생했을 때
                 override fun onResults(results: Bundle) {
                     val matches = results.getStringArrayList(SpeechRecognizer.RESULTS_RECOGNITION)
+                    val scores = results.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES)
 
-                    for (match in matches!!) {
-                        Toast.makeText(context, match, Toast.LENGTH_LONG).show()
-                        getUtasNetworkInstance()
-                                .getUserServlet("dialog", match, ip)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .subscribe({
-                                    tts.speak(it.toString(), TextToSpeech.QUEUE_ADD, null, null)
-                                    Log.d("tag result ", it.toString())
-                                }, {})
+                    for (index in matches!!.indices) {
+                        if (scores[index] > 0.5)
+                        {
+                            Toast.makeText(context, matches[index]+" : "+scores[index], Toast.LENGTH_LONG).show()
+                            getUtasNetworkInstance()
+                                    .getUserServlet("dialog", matches[index], ip)
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .subscribe({
+                                        tts.speak(it.toString(), TextToSpeech.QUEUE_ADD, null, null)
+                                        Log.d("tag result ", it.toString())
+                                    }, {})
+                        }
                     }
                     clickVoice.text = "음성으로 하시려면 터치해주세요."
                 }
