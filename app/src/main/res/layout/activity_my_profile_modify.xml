@@ -277,60 +277,6 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/nameTextView">
-
-                <TextView
-                    android:id="@+id/tv_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#6d7278"
-                    android:lineSpacingExtra="14sp"
-                    android:text="나이"
-                    app:layout_constraintHorizontal_chainStyle="spread_inside"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/et_age"
-                    />
-                <EditText
-                    android:id="@+id/et_age"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:hint="00 세"
-                    android:textSize="14sp"
-                    android:textColor="#6d7278"
-                    android:lineSpacingExtra="14sp"
-                    app:layout_constraintTop_toTopOf="@id/tv_age"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_age"
-                    app:layout_constraintStart_toEndOf="@+id/tv_age"
-                    app:layout_constraintEnd_toStartOf="@id/tv_sex"/>
-                
-                <TextView
-                    android:id="@+id/tv_sex"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" 
-                    android:text="상별"
-                    android:textSize="14sp"
-                    android:textColor="#6d7278"
-                    android:lineSpacingExtra="14sp"
-                    app:layout_constraintTop_toTopOf="@id/tv_age"
-                    app:layout_constraintBottom_toBottomOf="@id/tv_age"
-                    app:layout_constraintStart_toEndOf="@id/et_age"
-                    />
-                <Spinner
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                </Spinner>
-                
-                
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
             <EditText
                 android:id="@+id/phoneEditText"
                 android:layout_width="0dp"
