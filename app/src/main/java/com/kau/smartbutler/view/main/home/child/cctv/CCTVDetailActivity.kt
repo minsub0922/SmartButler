@@ -16,6 +16,7 @@ import com.google.gson.JsonObject
 import com.kau.smartbutler.R
 import com.kau.smartbutler.base.BaseActivity
 import com.kau.smartbutler.model.CCTV
+import com.kau.smartbutler.model.FamilyInfomation
 import com.kau.smartbutler.model.Profile
 import io.realm.CCTVRealmStructRealmProxy
 import io.realm.ProfileRealmProxy
@@ -27,9 +28,16 @@ import java.util.*
 
 import com.pedro.vlc.VlcListener
 import com.pedro.vlc.VlcOptions
+import io.realm.FamilyInfomationRealmProxy
+import io.realm.kotlin.where
 import org.videolan.libvlc.LibVLC
 import org.videolan.libvlc.Media
 import org.videolan.libvlc.MediaPlayer
+
+import android.Manifest.permission.CALL_PHONE
+import android.content.pm.PackageManager
+import android.os.Build
+import androidx.core.content.ContextCompat
 
 class CCTVDetailActivity (
 
@@ -66,6 +74,8 @@ class CCTVDetailActivity (
     override fun setupView() {
         super.setupView()
         Realm.init(this)
+        realm = Realm.getDefaultInstance()
+
         val infoCCTV : CCTV
         if (intent.hasExtra("cctv")){
             infoCCTV = intent.getParcelableExtra<CCTV>("cctv")
@@ -75,9 +85,12 @@ class CCTVDetailActivity (
         var detected_info = ""
         if (intent.hasExtra("Detected_Event") && ! intent.getStringExtra("Detected_Event").equals("")){
             detected_info = intent.getStringExtra("Detected_Event")
+            if (detected_info.contains("쓰러짐")){
+                family_call()
+            }
         }
         detectedInfoTextView.setText(detected_info)
-        realm = Realm.getDefaultInstance()
+
         var viewItem =realm.where<CCTVRealmStruct>(CCTVRealmStruct::class.java).equalTo("Location",infoCCTV.name)?.findFirst()
         var profileItem = realm.where<Profile>(Profile::class.java).findFirst()
         if (profileItem != null){
@@ -130,7 +143,7 @@ class CCTVDetailActivity (
 
         moreNavButton.setOnClickListener {
             val bm = video_view.getBitmap()
-            val resized = Bitmap.createScaledBitmap(bm, 525, 600, true)
+            val resized = Bitmap.createScaledBitmap(bm, 400, 500, true)
             val bStream = ByteArrayOutputStream()
             resized.compress(Bitmap.CompressFormat.PNG, 0, bStream)
             val byteArray = bStream.toByteArray()
@@ -143,6 +156,35 @@ class CCTVDetailActivity (
             startActivity(i)
         }
     }
+
+    private fun family_call() {
+        var family_info = realm.where<FamilyInfomation>().findFirst()
+        if (family_info != null ){
+            val family_phone = (family_info as FamilyInfomationRealmProxy).`realmGet$phone`()
+            if(ContextCompat.checkSelfPermission(applicationContext, CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+            {
+                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + family_phone)))
+            }
+            else{
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(arrayOf(CALL_PHONE), 1)
+                }
+            }
+        }
+        else{
+            // 119에 전화
+            if(ContextCompat.checkSelfPermission(applicationContext, CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+            {
+                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "119")))
+            }
+            else{
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    requestPermissions(arrayOf(CALL_PHONE), 1)
+                }
+            }
+        }
+    }
+
     fun getArea(area_info : CCTVRealmStruct?): Boolean {
         var points_list : List<String> = ArrayList<String>()
         var draw_points = ArrayList<Float>()

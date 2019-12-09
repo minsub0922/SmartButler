@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.kau.smartbutler">
 
     <uses-permission android:name="android.permission.CALL_PHONE" />
@@ -9,7 +10,7 @@
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
     <uses-feature android:name="android.hardware.camera2.full" />
 
     <application
@@ -124,6 +125,9 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.main.home.child.MyPageModifyActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".view.main.home.child.MyFamilyPageModifyActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".view.main.home.child.DeviceAddActivity"
