@@ -132,8 +132,12 @@ class ButlerFragment : BaseFragment(), View.OnClickListener {
                     val scores = results.getFloatArray(SpeechRecognizer.CONFIDENCE_SCORES)
                     val maxIndex = scores.indexOf(scores.max()!!)
                     Log.d("tag result", maxIndex.toString() + matches[maxIndex] + scores[maxIndex])
+                    var send_message = matches[maxIndex]
+                    if (matches[maxIndex] == "외출 모드"){
+                        send_message = "외출모드"
+                    }
                     getUtasNetworkInstance()
-                            .getUserServlet("dialog", matches[maxIndex], ip)
+                            .getUserServlet("dialog", send_message, ip)
                             .subscribeOn(Schedulers.io())
                             .observeOn(AndroidSchedulers.mainThread())
                             .subscribe({
