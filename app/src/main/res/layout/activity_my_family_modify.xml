@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:background="@color/white"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <androidx.appcompat.widget.Toolbar
+
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:popupTheme="@style/AppTheme.PopupOverlay"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="가족정보 수정"
+                android:layout_gravity="center"
+                android:id="@+id/toolbarTitle"
+                android:textColor="@color/titleColor"
+                android:textSize="18sp"
+                />
+
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_editor_absoluteX="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/myprofileImageView"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/btn_myprofile_change"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/family_nameEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:hint="가족 이름"
+                android:textSize="14sp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/myprofileImageView" />
+
+            <EditText
+                android:id="@+id/family_relationEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:hint="부/모/형제/남매/자매"
+                android:textSize="14sp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_nameEditText" />
+
+
+            <EditText
+                android:id="@+id/family_phoneEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:hint="010-0000-0000"
+                android:textSize="14sp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                android:inputType="phone"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_relationEditText" />
+
+            <EditText
+                android:id="@+id/family_emailEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:hint="abc@naver.com"
+                android:textSize="14sp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                android:inputType="textEmailAddress"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_phoneEditText" />
+
+            <EditText
+                android:id="@+id/family_addressEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:hint="서울시 서대문구"
+                android:textSize="14sp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_emailEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="이름"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/family_nameEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/family_nameEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="가족 관계"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/family_relationEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/family_relationEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="전화"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/family_phoneEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/family_phoneEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="메일"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/family_emailEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/family_emailEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="주소"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/family_addressEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/family_addressEditText" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_nameEditText" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_relationEditText" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_phoneEditText" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_emailEditText" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/family_addressEditText" />
+
+
+            <Button
+                android:id="@+id/myFamilyProfileSave"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="30dp"
+                android:background="@drawable/btn_save"
+                app:layout_constraintTop_toBottomOf="@id/family_addressEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
