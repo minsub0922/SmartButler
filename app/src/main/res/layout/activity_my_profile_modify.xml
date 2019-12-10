@@ -278,6 +278,21 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <EditText
+                android:id="@+id/nameEditText"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/transparent"
+                android:hint="사용자 이름"
+                android:textSize="14sp"
+                android:textAlignment="viewEnd"
+                android:textColor="@color/AppThemeColor"
+                app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/layout_calorie_compute" />
+
+            <EditText
                 android:id="@+id/phoneEditText"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -291,7 +306,7 @@
                 android:inputType="phone"
                 app:layout_constraintLeft_toRightOf="@id/myprofileImageView"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/layout_calorie_compute" />
+                app:layout_constraintTop_toBottomOf="@id/nameEditText" />
 
             <EditText
                 android:id="@+id/emailEditText"
@@ -399,6 +414,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:text="이름"
+                android:textColor="#6d7278"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/nameEditText"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="@id/nameEditText" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
                 android:text="전화"
                 android:textColor="#6d7278"
                 android:textSize="14sp"
@@ -455,6 +482,16 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toTopOf="@id/serverIP" />
 
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginLeft="@dimen/my_page_horizontal_margin"
+                android:layout_marginTop="9.5dp"
+                android:layout_marginRight="@dimen/my_page_horizontal_margin"
+                android:background="@color/divider"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/nameEditText" />
 
             <View
                 android:layout_width="0dp"

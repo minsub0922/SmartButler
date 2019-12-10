@@ -76,6 +76,7 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
         val initialProfile = realm.where<Profile>().findFirst()
         realm.commitTransaction()
         if (initialProfile != null) {
+            nameEditText.setText(initialProfile.name)
             phoneEditText.setText(initialProfile.phone)
             emailEditText.setText(initialProfile.email)
             addressEditText.setText(initialProfile.address)
@@ -118,6 +119,7 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                             Toast.makeText(this, "저장 실패", Toast.LENGTH_SHORT).show()
                         })
 
+                val name = if(nameEditText.text.toString() == "") "홍길동" else nameEditText.text.toString()
                 val phone = if(phoneEditText.text.toString() == "") "010-0000-0000" else phoneEditText.text.toString()
                 val email = if(emailEditText.text.toString() == "") "example@example.com" else emailEditText.text.toString()
                 val address = if(addressEditText.text.toString() == "") "서울시 서대문구" else addressEditText.text.toString()
@@ -132,7 +134,7 @@ class MyPageModifyActivity(override val layoutRes: Int = R.layout.activity_my_pr
                 val initialProfile = realm.where<Profile>().findAll()
                 if (initialProfile != null)
                     initialProfile.deleteAllFromRealm()
-                val profile = Profile("홍길동", phone, email, address, cctvIP, openhabIP, serverIP, serverPort)
+                val profile = Profile(name, phone, email, address, cctvIP, openhabIP, serverIP, serverPort)
                 realm.copyToRealm(profile)
                 realm.commitTransaction()
 
