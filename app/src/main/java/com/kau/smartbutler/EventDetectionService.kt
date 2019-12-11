@@ -1,14 +1,13 @@
 package com.kau.smartbutler
 
-import android.app.ActivityManager
-import android.app.Service
-import android.content.Context
+import android.app.*
 import android.content.Intent
 import android.os.Handler
 import android.os.IBinder
 import android.util.Log
 import android.widget.Toast
 import com.kau.smartbutler.util.network.getCCTVNetworkInstance
+import com.kau.smartbutler.util.notification.EventDetectionNotification
 import com.kau.smartbutler.view.main.home.child.cctv.CCTVDetailActivity
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
@@ -16,6 +15,7 @@ import io.reactivex.schedulers.Schedulers
 class EventDetectionService : Service() {
     private var isStop: Boolean = false
     private val request_thread = Thread(RequestDetectedEvent())
+    private var eventDetection_Notification = EventDetectionNotification()
 
     override fun onCreate() {
         super.onCreate()
@@ -35,7 +35,7 @@ class EventDetectionService : Service() {
 
         override fun run() {
             while (true) {
-                if (isStop or ! isAppOnForeground(applicationContext)) {
+                if (isStop){
                     break
                 }
 
@@ -65,11 +65,8 @@ class EventDetectionService : Service() {
                         detected_info = res.getAsJsonPrimitive("Detected_Event").asString
 
                         if (! detected_info.equals("")){
-                            var i = Intent(applicationContext, CCTVDetailActivity::class.java)
+
                             var send_data = ""
-                            i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or
-                                    Intent.FLAG_ACTIVITY_SINGLE_TOP or
-                                    Intent.FLAG_ACTIVITY_CLEAR_TOP)
 
                             if (detected_info.equals("Intrusion")){
                                 send_data = "침입이 감지되었습니다."
@@ -84,14 +81,14 @@ class EventDetectionService : Service() {
                                 send_data = "쓰러짐이 감지되었습니다."
                             }
 
-                            i.putExtra("Detected_Event",send_data)
-                            startActivity(i)
+                            eventDetection_Notification.createNotification(applicationContext ,send_data)
+
                         }
                     },
-                            {
-                                error ->
-                                Log.d("Error",error.toString())
-                            })
+                    {
+                        error ->
+                        Log.d("Error",error.toString())
+                    })
         }
     }
 
@@ -106,17 +103,5 @@ class EventDetectionService : Service() {
         super.onTaskRemoved(rootIntent)
         Log.d("Service", "Exit")
         this.stopSelf()
-    }
-
-    fun isAppOnForeground(context: Context): Boolean {
-        val activityManager = context.getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
-        val appProcessInfoList = activityManager.runningAppProcesses ?: return false
-        val packageName = context.packageName
-        for (appProcessInfo in appProcessInfoList) {
-            if (appProcessInfo.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND && appProcessInfo.processName == packageName) {
-                return true
-            }
-        }
-        return false
     }
 }
