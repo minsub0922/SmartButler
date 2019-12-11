@@ -30,16 +30,18 @@ class MyFamilyPageModifyActivity(override val layoutRes: Int = R.layout.activity
 
         realm.beginTransaction()
         val initialInfo_list = realm.where<FamilyInfomation>().findAll()
-        val initialInfo = initialInfo_list.last()
-        realm.commitTransaction()
+        if (initialInfo_list.size != 0){
+            val initialInfo = initialInfo_list.last()
 
-        if(initialInfo != null){
-            family_nameEditText.setText(initialInfo.name)
-            family_relationEditText.setText(initialInfo.relation)
-            family_phoneEditText.setText(initialInfo.phone)
-            family_emailEditText.setText(initialInfo.email)
-            family_addressEditText.setText(initialInfo.address)
+            if(initialInfo != null){
+                family_nameEditText.setText(initialInfo.name)
+                family_relationEditText.setText(initialInfo.relation)
+                family_phoneEditText.setText(initialInfo.phone)
+                family_emailEditText.setText(initialInfo.email)
+                family_addressEditText.setText(initialInfo.address)
+            }
         }
+        realm.commitTransaction()
     }
 
     // Save Button Click

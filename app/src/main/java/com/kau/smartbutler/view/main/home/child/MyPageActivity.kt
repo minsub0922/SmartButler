@@ -42,30 +42,35 @@ class MyPageActivity(override val layoutRes: Int = R.layout.activity_my_profile,
 
     private fun getProfileInfo() {
         var personal_info_list = realm.where<PersonalInformation>().findAll()
-        var personal_info = personal_info_list.last()
-
-        var profile_info_list = realm.where<Profile>().findAll()
-        var profile_info = profile_info_list.last()
-
-        if (profile_info != null){
-            val profile_name = (profile_info as ProfileRealmProxy).`realmGet$name`()
-            nameTextView.setText(profile_name)
+        if (personal_info_list.size != 0){
+            var personal_info = personal_info_list.last()
+            if (personal_info != null) {
+                val personal_age = (personal_info as PersonalInformationRealmProxy).`realmGet$age`()
+                ageTextView.setText("($personal_age 세)")
+            }
         }
 
-        if (personal_info != null){
-            val personal_age = (personal_info as PersonalInformationRealmProxy).`realmGet$age`()
-            ageTextView.setText("($personal_age 세)")
+
+        var profile_info_list = realm.where<Profile>().findAll()
+        if (profile_info_list.size != 0) {
+            var profile_info = profile_info_list.last()
+            if (profile_info != null) {
+                val profile_name = (profile_info as ProfileRealmProxy).`realmGet$name`()
+                nameTextView.setText(profile_name)
+            }
         }
     }
 
     private fun getFamilyInfo() {
         var family_info_list = realm.where<FamilyInfomation>().findAll()
-        var family_info = family_info_list.last()
+        if (family_info_list.size != 0) {
+            var family_info = family_info_list.last()
 
-        if (family_info != null){
-            val family_name = (family_info as FamilyInfomationRealmProxy).`realmGet$name`()
-            val family_relation = (family_info as FamilyInfomationRealmProxy).`realmGet$relation`()
-            familyMembersTextView.setText("$family_name/$family_relation")
+            if (family_info != null) {
+                val family_name = (family_info as FamilyInfomationRealmProxy).`realmGet$name`()
+                val family_relation = (family_info as FamilyInfomationRealmProxy).`realmGet$relation`()
+                familyMembersTextView.setText("$family_name/$family_relation")
+            }
         }
     }
 }
