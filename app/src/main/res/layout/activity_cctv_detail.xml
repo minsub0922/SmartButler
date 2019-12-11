@@ -80,10 +80,11 @@
         android:textColor="@color/white" />
 
     <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:id="@+id/emerCallButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/btn_cctv_call_n"/>
+        android:background="@drawable/btn_cctv_call_n" />
 
     <TextView
         android:layout_marginTop="5dp"

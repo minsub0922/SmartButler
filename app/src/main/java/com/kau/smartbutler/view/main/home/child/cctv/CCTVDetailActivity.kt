@@ -1,16 +1,12 @@
 package com.kau.smartbutler.view.main.home.child.cctv
 
-import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
-import android.os.Bundle
 import android.os.Handler
-import android.util.Log
 import android.view.*
-import android.widget.Button
 import android.widget.Toast
 import com.google.gson.JsonObject
 import com.kau.smartbutler.R
@@ -23,7 +19,6 @@ import io.realm.ProfileRealmProxy
 import io.realm.Realm
 import kotlinx.android.synthetic.main.activity_cctv_detail.*
 import java.io.ByteArrayOutputStream
-import java.net.URL
 import java.util.*
 
 import com.pedro.vlc.VlcListener
@@ -37,7 +32,9 @@ import org.videolan.libvlc.MediaPlayer
 import android.Manifest.permission.CALL_PHONE
 import android.content.pm.PackageManager
 import android.os.Build
+import android.telephony.SmsManager
 import androidx.core.content.ContextCompat
+import java.nio.ByteBuffer
 
 class CCTVDetailActivity (
 
@@ -85,9 +82,6 @@ class CCTVDetailActivity (
         var detected_info = ""
         if (intent.hasExtra("Detected_Event") && ! intent.getStringExtra("Detected_Event").equals("")){
             detected_info = intent.getStringExtra("Detected_Event")
-            if (detected_info.contains("쓰러짐")){
-                family_call()
-            }
         }
         detectedInfoTextView.setText(detected_info)
 
@@ -106,7 +100,6 @@ class CCTVDetailActivity (
         if (viewItem != null){
             is_area = getArea(viewItem)
         }
-        realm.close()
         var count = 0
         val vlc_videolib = VlcVideoLibrary(this,this, video_view)
 
@@ -127,17 +120,17 @@ class CCTVDetailActivity (
 
                     while(vlc_videolib.player!!.media.stats!!.displayedPictures <= 1){
                     }
-
+                    print(vlc_videolib.player!!.media.stats!!.displayedPictures)
                     if (viewItem != null){
                         // 가져온 그림 그리기
                         var bmap = Bitmap.createBitmap(video_view.width, video_view.height, Bitmap.Config.ARGB_8888)
                         canvas.setBitmap(bmap)
                         onDraw(canvas)
                         iv_3.setImageDrawable(BitmapDrawable(resources, bmap))
+
                     }
                 }
                 count ++
-//                val url = URL(cctv_url)
             }
         })
 
@@ -155,6 +148,10 @@ class CCTVDetailActivity (
             finish()
             startActivity(i)
         }
+
+        emerCallButton.setOnClickListener{
+            family_call()
+        }
     }
 
     private fun family_call() {
@@ -171,18 +168,18 @@ class CCTVDetailActivity (
                 }
             }
         }
-        else{
-            // 119에 전화
-            if(ContextCompat.checkSelfPermission(applicationContext, CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
-            {
-                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "119")))
-            }
-            else{
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    requestPermissions(arrayOf(CALL_PHONE), 1)
-                }
-            }
-        }
+//        else{
+//            // 119에 전화
+//            if(ContextCompat.checkSelfPermission(applicationContext, CALL_PHONE) == PackageManager.PERMISSION_GRANTED)
+//            {
+//                startActivity(Intent(Intent.ACTION_CALL, Uri.parse("tel:" + "119")))
+//            }
+//            else{
+//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+//                    requestPermissions(arrayOf(CALL_PHONE), 1)
+//                }
+//            }
+//        }
     }
 
     fun getArea(area_info : CCTVRealmStruct?): Boolean {
@@ -197,8 +194,9 @@ class CCTVDetailActivity (
             points_list = (area_info as CCTVRealmStructRealmProxy).`realmGet$Loitering`().replace("[^0-9.,]".toRegex(),"").split(',')
         } else if ((area_info as CCTVRealmStructRealmProxy).`realmGet$Intrusion`() != "[]"){
             points_list = (area_info as CCTVRealmStructRealmProxy).`realmGet$Intrusion`().replace("[^0-9.,]".toRegex(),"").split(',')
+        } else if ((area_info as CCTVRealmStructRealmProxy).`realmGet$Falldown`() != "[]"){
+            points_list = (area_info as CCTVRealmStructRealmProxy).`realmGet$Falldown`().replace("[^0-9.,]".toRegex(),"").split(',')
         }
-
         if (points_list.isEmpty()){
             return false
         }
